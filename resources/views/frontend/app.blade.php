@@ -78,7 +78,7 @@
         }
 
         .header-container {
-            max-width: 1200px; /* Aligned with main container */
+            max-width: 1320px;
             margin: 0 auto;
             padding: 0 20px;
             display: flex;
@@ -89,25 +89,18 @@
         .logo { display: flex; align-items: center; gap: 12px; }
         .logo-icon-wrapper {
             position: relative;
-            width: 45px;
-            height: 45px;
+            width: 80px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .logo-pin { font-size: 2.8rem; color: var(--brand-blue); }
-        .logo-car {
-            position: absolute;
-            font-size: 1rem;
-            color: white;
-            top: 32%; left: 50%;
-            transform: translate(-50%, -50%);
-        }
         .logo-text { display: flex; flex-direction: column; line-height: 1; }
         .brand-top { font-size: 1.4rem; font-weight: 800; color: var(--brand-blue); letter-spacing: 0.5px; text-transform: uppercase; }
         .brand-bottom { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
 
-        .nav-menu { display: flex; gap: 20px; align-items: center; }
+        .nav-menu { display: flex; gap: 20px; align-items: center; margin-top: 15px}
         .nav-link { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); position: relative; }
         .nav-link:hover { color: var(--brand-blue); }
 
@@ -121,14 +114,14 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            text-decoration: none;
         }
         .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30, 136, 229, 0.4); }
 
         .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-dark); }
 
-        /* --- 3. HERO SECTION (ALIGNMENT FIXED) --- */
+        /* --- 3. HERO SECTION --- */
         .hero { padding: 80px 0; background: linear-gradient(to right, #ffffff, #f0f8ff); }
-        /* Changed to 2 columns for better balance */
         .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
 
         .eyebrow-text { color: var(--text-light); font-weight: 600; font-size: 1.1rem; margin-bottom: 10px; display: block;}
@@ -143,7 +136,6 @@
         }
         .hero-image:hover img { transform: perspective(1000px) rotateY(0deg); }
 
-        /* Badges moved to left under text */
         .hero-badges { display: flex; flex-direction: row; gap: 15px; margin-top: 30px; align-items: center; flex-wrap: wrap; }
         .badge-img { height: 40px; object-fit: contain; transition: 0.3s; opacity: 0.8; }
         .badge-img:hover { opacity: 1; }
@@ -215,7 +207,7 @@
         }
         .show-more-btn:hover { background: var(--brand-blue); }
 
-        /* --- 7. INFO CONTENT SECTION (ALIGNMENT FIXED) --- */
+        /* --- 7. INFO CONTENT --- */
         .info-section { background: #fff; }
         .info-main-title { color: var(--brand-blue); font-size: 2rem; margin-bottom: 15px; font-weight: 700; }
         .info-subtitle { font-size: 1.2rem; color: var(--text-dark); margin-top: 30px; margin-bottom: 15px; font-weight: 700; }
@@ -224,7 +216,6 @@
         .info-list strong { color: var(--text-dark); font-weight: 700; }
         .info-text { margin-bottom: 15px; color: var(--text-light); }
 
-        /* Fixed City List Alignment: Now using Grid for better layout */
         .city-list-compact {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -240,11 +231,7 @@
             align-items: center;
             gap: 8px;
         }
-        .city-list-compact li::before {
-            content: "•";
-            color: var(--brand-blue);
-            font-weight: bold;
-        }
+        .city-list-compact li::before { content: "•"; color: var(--brand-blue); font-weight: bold; }
 
         /* --- 8. BLOG SECTION --- */
         .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
@@ -272,33 +259,99 @@
         .social-icon { width: 40px; height: 40px; background: #222; display: flex; justify-content: center; align-items: center; border-radius: 4px; color: white; transition: 0.3s; }
         .social-icon:hover { background: var(--brand-blue); }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE / MOBILE DESIGN --- */
+       /* --- RESPONSIVE / MOBILE DESIGN --- */
         @media (max-width: 1024px) {
+
+            .header-container {
+                justify-content: space-between;
+                padding: 10px 20px;
+                background: #fff;
+                position: relative;
+                z-index: 1001;
+            }
+
+            /* Hamburger Icon */
+            .mobile-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: white;
+                background: var(--brand-blue);
+                padding: 6px 12px;
+                border-radius: 6px;
+                margin-left: 15px;
+                order: 3;
+            }
+
+            /* --- FIXED: SLIDE FROM LEFT (Standard Mobile Menu) --- */
+            .nav-menu {
+                position: fixed;
+                top: 75px; /* Header এর ঠিক নিচ থেকে শুরু হবে */
+                left: -100%; /* স্ক্রিনের বাম পাশে লুকানো থাকবে */
+                width: 100%; /* বা চাইলে 80% দিতে পারেন */
+                height: calc(100vh - 75px); /* পুরো হাইট */
+
+                background: var(--brand-blue); /* বা #fff দিতে পারেন যদি সাদা চান */
+                color: white;
+
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 30px;
+
+                /* বাম থেকে ডানে আসার অ্যানিমেশন */
+                transition: left 0.4s ease-in-out;
+
+                z-index: 999;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                overflow-y: auto;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            }
+
+            /* Active Class: মেনু স্ক্রিনে নিয়ে আসবে */
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-link {
+                display: block;
+                color: #fff; /* টেক্সট কালার সাদা */
+                font-size: 1.1rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                padding: 15px 0;
+            }
+
+            .nav-link:hover {
+                color: var(--brand-dark); /* হোভার কালার */
+                padding-left: 10px;
+                background: rgba(255,255,255,0.1); /* হালকা ব্যাকগ্রাউন্ড */
+            }
+
+            /* Call Button Mobile Style */
+            .nav-btn {
+                display: flex !important;
+                margin-left: auto;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+                order: 2;
+            }
+
+            /* Layout Fixes for Body */
             .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
             .hero-badges { justify-content: center; }
-            .hero-image img { transform: none; max-width: 80%; margin: 0 auto; }
-
+            .hero-image img { transform: none; max-width: 90%; margin: 0 auto; }
             .features-layout { grid-template-columns: 1fr; gap: 30px; }
             .feature-center-img { height: 300px; order: -1; }
-
-            .mobile-toggle { display: block; }
-            .nav-menu {
-                position: fixed; top: 75px; left: -100%; width: 100%; height: calc(100vh - 75px);
-                background: white; flex-direction: column; padding: 40px 20px; transition: 0.4s;
-                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-            }
-            .nav-menu.active { left: 0; }
-            .nav-btn { display: none; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
-        @media (max-width: 768px) {
-            .hero-text h1 { font-size: 2rem; }
-            .services-grid { grid-template-columns: 1fr; }
-            .cities-grid { grid-template-columns: 1fr 1fr; }
-            .city-list-compact { grid-template-columns: 1fr 1fr; } /* 2 cols on mobile for text list */
-            .footer-grid { grid-template-columns: 1fr; }
-        }
     </style>
 </head>
 <body>
@@ -307,18 +360,13 @@
         <div class="header-container">
             <a href="#" class="logo">
                 <div class="logo-icon-wrapper">
-                    <i class="fa-solid fa-location-dot logo-pin"></i>
-                    <i class="fa-solid fa-taxi logo-car"></i>
+                    <img src="{{ asset("images/Boston Express Cab Logo.png") }}" alt="Logo">
                 </div>
-                <div class="logo-text">
+                {{-- <div class="logo-text">
                     <span class="brand-top">BOSTON</span>
                     <span class="brand-bottom">Express Cab</span>
-                </div>
+                </div> --}}
             </a>
-
-            <div class="mobile-toggle" onclick="toggleMenu()">
-                <i class="fa-solid fa-bars"></i>
-            </div>
 
             <nav>
                 <ul class="nav-menu" id="navMenu">
@@ -336,8 +384,14 @@
             <a href="tel:6172306362" class="nav-btn">
                 <i class="fa-solid fa-phone"></i> 617-230-6362
             </a>
+
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
         </div>
     </header>
+
+    @yield('content')
 
     <section class="hero">
         <div class="container hero-grid">
@@ -347,13 +401,20 @@
                 <a href="#" class="nav-btn" style="width: fit-content; margin-top: 20px;">Book Now <i class="fa-solid fa-arrow-right"></i></a>
 
                 <div class="hero-badges">
-                    <img src="https://placehold.co/120x50?text=Google" alt="Google" class="badge-img">
-                    <img src="https://placehold.co/120x50?text=Trustpilot" alt="Trustpilot" class="badge-img">
-                    <img src="https://placehold.co/120x50?text=TripAdvisor" alt="TripAdvisor" class="badge-img">
+                    <img src="{{ asset('images/Google-Rating-1.webp') }}" alt="Google" class="badge-img">
+                     <a href="https://www.tripadvisor.com/Attraction_Review-g60745-d33371741-Reviews-Boston_Logan_Airport_Taxi-Boston_Massachusetts.html" target="_blank">
+                        <img src="{{ asset('images/Tripadvisor.webp') }}" alt="Trustpilot" class="badge-img">
+                    </a>
+                     <a href="https://trustpilot.com/review/bostonloganairporttaxi.com" target="_blank">
+                        <img src="{{ asset('images/Trustpilot.webp') }}" alt="TripAdvisor" class="badge-img">
+                    </a>
+                     <a href="https://biz.yelp.com/r2r/qBKa9HpNhb7tt4h8bCsoqA" target="_blank">
+                        <img src="{{ asset('images/Flux_Dev_highresolution_stock_photo_of_Create_an_image_with_th_1.webp') }}" alt="Yelp" class="badge-img">
+                    </a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="https://placehold.co/600x400/1e88e5/fff?text=Luxury+SUV" alt="Boston Cab SUV">
+                <img src="{{ asset("images/Homepage.jpg") }}" alt="Boston Cab SUV">
             </div>
         </div>
     </section>
@@ -368,28 +429,28 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <img src="https://placehold.co/400x300/eee/333?text=Pickup+Location" alt="Pickup Location" class="service-img">
+                    <img src="{{ asset("images/Homepage.jpg") }}" alt="Pickup Location" class="service-img">
                     <div class="service-content">
                         <h3>Pickup Location</h3>
                         <p>Meeting Your Driver at Logan Airport. Find your designated ‘Taxi Cab stand’ right outside every airport exit.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="https://placehold.co/400x300/eee/333?text=Airport+Car+Service" alt="Airport Car Service" class="service-img">
+                    <img src="{{ asset("images/car Services 2.png") }}" alt="Airport Car Service" class="service-img">
                     <div class="service-content">
                         <h3>Airport Car Service</h3>
                         <p>Enjoy punctual, comfortable airport transfers. Our professional drivers ensure a seamless, stress-free journey.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="https://placehold.co/400x300/eee/333?text=Minivan+Taxi" alt="Minivan Taxi" class="service-img">
+                    <img src="{{ asset("images/car Services 3.png") }}" alt="Minivan Taxi" class="service-img">
                     <div class="service-content">
                         <h3>Minivan Taxi</h3>
                         <p>For families and student groups, minivans are the best choice of transport. We also provide child-friendly options.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="https://placehold.co/400x300/eee/333?text=Long+Distance" alt="Long Distance" class="service-img">
+                    <img src="{{ asset("images/Homepage.jpg") }}" alt="Long Distance" class="service-img">
                     <div class="service-content">
                         <h3>Long Distance</h3>
                         <p>Travel from Boston to major Massachusetts cities with ease. Our long-distance rides ensure comfort and convenience.</p>
@@ -419,7 +480,7 @@
                     </div>
                 </div>
                 <div class="features-col-center">
-                    <img src="https://placehold.co/400x600/222/fff?text=Child+Seat" alt="Child Seat" class="feature-center-img">
+                    <img src="{{ asset("images/Child Seat Service.png") }}" alt="Child Seat" class="feature-center-img">
                 </div>
                 <div class="features-col-right">
                     <div class="feature-item">
