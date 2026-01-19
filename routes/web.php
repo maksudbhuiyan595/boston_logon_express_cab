@@ -18,11 +18,13 @@ Route::controller(HomeController::class)->group(function () {
     // Route::get('/capacity-luggage', 'capacityLuggage')->name('luggage.capacity');
     // Route::get('about/', 'about')->name('about');
     // Route::get('/taxi-infant-car-seat', 'childSeat')->name('child.seat');
-    // Route::get('/minivan-taxi-service', 'minivan')->name('minivan');
-    // Route::get('/area-we-serve', 'areaWeServe')->name('area.we.serve');
-    // Route::get('/contact', 'contact')->name('contact');
-
-    // Route::get('/blogs', 'blogs')->name('blogs');
+    Route::get('/pickup-location', 'pickupLocation')->name('pickup.location');
+    Route::get('/reservation', 'reservation')->name('reservation');
+    Route::get('/minivan-taxi-service', 'minivan')->name('minivan');
+    Route::get('/longdistance', 'longdistance')->name('longdistance');
+    Route::get('/area-we-serve', 'areaWeServe')->name('area.we.serve');
+    Route::get('/contact', 'contact')->name('contact');
+    Route::get('/blogs', 'blogs')->name('blogs');
     // Route::get('blog/{slug}', 'blogDetails')->name('blog.details');
     // Route::get('/privacy-policy', 'privacyPolicy')->name('privacy.policy');
     // Route::get('/terms&conditions', 'termsConditions')->name('term.conditions');
