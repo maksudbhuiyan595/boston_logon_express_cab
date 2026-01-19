@@ -1,22 +1,5 @@
 
-
-    {{-- STYLESHEETS --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        /* --- BRAND COLORS --- */
-        :root {
-            --brand-blue: #1e88e5;
-            --brand-dark: #1565c0;
-            --brand-light: #e3f2fd;
-            --text-dark: #333333;
-            --input-height: 36px;
-        }
-
-        body { background-color: #f8f9fa; }
-
         /* HERO SECTION */
         .hero-section {
             margin-top: 20px;
@@ -371,7 +354,7 @@
                         @if (isset($defaultVehicle['image']) && !empty($defaultVehicle['image']))
                             <img src="{{ asset($defaultVehicle['image']) }}" alt="Vehicle" class="hero-img">
                         @else
-                            <img src="{{ asset('images/Boston Express Cab Background image.png') }}" alt="Default Car" class="hero-img">
+                            <img src="{{ asset('images/cap.jpeg') }}" alt="Default Car" class="hero-img">
                         @endif
                     </div>
                 </div>
