@@ -14,6 +14,14 @@ class HomeController extends Controller
     {
         return view("frontend.layouts.pages.step2");
     }
+    public function step3(Request $request)
+    {
+        return view("frontend.layouts.pages.step3");
+    }
+    public function step4(Request $request)
+    {
+        return view("frontend.layouts.pages.step4");
+    }
     public function blogs(Request $request)
     {
         return view("frontend.layouts.pages.blog");

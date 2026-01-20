@@ -1,3 +1,154 @@
+ <style>
+    /* --- FOOTER STYLES --- */
+.site-footer {
+    background-color: #1a1b1e; /* Dark background */
+    color: #b0b0b0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 60px;
+    font-size: 0.95rem;
+}
+
+/* Intro Section */
+.footer-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+}
+
+.footer-logo-box {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+/* Divider Line */
+.footer-divider {
+    height: 1px;
+    background: #333;
+    margin-bottom: 50px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid Layout (Responsive) */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: 1 Column */
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px 20px;
+}
+
+/* Tablet: 2 Columns */
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop: 4 Columns */
+@media (min-width: 992px) {
+    .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Columns & Headings */
+.footer-col h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-col h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #2D9CDB; /* Brand Blue */
+}
+
+/* Contact Items */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 15px;
+}
+
+.contact-item i {
+    color: #2D9CDB;
+    margin-top: 5px;
+}
+
+/* Links List */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.footer-links a:hover {
+    color: #2D9CDB;
+    padding-left: 5px; /* Slide effect */
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #2a2b2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #2D9CDB;
+    transform: translateY(-3px);
+    color: white;
+}
+
+/* Copyright Bar */
+.footer-bottom {
+    background: #000;
+    padding: 25px 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    border-top: 1px solid #222;
+}
+
+.footer-bottom span {
+    color: #2D9CDB;
+}
+ </style>
  <footer>
         <div class="footer-intro">
             <div class="logo" style="justify-content: center; margin-bottom: 20px;">

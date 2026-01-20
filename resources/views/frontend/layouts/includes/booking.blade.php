@@ -1,180 +1,207 @@
 
-    <style>
-        /* HERO SECTION */
-        .hero-section {
-            margin-top: 20px;
-            padding-bottom: 40px;
-            height: 500px;
-            position: relative;
-        }
+<style>
+    /* --- ANIMATIONS KEYFRAMES --- */
+    @keyframes slideInUp {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
-        /* --- MAGIC CSS: FLOATING CARD --- */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+        margin-top: 20px;
+        padding-bottom: 40px;
+        height: 620px;
+        position: relative;
+    }
+
+    /* --- MAGIC CSS: FLOATING CARD --- */
+    .reservation-card {
+        background: #fff;
+        border-radius: 12px; /* একটু রাউন্ড বাড়ালাম */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* শ্যাডো সফট করা হয়েছে */
+        border-top: 4px solid var(--brand-blue);
+        width: 100%;
+        z-index: 100;
+        min-height: 530px;
+        height: auto;
+
+        /* Animation Added Here */
+        animation: slideInUp 0.8s ease-out;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Desktop Hover Effect */
+    @media (min-width: 992px) {
+        .form-column { position: relative; }
         .reservation-card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-top: 3px solid var(--brand-blue);
-            width: 100%;
-            z-index: 100;
+            position: absolute;
+            top: 0;
+            left: 12px;
+            width: calc(100% - 24px);
         }
-
-        /* Desktop Floating Effect */
-        @media (min-width: 992px) {
-            .form-column { position: relative; }
-            .reservation-card {
-                position: absolute;
-                top: 0;
-                left: 12px;
-                width: calc(100% - 24px);
-            }
+        /* কার্ডের ওপর মাউস নিলে একটু ভেসে উঠবে */
+        .reservation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
-
-        .form-header {
-            background: var(--brand-blue);
-            color: white;
-            padding: 8px;
-            text-align: center;
-            border-radius: 6px 6px 0 0;
-        }
-        .form-header h3 { margin: 0; font-size: 1.2rem; font-weight: 700; }
-        .form-header p { margin: 0; font-size: 0.75rem; opacity: 0.9; }
-
-        /* INPUTS */
-        .form-control, .form-select, .input-group-text {
-            height: var(--input-height);
-            font-size: 0.85rem;
-            padding: 5px 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-        .input-group-text { width: 38px; justify-content: center; background: #f8f9fa; color: var(--brand-blue); }
-        .form-control:focus, .form-select:focus { border-color: var(--brand-blue); box-shadow: none; }
-
-        /* TRIP TYPE */
-        .trip-type-container { display: flex; gap: 5px; margin: 8px 0; }
-        .trip-option { flex: 1; }
-        .trip-option input { display: none; }
-        .trip-card {
-            display: flex; flex-direction: row; align-items: center; justify-content: center;
-            padding: 5px; border: 1px solid #eee; border-radius: 4px;
-            cursor: pointer; transition: 0.2s; height: 100%; background: #fff; gap: 5px;
-        }
-        .trip-option input:checked+.trip-card { background-color: var(--brand-light); border-color: var(--brand-blue); }
-        .trip-option input:checked+.trip-card i, .trip-option input:checked+.trip-card span { color: var(--brand-blue); }
-        .mini-label { font-size: 0.7rem; color: #777; margin-left: 2px; font-weight: 600; display: block; margin-bottom: 2px; }
-
-        /* EXTRAS TOGGLE */
-        .extras-toggle {
-            color: var(--brand-blue);
-            font-weight: 600;
-            cursor: pointer;
-            padding: 8px 0 4px 0;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .extras-toggle:hover { text-decoration: underline; }
-
-        /* EXTRAS SECTION */
-        #extrasSection {
-            display: none;
-            background: #fdfdfd;
-            padding: 8px 10px;
-            border-radius: 4px;
-            border: 1px solid #eee;
-            margin-bottom: 10px;
-            margin-top: 5px;
-        }
-
-        .extra-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; padding-bottom: 4px; border-bottom: 1px solid #f8f8f8; }
-        .extra-label { font-size: 0.8rem; color: #333; }
-        .extra-price-tag { background: var(--brand-blue); color: white; padding: 0px 4px; border-radius: 3px; font-size: 0.65rem; margin-left: 4px; }
-        .total-price-display { font-weight: bold; color: var(--brand-blue); margin-left: 8px; font-size: 0.85rem; min-width: 25px; text-align: right; }
-
-        .btn-get-fare {
-            width: 100%;
-            background: var(--brand-blue);
-            color: white;
-            border: none;
-            padding: 10px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 4px;
-            text-transform: uppercase;
-            transition: 0.3s;
-            margin-top: 5px;
-        }
-        .btn-get-fare:hover { background: var(--brand-dark); box-shadow: 0 4px 10px rgba(30, 136, 229, 0.3); }
-        .footer-note { text-align: center; font-size: 0.7rem; color: #888; margin-top: 5px; margin-bottom: 0; }
-        .hero-img { width: 100%; height: 425px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
-        .pac-container { z-index: 10000 !important; }
-
-        /* --- MOBILE OPTIMIZATION FOR TRIP TYPE --- */
-@media (max-width: 576px) {
-    .trip-type-container {
-        display: flex;
-        flex-wrap: nowrap; /* এক লাইনে রাখবে */
-        overflow-x: auto;   /* যদি খুব ছোট স্ক্রিন হয় তবে স্ক্রল করা যাবে */
-        gap: 4px;           /* গ্যাপ কমিয়ে আনা হয়েছে */
-        padding-bottom: 5px;
     }
 
-    .trip-option {
-        flex: 1 0 auto;    /* ফ্লেক্সিবল সাইজ */
-        min-width: 0;      /* কন্টেন্ট অনুযায়ী ছোট হবে */
+    .form-header {
+        background: var(--brand-blue);
+        background: linear-gradient(135deg, var(--brand-blue) 0%, #1e88e5 100%); /* গ্রেডিয়েন্ট কালার */
+        color: white;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px 8px 0 0;
     }
+    .form-header h3 { margin: 0; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.5px; }
+    .form-header p { margin: 0; font-size: 0.8rem; opacity: 0.9; }
+
+    /* INPUTS */
+    .form-control, .form-select, .input-group-text {
+        height: var(--input-height);
+        font-size: 0.9rem;
+        padding: 8px 10px;
+        border-radius: 6px;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s ease;
+    }
+    .input-group-text { width: 40px; justify-content: center; background: #f1f5f9; color: var(--brand-blue); border: 1px solid #e0e0e0; }
+
+    /* ইনপুটে ক্লিক করলে ফোকাস এনিমেশন */
+    .form-control:focus, .form-select:focus {
+        border-color: var(--brand-blue);
+        box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
+        transform: translateY(-1px);
+    }
+
+    /* TRIP TYPE */
+    .trip-type-container { display: flex; gap: 8px; margin: 12px 0; }
+    .trip-option { flex: 1; }
+    .trip-option input { display: none; }
 
     .trip-card {
-        padding: 6px 4px;   /* প্যাডিং কমানো হয়েছে */
-        font-size: 0.7rem;  /* ফন্ট সাইজ ছোট করা হয়েছে যেন এক লাইনে ধরে */
-        white-space: nowrap; /* টেক্সট ভেঙে নিচে যাবে না */
-        flex-direction: row; /* আইকন এবং লেখা পাশাপাশি থাকবে */
-        justify-content: center;
-        gap: 3px;
+        display: flex; flex-direction: row; align-items: center; justify-content: center;
+        padding: 8px; border: 1px solid #eee; border-radius: 6px;
+        cursor: pointer; transition: all 0.2s ease; height: 100%; background: #fff; gap: 6px;
+        font-weight: 500;
+        color: #555;
     }
 
-    .trip-card i {
-        font-size: 0.75rem; /* আইকন সাইজ এডজাস্ট */
+    /* Trip Card Hover & Active Animation */
+    .trip-card:hover { background: #f8f9fa; border-color: #ccc; transform: translateY(-2px); }
+
+    .trip-option input:checked+.trip-card {
+        background-color: #e3f2fd;
+        border-color: var(--brand-blue);
+        color: var(--brand-blue);
+        box-shadow: 0 2px 5px rgba(33, 150, 243, 0.2);
+        font-weight: 700;
+        transform: scale(1.02); /* সিলেক্ট করলে একটু বড় হবে */
     }
 
-    /* স্ক্রলবার হাইড করার জন্য (ঐচ্ছিক) */
-    .trip-type-container::-webkit-scrollbar {
-        display: none;
-    }
-}
-@media (max-width: 991px) {
-    /* হিরো সেকশনের হাইট মোবাইলে অটো থাকবে যেন কন্টেন্ট না কাটে */
-    .hero-section {
-        height: auto;
-        padding-bottom: 20px;
-    }
+    .mini-label { font-size: 0.75rem; color: #666; margin-left: 2px; font-weight: 600; display: block; margin-bottom: 4px; }
 
-    /* ফর্মের পর ডেসক্রিপশন সেকশনে গ্যাপ তৈরি করা */
-    .description-column {
-        margin-top: 30px;
-        text-align: center; /* মোবাইলে লেখাগুলো সেন্টারে সুন্দর দেখাবে */
-    }
-
-    .description-text {
+    /* EXTRAS TOGGLE */
+    .extras-toggle {
+        color: var(--brand-blue);
+        font-weight: 600;
+        cursor: pointer;
+        padding: 10px 0 5px 0;
         font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: color 0.3s;
+    }
+    .extras-toggle:hover { color: #1565c0; }
+    .extras-toggle i { transition: transform 0.3s ease; }
+    .extras-toggle:hover i { transform: rotate(90deg); } /* আইকন ঘুরবে */
+
+    /* EXTRAS SECTION */
+    #extrasSection {
+        display: none;
+        background: #f8f9fa;
+        padding: 12px 15px;
+        border-radius: 8px;
+        border: 1px solid #eee;
         margin-bottom: 15px;
+        margin-top: 5px;
+        animation: fadeIn 0.4s ease;
     }
 
-    /* মোবাইলে ইমেজের সাইজ এডজাস্ট করা */
+    .extra-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid #e9ecef; }
+    .extra-label { font-size: 0.85rem; color: #444; font-weight: 500; }
+    .extra-price-tag { background: var(--brand-blue); color: white; padding: 1px 6px; border-radius: 4px; font-size: 0.7rem; margin-left: 5px; font-weight: bold; }
+    .total-price-display { font-weight: bold; color: var(--brand-blue); margin-left: 10px; font-size: 0.9rem; min-width: 30px; text-align: right; }
+
+    /* BUTTON ANIMATION */
+    .btn-get-fare {
+        width: 100%;
+        background: var(--brand-blue);
+        background: linear-gradient(45deg, var(--brand-blue), #1976d2);
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: 6px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-get-fare:hover {
+        background: linear-gradient(45deg, #1976d2, var(--brand-blue));
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(33, 150, 243, 0.4);
+    }
+
+    .btn-get-fare:active { transform: translateY(0); box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+
+    .footer-note { text-align: center; font-size: 0.75rem; color: #999; margin-top: 8px; margin-bottom: 0; }
+
+    /* HERO IMAGE UPDATE */
     .hero-img {
-        height: auto;
-        max-height: 250px;
-        object-fit: contain;
+        width: 100%;
+        height: 500px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.5s ease;
     }
+    /* ইমেজে হোভার করলে হালকা জুম */
+    .hero-img:hover { transform: scale(1.01); }
 
-    /* ডেস্কটপের জন্য থাকা absolute পজিশন মোবাইলে নরমাল করা */
-    .reservation-card {
-        position: static !important;
-        width: 100% !important;
+    .pac-container { z-index: 10000 !important; }
+
+    /* --- MOBILE OPTIMIZATION --- */
+    @media (max-width: 576px) {
+        .trip-type-container {
+            display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 6px; padding-bottom: 5px;
+        }
+        .trip-option { flex: 1 0 auto; min-width: 0; }
+        .trip-card {
+            padding: 8px 6px; font-size: 0.75rem; white-space: nowrap; flex-direction: row; justify-content: center; gap: 4px;
+        }
+        .trip-card i { font-size: 0.8rem; }
+        .trip-type-container::-webkit-scrollbar { display: none; }
     }
-}
-    </style>
+    @media (max-width: 991px) {
+        .hero-section { height: auto; padding-bottom: 20px; }
+        .description-column { margin-top: 30px; text-align: center; }
+        .description-text { font-size: 0.95rem; margin-bottom: 20px; color: #555; line-height: 1.6; }
+        .hero-img { height: auto; max-height: 250px; object-fit: contain; }
+        .reservation-card { position: static !important; width: 100% !important; height: auto !important; }
+    }
+</style>
 
 <section class="hero-section">
     <div class="container">
@@ -291,7 +318,7 @@
                                     <div class="extra-row">
                                         <div class="extra-label">Stopover <span class="extra-price-tag">{{ $settings->stopover_fee ?? 0 }}</span></div>
                                         <div class="d-flex align-items-center">
-                                            <select id="stopover" name="stopover" data-price="{{ $settings->stopover_fee ?? 0 }}" class="form-select form-select-sm" style="width:50px; height:28px; font-size:0.75rem;">
+                                            <select id="stopover" name="stopover" data-price="{{ $settings->stopover_fee ?? 0 }}" class="form-select form-select-sm" style="width:60px; height:34px; font-size:0.75rem;">
                                                 <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                             </select>
                                             <div id="stopoverDisplay" class="total-price-display">$0</div>
@@ -300,7 +327,7 @@
                                     <div class="extra-row">
                                         <div class="extra-label">Pets <span class="extra-price-tag">{{ $settings->pet_fee ?? 0 }}</span></div>
                                         <div class="d-flex align-items-center">
-                                            <select id="pets" name="pets" data-price="{{ $settings->pet_fee ?? 0 }}" class="form-select form-select-sm" style="width:50px; height:28px; font-size:0.75rem;">
+                                            <select id="pets" name="pets" data-price="{{ $settings->pet_fee ?? 0 }}" class="form-select form-select-sm" style="width:60px; height:34px; font-size:0.75rem;">
                                                 <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                             </select>
                                             <div id="petsDisplay" class="total-price-display">$0</div>
@@ -309,7 +336,7 @@
                                     <div class="extra-row">
                                         <div class="extra-label">Infant Seat <span class="extra-price-tag">{{ $settings->child_seat_fee ?? 0 }}</span></div>
                                         <div class="d-flex align-items-center">
-                                            <select id="infantSeat" name="infant_seat" data-price="{{ $settings->child_seat_fee ?? 0 }}" class="form-select form-select-sm" style="width:50px; height:28px; font-size:0.75rem;">
+                                            <select id="infantSeat" name="infant_seat" data-price="{{ $settings->child_seat_fee ?? 0 }}" class="form-select form-select-sm" style="width:60px; height:34px; font-size:0.75rem;">
                                                 <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                             </select>
                                             <div id="infantSeatDisplay" class="total-price-display">$0</div>
@@ -318,7 +345,7 @@
                                     <div class="extra-row">
                                         <div class="extra-label">Front Facing <span class="extra-price-tag">{{ $settings->regular_Seat_rules ?? 0 }}</span></div>
                                         <div class="d-flex align-items-center">
-                                            <select id="frontSeat" name="front_seat" data-price="{{ $settings->regular_Seat_rules ?? 0 }}" class="form-select form-select-sm" style="width:50px; height:28px; font-size:0.75rem;">
+                                            <select id="frontSeat" name="front_seat" data-price="{{ $settings->regular_Seat_rules ?? 0 }}" class="form-select form-select-sm" style="width:60px; height:34px; font-size:0.75rem;">
                                                 <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                             </select>
                                             <div id="frontSeatDisplay" class="total-price-display">$0</div>
@@ -327,7 +354,7 @@
                                     <div class="extra-row">
                                         <div class="extra-label">Booster Seat <span class="extra-price-tag">{{ $settings->booster_seat_fee ?? 0 }}</span></div>
                                         <div class="d-flex align-items-center">
-                                            <select id="boosterSeat" name="booster_seat" data-price="{{ $settings->booster_seat_fee ?? 0 }}" class="form-select form-select-sm" style="width:50px; height:28px; font-size:0.75rem;">
+                                            <select id="boosterSeat" name="booster_seat" data-price="{{ $settings->booster_seat_fee ?? 0 }}" class="form-select form-select-sm" style="width:60px; height:34px; font-size:0.75rem;">
                                                 <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                             </select>
                                             <div id="boosterSeatDisplay" class="total-price-display">$0</div>
@@ -354,7 +381,7 @@
                         @if (isset($defaultVehicle['image']) && !empty($defaultVehicle['image']))
                             <img src="{{ asset($defaultVehicle['image']) }}" alt="Vehicle" class="hero-img">
                         @else
-                            <img src="{{ asset('images/cap.jpeg') }}" alt="Default Car" class="hero-img">
+                            <img src="{{ asset('images/airport.jpeg') }}" alt="Default Car" class="hero-img">
                         @endif
                     </div>
                 </div>
