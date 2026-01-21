@@ -20,6 +20,7 @@ class BlogPostResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::DocumentText;
      protected static \UnitEnum|string|null $navigationGroup = 'Content Management';
+     protected static bool $shouldRegisterNavigation = false;
 
     public static function form(Schema $schema): Schema
     {

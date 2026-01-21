@@ -20,6 +20,7 @@ class PageResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::GlobeAlt;
     protected static \UnitEnum|string|null $navigationGroup = 'Content Management';
+    protected static bool $shouldRegisterNavigation = false;
     protected static ?int $navigationSort = 3;
 
     public static function form(Schema $schema): Schema
