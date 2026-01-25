@@ -13,8 +13,8 @@ class BookingCalendar extends Page
     use HasPageShield;
     // protected string $view = 'filament.pages.booking-calendar';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Calendar;
-    protected static \UnitEnum|string|null $navigationGroup = 'Bookings Management';
-    protected static ?int $navigationSort = 2;
+    // protected static \UnitEnum|string|null $navigationGroup = 'Bookings Management';
+    // protected static ?int $navigationSort = 2;
 
     protected function getHeaderWidgets(): array
     {
