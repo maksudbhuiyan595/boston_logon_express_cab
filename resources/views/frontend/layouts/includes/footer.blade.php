@@ -174,7 +174,7 @@
             <div class="footer-col">
                 <h3>Helpful Links</h3>
                 <ul style="color: #bbb; line-height: 2;">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="#">Pickup Location</a></li>
                     <li><a href="#">Reservation</a></li>
                     <li><a href="#">Minivan Taxi</a></li>
@@ -183,10 +183,10 @@
             <div class="footer-col">
                 <h3>About Us</h3>
                 <ul style="color: #bbb; line-height: 2;">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Payment Policy</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Terms</a></li>
+                    <li><a href="{{ route('about') }}">About</a></li>
+                    <li><a href="{{ route('payment.policy') }}">Payment Policy</a></li>
+                    <li><a href="{{ route('blogs') }}">Blog</a></li>
+                    <li><a href="{{ route('term.conditions') }}">Terms</a></li>
                 </ul>
             </div>
             <div class="footer-col">

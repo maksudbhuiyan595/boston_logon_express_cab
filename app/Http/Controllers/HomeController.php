@@ -30,6 +30,18 @@ class HomeController extends Controller
     {
         return view("frontend.layouts.pages.contact");
     }
+    public function about(Request $request)
+    {
+        return view("frontend.layouts.pages.about");
+    }
+     public function paymentPolicy(Request $request)
+    {
+        return view("frontend.layouts.pages.paymentPolicy");
+    }
+     public function termConditions(Request $request)
+    {
+        return view("frontend.layouts.pages.termConditions");
+    }
      public function minivan(Request $request)
     {
         return view("frontend.layouts.pages.minivan");
@@ -49,5 +61,9 @@ class HomeController extends Controller
     public function areaWeServe(Request $request)
     {
         return view("frontend.layouts.pages.servicearea");
+    }
+    public function childSeat(Request $request)
+    {
+        return view("frontend.layouts.pages.childseat");
     }
 }
