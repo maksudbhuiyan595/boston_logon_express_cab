@@ -206,7 +206,7 @@
 <section class="hero-section">
     <div class="container">
         <h2 class="mb-3 text-primary fw-bold d-flex justify-content-center">
-            BOSTON LOGAN AIRPORT TAXI
+            BOSTON EXPRESS CAB
         </h2>
 
         <div class="row hero-row justify-content-center">
@@ -381,7 +381,7 @@
                         @if (isset($defaultVehicle['image']) && !empty($defaultVehicle['image']))
                             <img src="{{ asset($defaultVehicle['image']) }}" alt="Vehicle" class="hero-img">
                         @else
-                            <img src="{{ asset('images/airport.jpeg') }}" alt="Default Car" class="hero-img">
+                            <img src="{{ asset('images/home1.jpeg') }}" alt="Default Car" class="hero-img">
                         @endif
                     </div>
                 </div>
@@ -600,3 +600,6 @@
 
 {{-- GOOGLE MAPS API (Loaded LAST to ensure initMap is defined) --}}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jlhc5ZRDUU1SHHpxuwFh4dM0Ggq4n2Q&libraries=places&loading=async&callback=initMap" async defer></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">

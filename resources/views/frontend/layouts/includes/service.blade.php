@@ -156,7 +156,7 @@
 
             {{-- Service 1 --}}
             <div class="service-card">
-                <div style="overflow: hidden;"> <img src="{{ asset("images/Homepage.jpg") }}" alt="Pickup Location" class="service-img">
+                <div style="overflow: hidden;"> <img src="{{ asset("images/home3.jpeg") }}" alt="Pickup Location" class="service-img">
                 </div>
                 <div class="service-content">
                     <h3>Pickup Location</h3>
@@ -167,7 +167,7 @@
             {{-- Service 2 --}}
             <div class="service-card">
                 <div style="overflow: hidden;">
-                    <img src="{{ asset("images/car Services 2.png") }}" alt="Airport Car Service" class="service-img">
+                    <img src="{{ asset("images/home7.jpeg") }}" alt="Airport Car Service" class="service-img">
                 </div>
                 <div class="service-content">
                     <h3>Airport Car Service</h3>
@@ -178,7 +178,7 @@
             {{-- Service 3 --}}
             <div class="service-card">
                 <div style="overflow: hidden;">
-                    <img src="{{ asset("images/car Services 3.png") }}" alt="Minivan Taxi" class="service-img">
+                    <img src="{{ asset("images/home4.jpeg") }}" alt="Minivan Taxi" class="service-img">
                 </div>
                 <div class="service-content">
                     <h3>Minivan Taxi</h3>
@@ -189,7 +189,7 @@
             {{-- Service 4 --}}
             <div class="service-card">
                 <div style="overflow: hidden;">
-                    <img src="{{ asset("images/Homepage.jpg") }}" alt="Long Distance" class="service-img">
+                    <img src="{{ asset("images/home5.jpeg") }}" alt="Long Distance" class="service-img">
                 </div>
                 <div class="service-content">
                     <h3>Long Distance</h3>

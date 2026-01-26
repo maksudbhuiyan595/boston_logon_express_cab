@@ -149,7 +149,7 @@
 
         {{-- Right Image --}}
         <div class="hero-image">
-            <img src="{{ asset('images/hero.jpeg') }}" alt="Boston Cab SUV">
+            <img src="{{ asset('images/home2.jpeg') }}" alt="Boston Cab SUV">
         </div>
 
     </div>
