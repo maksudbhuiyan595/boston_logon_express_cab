@@ -2,379 +2,419 @@
 
 @section('content')
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<style>
-    /* --- THEME VARIABLES (Same as Step 2) --- */
-    :root {
-        --primary: #111827;
-        --accent: #2563EB;
-        --green-success: #059669;
-        --bg-body: #F3F4F6;
-        --bg-white: #FFFFFF;
-        --text-main: #1F2937;
-        --text-muted: #6B7280;
-        --border-light: #E5E7EB;
-        --radius: 12px;
-        --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
+    {{-- PHP Logic for Dates & Formatting --}}
+    @php
+        use Carbon\Carbon;
+        // Handle Date/Time from your JSON keys (date, time)
+        $rawDate = request('date') ?? now()->toDateString();
+        $rawTime = request('time') ?? '12:00';
 
-    body {
-        background-color: var(--bg-body);
-        font-family: 'Inter', sans-serif;
-        color: var(--text-main);
-    }
+        try {
+            $bostonDateTime = Carbon::createFromFormat('Y-m-d H:i', $rawDate . ' ' . $rawTime, 'America/New_York');
+        } catch (\Exception $e) {
+            $bostonDateTime = Carbon::now('America/New_York');
+        }
 
-    .booking-section {
-        padding: 50px 0 80px;
-    }
+        $formattedDate = $bostonDateTime->format('l, F j, Y');
+        $formattedTime = $bostonDateTime->format('g:i A');
 
-    /* --- PAGE HEADER --- */
-    .page-header { text-align: center; margin-bottom: 40px; }
-    .page-title { font-size: 1.75rem; font-weight: 800; color: var(--primary); margin-bottom: 5px; }
-    .step-indicator { font-size: 0.9rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        // Access Fare Array Helper
+        $fare = request('fare', []);
+    @endphp
 
-    /* --- CARDS --- */
-    .modern-card {
-        background: var(--bg-white);
-        border-radius: var(--radius);
-        border: 1px solid var(--border-light);
-        box-shadow: var(--shadow-card);
-        padding: 30px;
-        height: 100%;
-    }
+    <style>
+        /* --- SCOPED STYLES --- */
+        .passenger-wrapper {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 60px; /* Header clearance */
+            padding: 0 15px;
+            position: relative;
+            z-index: 1;
+        }
 
-    /* --- FORM STYLES --- */
-    .form-group { margin-bottom: 20px; }
+        /* Page Titles */
+        .passenger-wrapper .page-title {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: #1F2937;
+            margin-bottom: 5px;
+        }
+        .passenger-wrapper .step-text {
+            color: #6B7280;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
 
-    .form-label {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--text-main);
-        margin-bottom: 8px;
-        display: block;
-    }
-    .form-label span.required { color: #DC2626; }
+        /* --- LEFT FORM --- */
+        .passenger-wrapper .traveler-bar {
+            background-color: #E5E7EB;
+            padding: 12px 20px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: #374151;
+        }
 
-    .form-control-custom {
-        width: 100%;
-        padding: 12px 15px;
-        font-size: 0.95rem;
-        border: 1px solid var(--border-light);
-        border-radius: 8px;
-        transition: all 0.2s;
-        color: var(--primary);
-        background-color: #FAFAFA;
-    }
-    .form-control-custom:focus {
-        border-color: var(--accent);
-        background-color: #fff;
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    }
+        .passenger-wrapper .form-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #4B5563;
+            margin-bottom: 6px;
+            display: block;
+        }
 
-    /* Toggle Switch for "Are you the traveler?" */
-    .traveler-toggle {
-        display: flex;
-        background: #F3F4F6;
-        padding: 4px;
-        border-radius: 8px;
-        margin-bottom: 25px;
-        width: fit-content;
-    }
-    .toggle-opt {
-        padding: 8px 20px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        border-radius: 6px;
-        cursor: pointer;
-        color: var(--text-muted);
-        transition: all 0.2s;
-    }
-    .toggle-opt.active {
-        background: white;
-        color: var(--accent);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
+        .passenger-wrapper .text-req { color: #DC2626; margin-left: 2px; }
 
-    /* Section Headers in Form */
-    .form-section-title {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 1px dashed var(--border-light);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+        .passenger-wrapper .form-control,
+        .passenger-wrapper .form-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #D1D5DB;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+        .passenger-wrapper .form-control:focus {
+            border-color: #2D9CDB;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(45, 156, 219, 0.1);
+        }
 
-    /* --- SIDEBAR SUMMARY --- */
-    .summary-box {
-        background: #FFFBEB; /* Slight yellow tint for "receipt" feel */
-        border: 1px solid #FEF3C7;
-        border-radius: var(--radius);
-        overflow: hidden;
-    }
-    .summary-header {
-        background: #FDE68A;
-        padding: 15px 20px;
-        font-weight: 700;
-        color: #92400E;
-        font-size: 1rem;
-    }
+        /* --- RIGHT SIDEBAR (Yellow) --- */
+        .passenger-wrapper .sidebar-yellow {
+            background-color: #FFFBEB;
+            border: 1px solid #FCD34D;
+            border-radius: 8px;
+            padding: 25px;
+        }
 
-    .summary-content { padding: 20px; }
+        .passenger-wrapper .sidebar-head {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #92400E;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #D97706;
+            padding-bottom: 10px;
+        }
 
-    .summ-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 12px;
-        font-size: 0.9rem;
-    }
-    .summ-label { color: #78350F; font-weight: 500; }
-    .summ-val { color: #451A03; font-weight: 700; text-align: right; max-width: 60%; }
+        .passenger-wrapper .sum-table { width: 100%; font-size: 0.85rem; color: #4B5563; }
+        .passenger-wrapper .sum-table td { padding: 6px 0; vertical-align: top; }
 
-    .price-block {
-        background: rgba(255,255,255,0.6);
-        border: 1px solid rgba(0,0,0,0.05);
-        border-radius: 8px;
-        padding: 15px;
-        margin-top: 20px;
-    }
-    .price-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 8px;
-        font-size: 0.85rem;
-        color: #78350F;
-    }
-    .total-row {
-        border-top: 1px dashed #D97706;
-        margin-top: 10px;
-        padding-top: 10px;
-        display: flex;
-        justify-content: space-between;
-        font-size: 1.2rem;
-        font-weight: 800;
-        color: #B45309;
-    }
+        /* ALIGNMENT FIX: Labels bold, Values Left Aligned */
+        .passenger-wrapper .sum-lbl {
+            font-weight: 700;
+            width: 100px;
+            color: #92400E;
+        }
+        .passenger-wrapper .sum-val {
+            text-align: left;
+            color: #1F2937;
+            font-weight: 600;
+            padding-left: 10px;
+        }
 
-    /* Payment Mode Display (Bottom Right) */
-    .pay-mode-display {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-    }
-    .pay-mode-card {
-        flex: 1;
-        border: 1px solid #E5E7EB;
-        background: white;
-        padding: 10px;
-        border-radius: 8px;
-        text-align: center;
-        opacity: 0.6;
-    }
-    .pay-mode-card.selected {
-        border-color: #DC2626; /* Red accent from screenshot */
-        background: #FEF2F2;
-        opacity: 1;
-        position: relative;
-    }
-    .pay-mode-card.selected::before {
-        content: "\f00c";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        position: absolute;
-        top: -8px;
-        right: -8px;
-        background: #DC2626;
-        color: white;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        font-size: 0.6rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        /* Button */
+        .passenger-wrapper .btn-continue {
+            background-color: #047857;
+            color: white;
+            font-weight: 700;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            width: 100%;
+            display: block;
+            margin-top: 20px;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.2s;
+        }
+        .passenger-wrapper .btn-continue:hover {
+            background-color: #065F46;
+        }
 
-    .btn-next {
-        width: 100%;
-        background-color: var(--green-success);
-        color: white;
-        font-size: 1.1rem;
-        font-weight: 700;
-        padding: 15px;
-        border: none;
-        border-radius: 8px;
-        margin-top: 30px;
-        cursor: pointer;
-        transition: transform 0.2s;
-        box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
-    }
-    .btn-next:hover { transform: translateY(-2px); background-color: #047857; }
+        .passenger-wrapper .note-text {
+            font-size: 0.75rem;
+            color: #6B7280;
+            text-align: center;
+            margin-top: 10px;
+        }
 
-    /* Responsive */
-    @media (max-width: 992px) {
-        .col-lg-4 { margin-top: 40px; }
-    }
-</style>
+        /* --- PRICE BOXES --- */
+        .passenger-wrapper .price-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .passenger-wrapper .p-box {
+            flex: 1;
+            background: #fff;
+            border: 1px solid #E5E7EB;
+            padding: 10px;
+            text-align: center;
+            border-radius: 6px;
+            position: relative;
+        }
+        .passenger-wrapper .p-badge {
+            position: absolute; top: -10px; left: -5px;
+            background: #DC2626; color: white; width: 26px; height: 26px;
+            border-radius: 50%; font-size: 0.65rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .passenger-wrapper .p-amt { font-size: 1.1rem; font-weight: 800; display: block; }
+        .passenger-wrapper .p-lbl { font-size: 0.7rem; font-weight: 700; color: #374151; display: block; }
+        .passenger-wrapper .p-sub { font-size: 0.6rem; color: #9CA3AF; }
 
-<div class="booking-section">
-    <div class="container">
+        /* Grid */
+        .passenger-wrapper .row { display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px; }
+        .passenger-wrapper .col-md-6 { flex: 0 0 50%; max-width: 50%; padding: 0 15px; margin-bottom: 15px; }
+        .passenger-wrapper .col-12 { flex: 0 0 100%; max-width: 100%; padding: 0 15px; margin-bottom: 15px; }
+        .passenger-wrapper .col-lg-8 { flex: 0 0 66.66%; max-width: 66.66%; padding: 0 15px; }
+        .passenger-wrapper .col-lg-4 { flex: 0 0 33.33%; max-width: 33.33%; padding: 0 15px; }
 
-        <div class="page-header">
-            <div class="step-indicator">Step 3 of 4</div>
-            <h1 class="page-title">Passenger Information</h1>
-        </div>
+        @media(max-width: 768px) {
+            .passenger-wrapper .col-lg-8, .passenger-wrapper .col-lg-4, .passenger-wrapper .col-md-6 {
+                flex: 0 0 100%; max-width: 100%;
+            }
+            .passenger-wrapper .traveler-bar { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
 
-        <div class="row">
+    <div class="passenger-wrapper">
 
-            <div class="col-lg-8">
-                <div class="modern-card">
+        <h1 class="page-title">Passenger Information</h1>
+        <p class="step-text">Your Current Selection ( Step 3 Of 4 )</p>
 
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="mr-3 font-weight-bold text-dark">Are you also the traveler?</span>
-                        <div class="traveler-toggle">
-                            <div class="toggle-opt active">Yes</div>
-                            <div class="toggle-opt">No</div>
-                        </div>
-                    </div>
+        <form action="{{ route('step4') }}" method="GET">
 
-                    <div class="form-section-title"><i class="fas fa-user-circle"></i> Personal Details</div>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label class="form-label">Full Name <span class="required">*</span></label>
-                            <input type="text" class="form-control-custom" placeholder="e.g. John Doe">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label class="form-label">Email Address <span class="required">*</span></label>
-                            <input type="email" class="form-control-custom" placeholder="name@example.com">
+            {{--
+                ========================================================
+                RECURSIVE HIDDEN INPUTS (Fixed for Nested Arrays)
+                This takes the JSON structure (like 'fare') and creates:
+                <input type="hidden" name="fare[pickup_tax]" value="42.00">
+                ========================================================
+            --}}
+            @php
+                $renderHiddenInputs = function($data, $prefix = '') use (&$renderHiddenInputs) {
+                    foreach ($data as $key => $value) {
+                        // Create the name attribute: parent[child] or just name
+                        $name = $prefix === '' ? $key : $prefix . '[' . $key . ']';
+
+                        if (is_array($value)) {
+                            // Recursively call for nested arrays (like 'fare')
+                            $renderHiddenInputs($value, $name);
+                        } else {
+                            // Render simple input
+                            echo '<input type="hidden" name="' . htmlspecialchars($name) . '" value="' . htmlspecialchars((string)$value) . '">' . PHP_EOL;
+                        }
+                    }
+                };
+
+                // Exclude current form fields to avoid duplication conflicts, but include all previous data
+                $renderHiddenInputs(request()->except(['_token', 'passenger_name', 'passenger_email', 'phone_number']));
+            @endphp
+
+            <div class="row">
+
+                {{-- LEFT: FORM --}}
+                <div class="col-lg-8">
+
+                    <div class="traveler-bar">
+                        <span>Are you also the traveler ?</span>
+                        <div style="display: flex; gap: 15px;">
+                            <label style="display:flex; align-items:center; gap:5px; cursor:pointer;">
+                                <input type="radio" name="is_traveler" value="yes" checked style="accent-color: #DC2626;">
+                                Yes
+                            </label>
+                            <label style="display:flex; align-items:center; gap:5px; opacity:0.6;">
+                                <input type="radio" name="is_traveler" value="no" disabled>
+                                No
+                            </label>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label class="form-label">Mobile Number <span class="required">*</span></label>
-                            <div class="d-flex">
-                                <select class="form-control-custom" style="width: 80px; border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 0; background: #eee;">
-                                    <option>+1</option>
-                                    <option>+44</option>
+                        <div class="col-md-6">
+                            <label class="form-label">Passenger Name <span class="text-req">*</span></label>
+                            {{-- Added value="{{ request(...) }}" so data persists if user goes back/forth --}}
+                            <input type="text" class="form-control" name="passenger_name" value="{{ request('passenger_name') }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Passenger Email <span class="text-req">*</span></label>
+                            <input type="email" class="form-control" name="passenger_email" value="{{ request('passenger_email') }}" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Airline Name <span class="text-req">*</span></label>
+                            <input type="text" class="form-control" name="airline_name" value="{{ request('airline_name') }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Flight No. <span class="text-req">*</span></label>
+                            <input type="text" class="form-control" name="flight_number" value="{{ request('flight_number') }}">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Passenger Phone <span class="text-req">*</span></label>
+                            <div style="display: flex;">
+                                <select class="form-select" style="width: 100px; border-radius: 6px 0 0 6px; background:#F3F4F6;">
+                                    <option>USA (+1)</option>
                                 </select>
-                                <input type="tel" class="form-control-custom" style="border-top-left-radius: 0; border-bottom-left-radius: 0;" placeholder="(555) 000-0000">
+                                <input type="tel" class="form-control" name="phone_number" value="{{ request('phone_number') }}" required style="border-radius: 0 6px 6px 0; border-left: 0;">
                             </div>
                         </div>
-                        <div class="col-md-6 form-group">
-                            <label class="form-label">Alternate Number</label>
-                            <input type="tel" class="form-control-custom" placeholder="Optional">
+                        <div class="col-md-6">
+                            <label class="form-label">Alternate Phone Number</label>
+                            <input type="tel" class="form-control" name="alternate_phone" value="{{ request('alternate_phone') }}">
                         </div>
-                    </div>
 
-                    <div class="form-section-title mt-4"><i class="fas fa-plane"></i> Flight Details</div>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label class="form-label">Airline Name <span class="required">*</span></label>
-                            <input type="text" class="form-control-custom" placeholder="e.g. Delta Airlines">
+                        <div class="col-12">
+                            <label class="form-label">Mailing Address</label>
+                            <textarea class="form-control" name="mailing_address" rows="2">{{ request('mailing_address') }}</textarea>
                         </div>
-                        <div class="col-md-6 form-group">
-                            <label class="form-label">Flight Number <span class="required">*</span></label>
-                            <input type="text" class="form-control-custom" placeholder="e.g. DL123">
+                        <div class="col-12">
+                            <label class="form-label">Special Needs</label>
+                            <textarea class="form-control" name="special_needs" rows="2">{{ request('special_needs') }}</textarea>
                         </div>
-                    </div>
 
-                    <div class="form-section-title mt-4"><i class="fas fa-comment-alt"></i> Preferences</div>
-                    <div class="form-group">
-                        <label class="form-label">Mailing Address</label>
-                        <textarea class="form-control-custom" rows="2" placeholder="Enter full address"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Special Needs / Notes</label>
-                        <textarea class="form-control-custom" rows="3" placeholder="Child seat request, extra stops, etc."></textarea>
-                    </div>
-
-                  <a href="{{ route('step4') }}" class="btn-next" style="display: block; text-align: center; text-decoration: none;">
-                        Continue to Payment <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                    <p class="text-center mt-3 small text-muted">
-                        <i class="fas fa-lock"></i> Pay only $1.00 now to confirm your reservation.
-                    </p>
-
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="summary-box">
-                    <div class="summary-header">
-                        <i class="fas fa-receipt mr-2"></i> Booking Summary
-                    </div>
-                    <div class="summary-content">
-
-                        <div class="summ-row">
-                            <span class="summ-label">Service</span>
-                            <span class="summ-val">Airport Transfer</span>
-                        </div>
-                        <div class="summ-row">
-                            <span class="summ-label">Date & Time</span>
-                            <span class="summ-val">Jan 28, 2026<br>02:00 AM</span>
-                        </div>
-                        <div class="summ-row">
-                            <span class="summ-label">Pickup</span>
-                            <span class="summ-val text-truncate">East Boston, MA</span>
-                        </div>
-                        <div class="summ-row">
-                            <span class="summ-label">Dropoff</span>
-                            <span class="summ-val text-truncate">New Orleans, LA</span>
-                        </div>
-                        <hr style="border-top: 1px dashed #FEF3C7;">
-
-                        <div class="d-flex align-items-center mb-3">
-                            <img src="https://placehold.co/80x40/png?text=Van" style="border-radius:4px; margin-right:10px;">
-                            <div>
-                                <div style="font-weight:700; color:#451A03; font-size:0.9rem;">Luxury Van</div>
-                                <div style="font-size:0.75rem; color:#92400E;">10 Pax • 11 Bags</div>
+                        <div class="col-12" style="text-align: right;">
+                            <button type="submit" class="btn-continue" style="width:auto; float:right;">
+                                Continue to Payment <i class="fas fa-arrow-right ms-2"></i>
+                            </button>
+                            <div style="clear:both;"></div>
+                            <div class="note-text" style="text-align:right;">
+                                Pay only $1 & confirm your reservation. Balance is payable after service.
                             </div>
                         </div>
-
-                        <div class="price-block">
-                            <div class="price-row">
-                                <span>Base Fare</span>
-                                <span>$12,367.92</span>
-                            </div>
-                            <div class="price-row">
-                                <span>Gratuity (20%)</span>
-                                <span>$2,473.58</span>
-                            </div>
-                            <div class="price-row">
-                                <span>Taxes & Fees</span>
-                                <span>$25.00</span>
-                            </div>
-                            <div class="total-row">
-                                <span>Total Value</span>
-                                <span>$14,866.50</span>
-                            </div>
-                        </div>
-
-                        <div class="pay-mode-display">
-                            <div class="pay-mode-card selected">
-                                <div style="font-size:0.65rem; color:#DC2626; font-weight:700; text-transform:uppercase;">Pay Cash</div>
-                                <div style="font-size:0.9rem; font-weight:800; color:#1F2937;">$13,379</div>
-                                <div style="font-size:0.6rem; color:#6B7280;">$1 Reserve</div>
-                            </div>
-                            <div class="pay-mode-card">
-                                <div style="font-size:0.65rem; color:#6B7280; font-weight:700; text-transform:uppercase;">Pay Card</div>
-                                <div style="font-size:0.9rem; font-weight:800; color:#1F2937;">$14,866</div>
-                                <div style="font-size:0.6rem; color:#6B7280;">Full Prepay</div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
-            </div>
 
-        </div>
+                {{-- RIGHT: SIDEBAR --}}
+                <div class="col-lg-4">
+                    <div class="sidebar-yellow">
+                        <div class="sidebar-head">Booking Details</div>
+                        <table class="sum-table">
+                            <tr>
+                                <td class="sum-lbl">Service</td><td>:</td>
+                                <td class="sum-val">{{ request('tripType') == 'fromAirport' ? 'Ride From Airport' : ucfirst(request('tripType')) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Date</td><td>:</td>
+                                <td class="sum-val">{{ $formattedDate }}</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Time</td><td>:</td>
+                                <td class="sum-val">{{ $formattedTime }}</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Pick up</td><td>:</td>
+                                <td class="sum-val">{{ Str::limit(request('pickup'), 25) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Drop off</td><td>:</td>
+                                <td class="sum-val">{{ Str::limit(request('dropoff'), 25) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Passengers</td><td>:</td>
+                                <td class="sum-val">{{ request('reqPassengers') }} <small class="text-muted">({{ request('adults') }} Ad, {{ request('children') ?? 0 }} Ch)</small></td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Luggage</td><td>:</td>
+                                <td class="sum-val">{{ request('luggage') }}</td>
+                            </tr>
+
+                            {{-- Divider --}}
+                            <tr><td colspan="3"><hr style="border-top:1px dashed #F59E0B; margin:15px 0;"></td></tr>
+
+                            {{-- Vehicle Info & Fees --}}
+                            <tr>
+                                <td colspan="3" style="color:#B45309; font-weight:700; font-size:0.85rem; text-transform:uppercase; padding-bottom:5px;">Vehicle & Price</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Vehicle</td><td>:</td>
+                                <td class="sum-val">{{ $fare['name'] ?? 'Luxury Sedan' }}</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Distance</td><td>:</td>
+                                <td class="sum-val">{{ number_format(request('distance_miles', 0), 2) }} Miles</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Base Fare</td><td>:</td>
+                                <td class="sum-val">${{ number_format($fare['estimatedFare'] ?? 0, 2) }}</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-lbl">Gratuity</td><td>:</td>
+                                <td class="sum-val">${{ number_format($fare['gratuity'] ?? 0, 2) }}</td>
+                            </tr>
+
+                            {{-- DYNAMIC FEES FROM JSON --}}
+                            @if(($fare['pickup_tax'] ?? 0) > 0)
+                                <tr><td class="sum-lbl">Pickup Tax</td><td>:</td><td class="sum-val">${{ number_format($fare['pickup_tax'], 2) }}</td></tr>
+                            @endif
+                            @if(($fare['parking_fee'] ?? 0) > 0)
+                                <tr><td class="sum-lbl">Parking Fee</td><td>:</td><td class="sum-val">${{ number_format($fare['parking_fee'], 2) }}</td></tr>
+                            @endif
+                            @if(($fare['surcharge_fee'] ?? 0) > 0)
+                                <tr><td class="sum-lbl">Surcharge</td><td>:</td><td class="sum-val">${{ number_format($fare['surcharge_fee'], 2) }}</td></tr>
+                            @endif
+                            @if(($fare['extra_luggage_fee'] ?? 0) > 0)
+                                <tr><td class="sum-lbl">Extra Luggage</td><td>:</td><td class="sum-val">${{ number_format($fare['extra_luggage_fee'], 2) }}</td></tr>
+                            @endif
+                            @if(($fare['front_seat_fee'] ?? 0) > 0)
+                                <tr><td class="sum-lbl">Front Seat</td><td>:</td><td class="sum-val">${{ number_format($fare['front_seat_fee'], 2) }}</td></tr>
+                            @endif
+
+                            {{-- ADDED THESE BASED ON YOUR JSON DATA --}}
+                            @if(($fare['stopover_fee'] ?? 0) > 0)
+                                <tr><td class="sum-lbl">Stopover</td><td>:</td><td class="sum-val">${{ number_format($fare['stopover_fee'], 2) }}</td></tr>
+                            @endif
+                            @if(($fare['pet_fee'] ?? 0) > 0)
+                                <tr><td class="sum-lbl">Pet Fee</td><td>:</td><td class="sum-val">${{ number_format($fare['pet_fee'], 2) }}</td></tr>
+                            @endif
+                            @if(($fare['child_seat_fee'] ?? 0) > 0)
+                                <tr><td class="sum-lbl">Child Seat</td><td>:</td><td class="sum-val">${{ number_format($fare['child_seat_fee'], 2) }}</td></tr>
+                            @endif
+                            @if(($fare['booster_seat_fee'] ?? 0) > 0)
+                                <tr><td class="sum-lbl">Booster Seat</td><td>:</td><td class="sum-val">${{ number_format($fare['booster_seat_fee'], 2) }}</td></tr>
+                            @endif
+
+                            <tr><td colspan="3"><hr style="border-top: 1px dashed #F59E0B; margin: 15px 0;"></td></tr>
+
+                            <tr>
+                                <td class="sum-lbl" style="font-size:1.1rem; padding-top:10px;">Total</td>
+                                <td style="padding-top:10px;">:</td>
+                                <td class="sum-val" style="font-size:1.2rem; font-weight:800; color:#2D9CDB; padding-top:10px;">
+                                    ${{ number_format($fare['total'] ?? 0, 2) }}
+                                </td>
+                            </tr>
+                        </table>
+
+                        {{-- Price Boxes --}}
+                        <div class="price-row">
+                            <div class="p-box">
+                                <div class="p-badge">%</div>
+                                <span class="p-amt" style="color:#DC2626;">${{ number_format(request('pay_cash', 0), 2) }}</span>
+                                <span class="p-lbl">PAY CASH</span>
+                                <span class="p-sub">$1 reservation fee</span>
+                            </div>
+                            <div class="p-box">
+                                <span class="p-amt" style="color:#1F2937;">${{ number_format($fare['total'] ?? 0, 2) }}</span>
+                                <span class="p-lbl">PAY CARD</span>
+                                <span class="p-sub">Full Price</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
     </div>
-</div>
+
 @endsection
