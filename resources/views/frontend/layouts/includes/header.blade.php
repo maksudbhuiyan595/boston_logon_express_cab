@@ -1,5 +1,5 @@
 <style>
-     .nav-link { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); position: relative; }
+     .nav-link { font-weight: 600; font-size: 0.95rem; position: relative; }
         .nav-link:hover { color: var(--brand-blue); }
 
 </style>
@@ -20,6 +20,7 @@
                     <li><a href="{{ route('home') }}" class="nav-link">Home</a></li>
                     <li><a href="{{ route('pickup.location') }}" class="nav-link">Pickup Location</a></li>
                     <li><a href="{{ route("reservation") }}" class="nav-link">Reservation</a></li>
+                    <li><a href="{{ route('child.seat') }}" class="nav-link">Child Seat</a></li>
                     <li><a href="{{ route('minivan') }}" class="nav-link">Minivan Taxi</a></li>
                     <li><a href="{{ route('longdistance') }}" class="nav-link">Long Distance</a></li>
                     <li><a href="{{ route('area.we.serve') }}" class="nav-link">Service Area</a></li>

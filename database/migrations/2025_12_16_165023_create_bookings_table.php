@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('booking_no')->unique(); // BLAT-0001
+            $table->string('booking_no'); // BLAT-0001
 
             // --- Passenger Info ---
             $table->string('passenger_name');
@@ -53,7 +53,7 @@ return new class extends Migration
             $table->integer('front_seat_count')->default(0);
             $table->integer('stopover_count')->default(0);
             $table->integer('pet_count')->default(0);
-
+           
             // --- Billing Info ---
             $table->string('card_holder_name')->nullable();
             $table->string('billing_phone')->nullable();

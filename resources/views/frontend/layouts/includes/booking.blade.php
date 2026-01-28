@@ -206,7 +206,7 @@
 <section class="hero-section">
     <div class="container">
         <h2 class="mb-3 text-primary fw-bold d-flex justify-content-center">
-            BOSTON LOGAN AIRPORT TAXI
+            BOSTON EXPRESS CAB
         </h2>
 
         <div class="row hero-row justify-content-center">
@@ -325,9 +325,9 @@
                                         </div>
                                     </div>
                                     <div class="extra-row">
-                                        <div class="extra-label">Pets <span class="extra-price-tag">{{ $settings->pet_fee ?? 0 }}</span></div>
+                                        <div class="extra-label">Pets <span class="extra-price-tag">{{ $settings->stopover_fee ?? 0 }}</span></div>
                                         <div class="d-flex align-items-center">
-                                            <select id="pets" name="pets" data-price="{{ $settings->pet_fee ?? 0 }}" class="form-select form-select-sm" style="width:60px; height:34px; font-size:0.75rem;">
+                                            <select id="pets" name="pets" data-price="{{ $settings->stopover_fee ?? 0 }}" class="form-select form-select-sm" style="width:60px; height:34px; font-size:0.75rem;">
                                                 <option value="0">0</option><option value="1">1</option><option value="2">2</option>
                                             </select>
                                             <div id="petsDisplay" class="total-price-display">$0</div>
@@ -381,7 +381,7 @@
                         @if (isset($defaultVehicle['image']) && !empty($defaultVehicle['image']))
                             <img src="{{ asset($defaultVehicle['image']) }}" alt="Vehicle" class="hero-img">
                         @else
-                            <img src="{{ asset('images/airport.jpeg') }}" alt="Default Car" class="hero-img">
+                            <img src="{{ asset('images/home1.jpeg') }}" alt="Default Car" class="hero-img">
                         @endif
                     </div>
                 </div>
@@ -538,7 +538,7 @@
 
         const items = [
             { id: 'stopover', price: {{ $settings->stopover_fee ?? 0 }} },
-            { id: 'pets', price: {{ $settings->pet_fee ?? 0 }} },
+            { id: 'pets', price: {{ $settings->stopover_fee ?? 0 }} },
             { id: 'infantSeat', price: {{ $settings->child_seat_fee ?? 0 }} },
             { id: 'frontSeat', price: {{ $settings->regular_Seat_rules ?? 0 }} },
             { id: 'boosterSeat', price: {{ $settings->booster_seat_fee ?? 0 }} }
@@ -600,3 +600,6 @@
 
 {{-- GOOGLE MAPS API (Loaded LAST to ensure initMap is defined) --}}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8jlhc5ZRDUU1SHHpxuwFh4dM0Ggq4n2Q&libraries=places&loading=async&callback=initMap" async defer></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
