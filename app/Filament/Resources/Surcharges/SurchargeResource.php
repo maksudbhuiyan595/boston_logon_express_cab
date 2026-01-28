@@ -19,7 +19,7 @@ class SurchargeResource extends Resource
     protected static ?string $model = Surcharge::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedClock;
-    protected static \UnitEnum|string|null $navigationGroup = 'Fleet Management';
+    // protected static \UnitEnum|string|null $navigationGroup = 'Fleet Management';
     protected static ?int $navigationSort = 4;
 
     public static function form(Schema $schema): Schema

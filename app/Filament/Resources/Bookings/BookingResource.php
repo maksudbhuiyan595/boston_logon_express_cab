@@ -20,8 +20,8 @@ class BookingResource extends Resource
     protected static ?string $model = Booking::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::CalendarDays;
-    protected static \UnitEnum|string|null $navigationGroup = 'Bookings Management';
-    protected static ?int $navigationSort = 1;
+    // protected static \UnitEnum|string|null $navigationGroup = 'Bookings Management';
+    // protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

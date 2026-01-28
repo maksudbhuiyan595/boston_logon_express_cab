@@ -20,7 +20,7 @@ class CreateBooking extends CreateRecord
     {
         $booking = $this->record;
         if ($booking->passenger_email) {
-            Mail::to($booking->passenger_email)->send(new AdminBookingConfirmationMail($booking));
+            // Mail::to($booking->passenger_email)->send(new AdminBookingConfirmationMail($booking));
         }
     }
 }
