@@ -1,5 +1,7 @@
 @extends('frontend.app')
 
+@section('title', "Home")
+
 @section('content')
      @include('frontend.layouts.includes.booking')
      @include('frontend.layouts.includes.rating')

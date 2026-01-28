@@ -1,5 +1,5 @@
 @extends('frontend.app')
-
+@section('title', "Reservation")
 @section('content')
 <style>
     /* --- HERO SECTION --- */

@@ -1,5 +1,5 @@
 @extends('frontend.app')
-
+@section('title', "Long Distance")
 @section('content')
 <style>
     /* --- FULL WIDTH FIX --- */

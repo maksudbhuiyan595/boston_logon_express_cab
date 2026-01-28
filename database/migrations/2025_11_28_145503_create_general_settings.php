@@ -23,7 +23,7 @@ class CreateGeneralSettings extends SettingsMigration
         $this->migrator->add('general.booster_seat_fee', 10.0);
         $this->migrator->add('general.stopover_fee', 25.0);
         $this->migrator->add('general.luggage_fee', 5.0);
-        $this->migrator->add('general.regular_Seat_rules', 10.0);
+
     }
 
     public function down(): void
@@ -42,6 +42,5 @@ class CreateGeneralSettings extends SettingsMigration
         $this->migrator->delete('general.booster_seat_fee');
         $this->migrator->delete('general.stopover_fee');
         $this->migrator->delete('general.luggage_fee');
-        $this->migrator->delete('general.regular_Seat_rules');
     }
 }

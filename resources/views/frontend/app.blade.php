@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boston Express Cab</title>
+    <title>Boston Express Cab - @yield('title', 'Home')</title>
     @php
         $taxiSchema = [
             "@context" => "https://schema.org",

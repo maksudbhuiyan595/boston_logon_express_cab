@@ -1,4 +1,5 @@
 @extends('frontend.app')
+@section('title', "Step4")
 
 @section('content')
 

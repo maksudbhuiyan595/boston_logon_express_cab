@@ -1,10 +1,10 @@
 @extends('frontend.app')
-
+@section('title', "Service Area")
 @section('content')
 
 <style>
     /* --- GLOBAL STYLES --- */
-  
+
 
     /* =========================================
        HERO SECTION STYLES
