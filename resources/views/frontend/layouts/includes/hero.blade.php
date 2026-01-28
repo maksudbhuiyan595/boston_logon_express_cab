@@ -42,30 +42,6 @@
         margin-bottom: 25px;
     }
 
-    /* --- BUTTON STYLE --- */
-    .nav-btn {
-        display: inline-block;
-        background: var(--brand-blue);
-        color: #fff;
-        padding: 15px 35px;
-        border-radius: 50px;
-        font-size: 1rem;
-        font-weight: 600;
-        text-align: center;
-        text-decoration: none;
-        box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .nav-btn:hover {
-        background: var(--brand-dark);
-        transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(0, 123, 255, 0.3);
-        color: #fff;
-    }
-
-    .nav-btn i { margin-left: 8px; transition: transform 0.3s; }
-    .nav-btn:hover i { transform: translateX(5px); } /* অ্যারো আইকন মুভ করবে */
 
     /* --- BADGES (TRUST SIGNALS) --- */
     .hero-badges {
@@ -142,14 +118,14 @@
 
             <h1>Need a Logan Airport Car & Boston Taxi? <br> <span style="color: var(--brand-blue);">Book Boston Express Cab!</span></h1>
 
-            <a href="{{ route("home") }}" class="nav-btn">
+            <a href="{{ route("home") }}" class="btn-primary">
                 Book Now <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
 
         {{-- Right Image --}}
         <div class="hero-image">
-            <img src="{{ asset('images/home2.jpeg') }}" alt="Boston Cab SUV">
+            <img src="{{ asset('images/childseat.jpeg') }}" alt="Boston Cab SUV">
         </div>
 
     </div>

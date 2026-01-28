@@ -1,4 +1,5 @@
 @extends('frontend.app')
+@section('title', "Minivan")
 
 @section('content')
 <style>

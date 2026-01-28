@@ -47,10 +47,10 @@
         }
     }
 
-    /* Mobile: 2 Columns */
+    /* 🔥 CHANGE HERE: Mobile Screen এ 1 column */
     @media (max-width: 576px) {
         .cities-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr; /* আগে ছিল repeat(2, 1fr) */
             gap: 15px;
         }
         .custom-title {

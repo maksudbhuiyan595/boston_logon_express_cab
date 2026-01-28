@@ -1,4 +1,5 @@
 @extends('frontend.app')
+@section('title', "Pickup Location")
 
 @section('content')
 <style>

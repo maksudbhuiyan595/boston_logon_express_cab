@@ -80,10 +80,16 @@
         margin-left: 0;
     }
 
-    /* Responsive Columns */
+
+ /* Responsive Columns */
     @media (min-width: 1200px) { .city-list-compact { grid-template-columns: repeat(6, 1fr); } }
     @media (min-width: 768px) and (max-width: 1199px) { .city-list-compact { grid-template-columns: repeat(4, 1fr); } }
-    @media (max-width: 767px) { .city-list-compact { grid-template-columns: repeat(2, 1fr); } }
+
+    @media (max-width: 767px) {
+        .city-list-compact {
+            grid-template-columns: 1fr;
+        }
+    }
 
     .city-item {
         background: #eef7ff;

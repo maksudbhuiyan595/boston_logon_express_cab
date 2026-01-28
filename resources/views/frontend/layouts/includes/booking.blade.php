@@ -1,5 +1,6 @@
 
 <style>
+
     /* --- ANIMATIONS KEYFRAMES --- */
     @keyframes slideInUp {
         from { opacity: 0; transform: translateY(40px); }
@@ -189,7 +190,7 @@
         }
         .trip-option { flex: 1 0 auto; min-width: 0; }
         .trip-card {
-            padding: 8px 6px; font-size: 0.75rem; white-space: nowrap; flex-direction: row; justify-content: center; gap: 4px;
+            padding: 8px 2px; font-size: 0.75rem; white-space: nowrap; flex-direction: row; justify-content: center; gap: 4px;
         }
         .trip-card i { font-size: 0.8rem; }
         .trip-type-container::-webkit-scrollbar { display: none; }

@@ -90,8 +90,8 @@
 
             {{-- 2. Tripadvisor --}}
             <div class="text-center">
-                <a href="https://www.tripadvisor.com/Attraction_Review-g60745-d33371741-Reviews-Boston_Logan_Airport_Taxi-Boston_Massachusetts.html" target="_blank">
-                    <img src="{{ asset('images/Tripadvisor.webp') }}"
+                <a href="https://www.trustpilot.com/review/bostonexpresscab.com" target="_blank">
+                    <img src="{{ asset('images/Trustpilot.webp') }}"
                          alt="Tripadvisor"
                          class="rating-logo">
                 </a>
@@ -99,8 +99,8 @@
 
             {{-- 3. Trustpilot --}}
             <div class="text-center">
-                <a href="https://trustpilot.com/review/bostonloganairporttaxi.com" target="_blank">
-                    <img src="{{ asset('images/Trustpilot.webp') }}"
+                <a href="https://limotrust.org/listing/boston-express-cab-60" target="_blank">
+                    <img src="{{ asset('images/Limotrust-1.webp') }}"
                          alt="Trustpilot"
                          class="rating-logo">
                 </a>
@@ -108,8 +108,8 @@
 
             {{-- 4. Yelp --}}
             <div class="text-center">
-                <a href="https://biz.yelp.com/r2r/qBKa9HpNhb7tt4h8bCsoqA" target="_blank">
-                    <img src="{{ asset('images/Flux_Dev_highresolution_stock_photo_of_Create_an_image_with_th_1.webp') }}"
+                <a href="https://www.tripadvisor.com/Attraction_Review-g41948-d28108453-Reviews-Boston_Express_Cab-Woburn_Massachusetts.html" target="_blank">
+                    <img src="{{ asset('images/Tripadvisor.webp') }}"
                          alt="Yelp"
                          class="rating-logo">
                 </a>

@@ -1,6 +1,6 @@
 <style>
      .nav-link { font-weight: 600; font-size: 0.95rem; position: relative; }
-        .nav-link:hover { color: var(--brand-blue); }
+        /* .nav-link:hover { color: var(--brand-blue); } */
 
 </style>
 <header>
