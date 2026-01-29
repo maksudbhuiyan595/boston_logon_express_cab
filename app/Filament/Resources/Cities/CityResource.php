@@ -20,7 +20,7 @@ class CityResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
     protected static \UnitEnum|string|null $navigationGroup = 'Content Management';
-    protected static bool $shouldRegisterNavigation = false;
+    // protected static bool $shouldRegisterNavigation = true;
 
     public static function form(Schema $schema): Schema
     {
