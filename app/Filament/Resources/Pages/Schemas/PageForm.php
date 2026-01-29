@@ -83,13 +83,13 @@ class PageForm
                             ->schema([
                                 TextInput::make('question')
                                     ->label('Question')
-                                    ->required()
+                                    // ->required()
                                     ->columnSpanFull(),
 
                                 RichEditor::make('answer')
                                     ->label('Answer')
                                     ->toolbarButtons(['bold', 'italic', 'link', 'bulletList'])
-                                    ->required()
+                                    // ->required()
                                     ->columnSpanFull(),
                             ])
                             ->itemLabel(fn(array $state): ?string => $state['question'] ?? null)
