@@ -25,7 +25,7 @@
     .blog-card {
         background: #fff;
         border-radius: 12px;
-        overflow: hidden; /* ইমেজের জুম যেন বাইরে না যায় */
+        overflow: hidden;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         transition: all 0.3s ease;
         border: 1px solid #eee;
@@ -53,7 +53,7 @@
     }
 
     .blog-card:hover .blog-img {
-        transform: scale(1.1); /* ইমেজে জুম ইফেক্ট */
+        transform: scale(1.1);
     }
 
     /* --- CONTENT --- */
@@ -135,13 +135,13 @@
     /* --- RESPONSIVE --- */
     @media (max-width: 991px) {
         .blog-grid {
-            grid-template-columns: repeat(2, 1fr); /* ট্যাবলেটে ২ কলাম */
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 
     @media (max-width: 768px) {
         .blog-grid {
-            grid-template-columns: 1fr; /* মোবাইলে ১ কলাম */
+            grid-template-columns: 1fr;
         }
         .section-title {
             font-size: 1.8rem;
@@ -149,69 +149,54 @@
     }
 </style>
 
+@if(isset($blogs) && $blogs->count() > 0)
 <section class="section-padding" style="background-color: #f9f9f9;">
     <div class="container">
+
         <div class="text-center">
             <h2 class="section-title">Latest Blog</h2>
             <div style="width: 60px; height: 4px; background: var(--brand-blue, #007bff); margin: 0 auto 50px; border-radius: 2px;"></div>
         </div>
 
         <div class="blog-grid">
+            @foreach($blogs as $blog)
+                <div class="blog-card">
+                    <div class="blog-img-box">
+                        @if($blog->thumbnail && file_exists(public_path('storage/' . $blog->thumbnail)))
+                            <img src="{{ asset('storage/' . $blog->thumbnail) }}" alt="{{ $blog->title }}" class="blog-img">
+                        @else
 
-            {{-- Blog Item 1 --}}
-            <div class="blog-card">
-                <div class="blog-img-box">
-                    {{-- Random City/Cinema Image --}}
-                    <img src="https://picsum.photos/400/250?random=10" alt="Cinema" class="blog-img">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-cat">Entertainment</span>
-                    <a href="#" class="blog-title">Discover the Best Heywood Gardner MA Cinema</a>
-                    <p class="blog-excerpt">If you are searching for the perfect movie night, discover the top spots in Gardner MA...</p>
+                            <img src="{{ asset('images/default-blog.jpg') }}" alt="{{ $blog->title }}" class="blog-img">
+                        @endif
+                    </div>
 
-                    <div class="blog-footer">
-                        <a href="#" class="read-more">Read More »</a>
-                        <span class="blog-date"><i class="far fa-clock"></i> Nov 4, 2025</span>
+                    <div class="blog-content">
+                        @if($blog->tags)
+                            @php
+                                $firstTag = explode(',', $blog->tags)[0];
+                            @endphp
+                            <span class="blog-cat">{{ trim($firstTag) }}</span>
+                        @endif
+
+                        <a href="{{ route('dynamic.route', $blog->slug) }}" class="blog-title">
+                            {{ $blog->title }}
+                        </a>
+
+                        <p class="blog-excerpt">
+                            {{ Str::limit(strip_tags($blog->content), 100) }}
+                        </p>
+
+                        <div class="blog-footer">
+                            <a href="{{ route('dynamic.route', $blog->slug) }}" class="read-more">Read More »</a>
+                            <span class="blog-date">
+                                <i class="far fa-clock"></i>
+                                {{ \Carbon\Carbon::parse($blog->published_at ?? $blog->created_at)->format('M d, Y') }}
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            {{-- Blog Item 2 --}}
-            <div class="blog-card">
-                <div class="blog-img-box">
-                    {{-- Random Medical/Building Image --}}
-                    <img src="https://picsum.photos/400/250?random=20" alt="Hospital" class="blog-img">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-cat">Health & Travel</span>
-                    <a href="#" class="blog-title">How to Get a Reliable Ride to Heywood Hospital</a>
-                    <p class="blog-excerpt">Accessibility and reliability matter when it comes to medical appointments. Find out how...</p>
-
-                    <div class="blog-footer">
-                        <a href="#" class="read-more">Read More »</a>
-                        <span class="blog-date"><i class="far fa-clock"></i> Oct 30, 2025</span>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Blog Item 3 --}}
-            <div class="blog-card">
-                <div class="blog-img-box">
-                    {{-- Random Hotel/Room Image --}}
-                    <img src="https://picsum.photos/400/250?random=30" alt="Hotels" class="blog-img">
-                </div>
-                <div class="blog-content">
-                    <span class="blog-cat">Accomodation</span>
-                    <a href="#" class="blog-title">Top Hotels in Fitchburg MA – Best Stays for You</a>
-                    <p class="blog-excerpt">Fitchburg is full of surprises. Explore the most comfortable and top-rated hotels for your stay...</p>
-
-                    <div class="blog-footer">
-                        <a href="#" class="read-more">Read More »</a>
-                        <span class="blog-date"><i class="far fa-clock"></i> Oct 28, 2025</span>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
         </div>
     </div>
 </section>
+@endif

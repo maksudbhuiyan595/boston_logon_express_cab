@@ -1,13 +1,13 @@
 <style>
     /* --- SECTION STYLES --- */
     .cities-section {
-        padding: 80px 0;
-        background-color: #f8f9fa; /* হালকা ব্যাকগ্রাউন্ড */
+        padding: 60px 0;
+        background-color: #f8f9fa;
     }
 
     /* --- CUSTOM TITLE DESIGN --- */
     .custom-title {
-        color: var(--brand-blue, #007bff);
+        color: #007bff;
         font-weight: 800;
         font-size: 2.2rem;
         text-transform: uppercase;
@@ -15,9 +15,7 @@
         position: relative;
         padding-bottom: 15px;
         margin-bottom: 50px;
-        width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
+        text-align: center;
     }
 
     .custom-title::after {
@@ -26,9 +24,9 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        width: 80px;
+        width: 60px;
         height: 4px;
-        background-color: var(--brand-blue, #007bff);
+        background-color: #007bff;
         border-radius: 2px;
     }
 
@@ -36,52 +34,54 @@
     .cities-grid {
         display: grid;
         gap: 20px;
-        margin-bottom: 40px;
-        grid-template-columns: repeat(4, 1fr); /* Desktop: 4 Columns */
+        grid-template-columns: repeat(4, 1fr); /* Desktop */
     }
 
-    /* Tablet: 3 Columns */
     @media (max-width: 991px) {
-        .cities-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
+        .cities-grid { grid-template-columns: repeat(3, 1fr); } /* Tablet */
     }
 
-    /* 🔥 CHANGE HERE: Mobile Screen এ 1 column */
+    @media (max-width: 768px) {
+        .cities-grid { grid-template-columns: repeat(2, 1fr); } /* Small Tablet */
+    }
+
     @media (max-width: 576px) {
         .cities-grid {
-            grid-template-columns: 1fr; /* আগে ছিল repeat(2, 1fr) */
-            gap: 15px;
+            grid-template-columns: 1fr; /* Mobile: Full Width */
+            gap: 12px;
         }
-        .custom-title {
-            font-size: 1.8rem;
-        }
+        .custom-title { font-size: 1.6rem; }
     }
 
     /* --- CITY CARD DESIGN --- */
+    .city-link {
+        text-decoration: none !important;
+        color: inherit;
+        display: block;
+    }
+
     .city-card {
         background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 15px 20px;
         display: flex;
         align-items: center;
         gap: 15px;
-        border-left: 5px solid var(--brand-blue, #007bff); /* বামে নীল বর্ডার */
+        border-left: 4px solid #007bff;
         transition: all 0.3s ease;
-        cursor: pointer;
-        overflow: hidden;
+        height: 100%; /* সব কার্ড সমান হবে */
     }
 
     .city-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 123, 255, 0.15);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
+        background-color: #ffffff;
     }
 
-    /* ICON BOX */
     .icon-box {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
         background-color: #e3f2fd;
         border-radius: 50%;
         display: flex;
@@ -91,108 +91,66 @@
     }
 
     .icon-box i {
-        color: var(--brand-blue, #007bff);
-        font-size: 1rem;
+        color: #007bff;
+        font-size: 0.9rem;
     }
 
-    /* CITY NAME TEXT */
     .city-name {
-        font-size: 0.95rem;
+        font-size: 1rem;
         font-weight: 600;
         color: #333;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        margin: 0;
+        /* লম্বা নাম হলে নিচের লাইনে যাবে, কেটে যাবে না */
+        word-wrap: break-word;
     }
 
-    /* --- SHOW MORE BUTTON --- */
     .btn-wrapper {
         text-align: center;
-        margin-top: 20px;
+        margin-top: 40px;
     }
 
     .show-more-btn {
         display: inline-block;
-        background: transparent;
-        color: var(--brand-blue, #007bff);
-        border: 2px solid var(--brand-blue, #007bff);
-        padding: 10px 35px;
+        padding: 12px 35px;
+        border: 2px solid #007bff;
         border-radius: 50px;
+        color: #007bff;
         font-weight: 700;
         text-decoration: none;
-        transition: all 0.3s ease;
+        transition: 0.3s;
     }
 
     .show-more-btn:hover {
-        background: var(--brand-blue, #007bff);
+        background: #007bff;
         color: #fff;
-        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
     }
 </style>
 
 <section class="cities-section">
     <div class="container">
 
-        {{-- Title Centered with d-flex --}}
-        <h2 class="d-flex justify-content-center custom-title">
-            Popular Cities We Serve
-        </h2>
+        <h2 class="custom-title">Popular Cities We Serve</h2>
 
         <div class="cities-grid">
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Medford MA</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Acton MA</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Waltham MA</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Haverhill MA</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Wilmington MA</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Nashua</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Belmont MA</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Burlington</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Worcester MA</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Bedford MA</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Winchester MA</span>
-            </div>
-            <div class="city-card">
-                <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
-                <span class="city-name">Andover MA</span>
-            </div>
+            @foreach ($cities as $city)
+                <a href="{{ route('dynamic.route', $city->url) }}" class="city-link">
+                    <div class="city-card">
+                        <div class="icon-box">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p class="city-name">{{ $city->name }}</p>
+                    </div>
+                </a>
+            @endforeach
         </div>
 
-        {{-- Button Centered --}}
-        <div class="btn-wrapper">
-            <a href="#" class="show-more-btn">Show More <i class="fa-solid fa-arrow-right ms-2"></i></a>
-        </div>
+        @if ($cities->count() >= 20)
+            <div class="btn-wrapper">
+                <a href="{{ route('area.we.serve') }}" class="show-more-btn">
+                    Show More <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        @endif
 
     </div>
 </section>

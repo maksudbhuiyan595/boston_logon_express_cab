@@ -9,6 +9,7 @@ use App\Models\BlogPost;
 use App\Models\Booking;
 use App\Models\City;
 use App\Models\ExtraCharge;
+use App\Models\Page;
 use App\Models\Surcharge;
 use App\Models\Vehicle;
 use App\Settings\GeneralSettings;
@@ -344,13 +345,16 @@ class HomeController extends Controller
     }
     public function step4(Request $request)
     {
-       
+
 
         return view("frontend.layouts.pages.step4",compact("request"));
     }
     public function blogs(Request $request)
     {
-        return view("frontend.layouts.pages.blog");
+         $blogs = BlogPost::where("is_published", true)
+                         ->orderBy("published_at", "desc")
+                         ->paginate(10);
+        return view("frontend.layouts.pages.blog",compact('blogs'));
     }
     public function contact(Request $request)
     {
@@ -386,7 +390,8 @@ class HomeController extends Controller
     }
     public function areaWeServe(Request $request)
     {
-        return view("frontend.layouts.pages.servicearea");
+         $cities = City::orderBy('name', 'asc')->paginate(30);
+        return view("frontend.layouts.pages.servicearea",compact('cities'));
     }
     public function childSeat(Request $request)
     {

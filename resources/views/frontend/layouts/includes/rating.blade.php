@@ -83,9 +83,11 @@
 
             {{-- 1. Google --}}
             <div class="text-center">
-                <img src="{{ asset('images/Google-Rating-1.webp') }}"
-                     alt="Google Rating"
-                     class="rating-logo">
+                <a href="https://www.google.com/search?sca_esv=f96236a721133e6f&cs=0&output=search&kgmid=/g/11wwx58ltt&q=Boston+Express+Cab+-Boston+Car,+Taxi,+SUV+and+Minivan+Service&shndl=30&shem=lcuae,uaasie&source=sh/x/loc/uni/m1/1&kgs=eadcf2dd6bddbfa8">
+                    <img src="{{ asset('images/Google-Rating-1.webp') }}"
+                         alt="Google Rating"
+                         class="rating-logo">
+                </a>
             </div>
 
             {{-- 2. Tripadvisor --}}
