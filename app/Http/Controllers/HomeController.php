@@ -353,7 +353,7 @@ class HomeController extends Controller
     {
          $blogs = BlogPost::where("is_published", true)
                          ->orderBy("published_at", "desc")
-                         ->paginate(10);
+                         ->paginate(12);
         return view("frontend.layouts.pages.blog",compact('blogs'));
     }
     public function contact(Request $request)
