@@ -214,7 +214,7 @@
 
         {{-- Pagination --}}
         <div class="pagination-wrapper">
-            {{ $blogs->links() }}
+            {{ $blogs->links('pagination::bootstrap-5') }}
         </div>
 
     </div>

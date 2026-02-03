@@ -73,9 +73,7 @@
                 <a href="{{ route('blogs') }}" class="btn btn-outline-dark px-4">
                     <i class="fas fa-arrow-left me-2"></i> Back to Blog List
                 </a>
-                <a href="/booking" class="btn btn-primary px-4 shadow-sm">
-                    Book a Cab Now <i class="fas fa-chevron-right ms-2"></i>
-                </a>
+                
             </div>
 
         </div>
