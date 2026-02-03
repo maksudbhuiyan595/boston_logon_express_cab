@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('route_name')->unique();
             $table->string('slug')->unique();
-             $table->string('cover_image')->nullable();
+            $table->string('cover_image')->nullable();
             $table->longText('content')->nullable();
             $table->json('faqs')->nullable();
             $table->string('meta_title')->nullable();

@@ -129,6 +129,7 @@
     }
 
     /* Mobile (Small Screens): 1 Column */
+   /* Mobile (Small Screens): 1 Column */
     @media (max-width: 576px) {
         .services-grid {
             grid-template-columns: 1fr;
@@ -137,7 +138,13 @@
 
         .section-padding { padding: 50px 0; }
         .section-title { font-size: 1.8rem; }
-        .service-img { height: 180px; }
+
+        /* CHANGE: Set height to auto so the full image shows without cropping */
+        .service-img {
+            height: 220px;
+            aspect-ratio: 16 / 9; /* Optional: Keeps a nice rectangular shape */
+        }
+
         .service-content { padding: 20px; }
     }
 </style>

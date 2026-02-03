@@ -83,7 +83,28 @@
 
  /* Responsive Columns */
     @media (min-width: 1200px) { .city-list-compact { grid-template-columns: repeat(6, 1fr); } }
-    @media (min-width: 768px) and (max-width: 1199px) { .city-list-compact { grid-template-columns: repeat(4, 1fr); } }
+  /* --- MOBILE FIXES --- */
+    @media (max-width: 768px) {
+        .section-padding { padding: 40px 0; }
+        .info-main-title { font-size: 1.6rem; margin-bottom: 30px; }
+        .features-grid { grid-template-columns: 1fr; gap: 15px; }
+        .cta-list { flex-direction: column; gap: 15px; }
+
+        /* --- NEW ADDITION FOR PHONE NUMBER --- */
+        .cta-item {
+            align-items: flex-start; /* আইকনটি যেন টেক্সটের মাঝখানে না থেকে উপরে থাকে */
+        }
+
+        .cta-item span {
+            display: block; /* পুরো টেক্সট এরিয়াটি ব্লক হবে */
+        }
+
+        .phone-link {
+            display: block;       /* নম্বরটি নতুন লাইনে নামিয়ে দিবে */
+            margin-top: 5px;      /* নম্বরের উপরে একটু ফাঁকা জায়গা */
+            font-size: 1.3rem;    /* মোবাইলে নম্বরটি একটু বড় দেখাবে */
+        }
+    }
 
     @media (max-width: 767px) {
         .city-list-compact {
@@ -222,7 +243,7 @@
 
         {{-- CTA Section --}}
         <div class="cta-box">
-            <h3 class="info-subtitle" style="margin-top:0; margin-bottom: 10px;">Book Your Ride Today!</h3>
+            <h3 class="info-subtitle" style="margin-top:0; margin-bottom: 10px;">Book Your Ride Today</h3>
             <ul class="cta-list">
                 <li class="cta-item">
                     <i class="fas fa-check-circle text-success"></i>

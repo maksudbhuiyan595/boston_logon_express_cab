@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/sitemap.xml', function () {
@@ -22,16 +23,18 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/minivan-taxi-service', 'minivan')->name('minivan');
     Route::get('/longdistance', 'longdistance')->name('longdistance');
     Route::get('/area-we-serve', 'areaWeServe')->name('area.we.serve');
+    // Route::get('/{slug}', 'serviceDetials')->name('service.details');
+    // Route::get('/{slug}', 'blogDetails')->name('blog.details');
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/blogs', 'blogs')->name('blogs');
-    Route::get('blog/{slug}', 'blogDetails')->name('blog.details');
     Route::get('/privacy-policy', 'privacyPolicy')->name('privacy.policy');
     Route::get('/terms&conditions', 'termConditions')->name('term.conditions');
     Route::get('/payment-policy', 'paymentPolicy')->name('payment.policy');
 
 
     Route::get('/services', 'areService')->name('area.service');
-    // Route::get('/{slug}', 'serviceDetials')->name('service.details');
     Route::get('/setting', 'setting')->name('setting');
     Route::post('/book-confirm', 'confirmBooking')->name('book.confirm');
 });
+
+Route::get('/{slug}', [RouteController::class, 'index'])->name('dynamic.route');
