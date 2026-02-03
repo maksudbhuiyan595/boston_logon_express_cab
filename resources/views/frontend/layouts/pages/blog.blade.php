@@ -37,11 +37,10 @@
     /* --- RESPONSIVE GRID --- */
     .blog-grid {
         display: grid;
-        grid-template-columns: 1fr; /* 1 Column on Mobile */
+        grid-template-columns: 1fr;
         gap: 30px;
     }
 
-    /* Desktop: 3 Columns */
     @media (min-width: 992px) {
         .blog-grid {
             grid-template-columns: repeat(3, 1fr);
@@ -71,6 +70,7 @@
         position: relative;
         height: 220px;
         overflow: hidden;
+        background: #e2e8f0;
     }
 
     .blog-img {
@@ -117,15 +117,10 @@
         text-decoration: none;
         margin-bottom: 12px;
         line-height: 1.4;
-        /* Line Clamping for uniform height */
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-    }
-
-    .blog-title:hover {
-        color: #2D9CDB;
     }
 
     .blog-excerpt {
@@ -151,11 +146,6 @@
         gap: 5px;
     }
 
-    .read-more:hover {
-        gap: 10px;
-    }
-
-    /* --- PAGINATION STYLING --- */
     .pagination-wrapper {
         margin-top: 50px;
         display: flex;
@@ -178,9 +168,17 @@
             @forelse($blogs as $blog)
                 <article class="blog-card">
                     <div class="blog-img-wrapper">
-                        <span class="blog-badge">
-                            {{ $blog->tags ? explode(',', $blog->tags)[0] : 'News' }}
-                        </span>
+                        {{-- FIXED TAGS LOGIC --}}
+                        @php
+                            $tags = $blog->tags;
+                            if (!is_array($tags)) {
+                                $tags = !empty($tags) ? explode(',', $tags) : [];
+                            }
+                            $firstTag = count($tags) > 0 ? trim($tags[0]) : 'News';
+                        @endphp
+
+                        <span class="blog-badge">{{ $firstTag }}</span>
+
                         <img src="{{ $blog->thumbnail ? asset('storage/' . $blog->thumbnail) : asset('images/blog-default.jpg') }}"
                              alt="{{ $blog->title }}"
                              class="blog-img">
