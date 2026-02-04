@@ -1,5 +1,5 @@
 @extends('frontend.app')
-@section('title', "Minivan")
+@section('title', "Minivan Taxi Cab Service")
 
 @section('content')
 <style>
@@ -11,12 +11,12 @@
         right: 50%;
         margin-left: -50vw;
         margin-right: -50vw;
+        overflow: hidden;
     }
 
     /* --- HERO SECTION --- */
     .minivan-hero {
-        /* Your specific car image */
-        background-image: url('images/cab6.jpeg');
+        background-image: url('{{ asset('images/cab6.jpeg') }}');
         background-size: cover;
         background-position: center;
         height: 500px;
@@ -25,6 +25,7 @@
         justify-content: center;
         text-align: center;
         color: #fff;
+        position: relative;
     }
 
     .hero-overlay {
@@ -33,12 +34,13 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5); /* Overlay for text readability */
+        background: rgba(0, 0, 0, 0.5);
     }
 
     .hero-content {
         position: relative;
         z-index: 2;
+        padding: 0 15px;
     }
 
     .hero-title {
@@ -49,34 +51,11 @@
         text-transform: capitalize;
     }
 
-    /* Call Button - Logo Color */
-    .btn-hero-call {
-        background-color: #2D9CDB;
-        color: white;
-        padding: 14px 40px;
-        font-size: 1.2rem;
-        font-weight: 700;
-        border-radius: 50px;
-        text-decoration: none;
-        display: inline-block;
-        box-shadow: 0 4px 15px rgba(45, 156, 219, 0.4);
-        transition: transform 0.3s, background-color 0.3s;
-        border: 2px solid #2D9CDB;
-    }
-
-    .btn-hero-call:hover {
-        background-color: #1a88c3;
-        border-color: #1a88c3;
-        color: white;
-        transform: translateY(-3px);
-        text-decoration: none;
-    }
-
     /* --- MAIN CONTENT --- */
     .minivan-content-section {
         padding: 60px 0;
         background-color: #ffffff;
-        font-family: 'Segoe UI', sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: #555;
     }
 
@@ -107,7 +86,6 @@
         background-color: #2D9CDB;
     }
 
-    /* Custom List */
     .custom-list {
         list-style: none;
         padding-left: 0;
@@ -122,7 +100,7 @@
     }
 
     .custom-list li::before {
-        content: '\2713'; /* Checkmark */
+        content: '\2713';
         position: absolute;
         left: 0;
         top: 0;
@@ -143,14 +121,13 @@
         margin-right: 5px;
     }
 
-    /* Feature Image */
     .feature-image {
         width: 100%;
         border-radius: 12px;
         margin: 30px 0;
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         object-fit: cover;
-        height: 400px; /* Adjusted height for better aspect ratio */
+        height: 400px;
     }
 
     /* Sidebar */
@@ -161,13 +138,6 @@
         border-radius: 12px;
         border: 1px solid #f0f0f0;
         box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        position: sticky;
-        top: 100px;
-    }
-
-    .trust-badges-box h5 {
-        color: #333;
-        margin-bottom: 25px;
     }
 
     .trust-img {
@@ -180,9 +150,21 @@
         transition: transform 0.3s ease;
     }
 
-    /* Hover effect for badges */
-    .trust-img:hover {
-        transform: scale(1.05);
+    /* --- MOBILE RESPONSIVE --- */
+    @media (max-width: 991px) {
+        .hero-title { font-size: 2.5rem; }
+        .minivan-hero { height: 350px; }
+        .feature-image { height: 300px; }
+        .trust-badges-box { margin-top: 40px; position: static; }
+    }
+
+    @media (max-width: 576px) {
+        .hero-title { font-size: 1.8rem; }
+        .minivan-hero { height: 250px; }
+        .section-heading { font-size: 1.4rem; }
+        .lead-text { font-size: 1rem; text-align: center; }
+        .minivan-content-section { padding: 40px 0; }
+        .custom-list li { font-size: 0.95rem; }
     }
 </style>
 
@@ -190,18 +172,13 @@
     <div class="hero-overlay"></div>
     <div class="container hero-content">
         <h1 class="hero-title">Minivan Taxi Cab Service</h1>
-        <a href="tel:6172306362" class="btn-hero-call">
-            <i class="fas fa-phone-alt"></i> Call: 617-230-6362
-        </a>
     </div>
 </div>
 
 <section class="minivan-content-section">
     <div class="container">
         <div class="row">
-
             <div class="col-lg-9 pr-lg-5">
-
                 <p class="lead-text">
                     Whether you're traveling with family, friends, or a small group, <strong>Boston Express Cab</strong> offers a reliable and comfortable Minivan Taxi Service to meet your needs. Our spacious vehicles provide ample room for passengers and luggage, ensuring a pleasant and stress-free journey.
                 </p>
@@ -244,34 +221,28 @@
                             <li>Enter pickup details.</li>
                             <li>Receive instant confirmation.</li>
                         </ul>
-                        <a href="#" class="btn-hero-call" style="padding: 10px 25px; font-size: 1rem;">Book Now</a>
                     </div>
                 </div>
-
             </div>
 
             <div class="col-lg-3">
                 <div class="trust-badges-box">
                     <h5 class="font-weight-bold" style="color: #333;">Top Rated Service</h5>
-
-                    <img src="{{ asset('images/Google-Rating-1.webp') }}" alt="Google Reviews" class="trust-img">
-
-                    <a href="https://www.tripadvisor.com/Attraction_Review-g60745-d33371741-Reviews-Boston_Logan_Airport_Taxi-Boston_Massachusetts.html" target="_blank">
+                    <a href="https://www.google.com/search?q=Boston+Express+Cab" target="_blank">
+                        <img src="{{ asset('images/Google-Rating-1.jpeg') }}" alt="Google" class="trust-img">
+                    </a>
+                    <a href="https://www.trustpilot.com/review/bostonexpresscab.com" target="_blank">
+                        <img src="{{ asset('images/Trustpilot.jpeg') }}" alt="Trustpilot" class="trust-img">
+                    </a>
+                    <a href="https://limotrust.org/listing/boston-express-cab-60" target="_blank">
+                        <img src="{{ asset('images/Limotrust-1.webp') }}" alt="LimoTrust" class="trust-img">
+                    </a>
+                    <a href="https://www.tripadvisor.com" target="_blank">
                         <img src="{{ asset('images/Tripadvisor.webp') }}" alt="Tripadvisor" class="trust-img">
                     </a>
-
-                    <a href="https://trustpilot.com/review/bostonloganairporttaxi.com" target="_blank">
-                        <img src="{{ asset('images/Trustpilot.webp') }}" alt="Trustpilot" class="trust-img">
-                    </a>
-
-                    <a href="https://biz.yelp.com/r2r/qBKa9HpNhb7tt4h8bCsoqA" target="_blank">
-                        <img src="{{ asset('images/Flux_Dev_highresolution_stock_photo_of_Create_an_image_with_th_1.webp') }}" alt="Yelp / LimoTrust" class="trust-img">
-                    </a>
-
                     <p class="text-muted small mt-3">Trusted by thousands of travelers in Boston.</p>
                 </div>
             </div>
-
         </div>
     </div>
 </section>

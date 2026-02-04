@@ -175,9 +175,9 @@
                 <h3>Helpful Links</h3>
                 <ul style="color: #bbb; line-height: 2;">
                     <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="#">Pickup Location</a></li>
-                    <li><a href="#">Reservation</a></li>
-                    <li><a href="#">Minivan Taxi</a></li>
+                    <li><a href="{{ route('pickup.location') }}">Pickup Location</a></li>
+                    <li><a href="{{ route('reservation') }}">Reservation</a></li>
+                    <li><a href="{{ route('minivan') }}">Minivan Taxi</a></li>
                 </ul>
             </div>
             <div class="footer-col">

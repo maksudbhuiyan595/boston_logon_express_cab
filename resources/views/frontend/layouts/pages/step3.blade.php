@@ -27,15 +27,20 @@
 
     <style>
         /* --- SCOPED STYLES --- */
-        .passenger-wrapper {
+     .passenger-wrapper {
             font-family: 'Inter', sans-serif;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            margin-top: 60px; /* Header clearance */
-            padding: 0 15px;
+            color: #1F2937;
+            background-color: #F9FAFB;
+
+            /* Layout */
+            max-width: 1280px;
+            margin: 20px auto; /* top-bottom | left-right */
+            padding: 40px 20px;
+
+            /* Styling */
             position: relative;
             z-index: 1;
+            border-radius: 12px;
         }
 
         /* Page Titles */
@@ -186,6 +191,8 @@
             }
             .passenger-wrapper .traveler-bar { flex-direction: column; align-items: flex-start; }
         }
+
+
     </style>
 
     <div class="passenger-wrapper">
