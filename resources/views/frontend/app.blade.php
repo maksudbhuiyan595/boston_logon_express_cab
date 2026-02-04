@@ -6,7 +6,7 @@
     <title>Boston Express Cab - @yield('title', 'Home')</title>
 
     @yield(section: 'meta')
-    
+
     @php
         $taxiSchema = [
             "@context" => "https://schema.org",
@@ -91,5 +91,31 @@
             menu.classList.toggle('active');
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        @if(session('booking_success'))
+            Swal.fire({
+                title: "{{ session('booking_success.title') }}",
+                text: "{{ session('booking_success.message') }}",
+                icon: 'success',
+                confirmButtonColor: '#2563eb', // আপনার থিমের সাথে মিল রেখে নীল বা গোল্ডেন কালার দিন
+                confirmButtonText: 'Great!',
+                backdrop: `rgba(0,0,123,0.4)` // হালকা এনিমেশন ব্যাকড্রপ
+            });
+        @endif
+
+        // পেমেন্ট ফেইল হলে দেখানোর জন্য (ঐচ্ছিক)
+        @if(session('notify') && session('notify')['type'] == 'error')
+            Swal.fire({
+                title: 'Payment Failed',
+                text: "{{ session('notify')['message'] }}",
+                icon: 'error',
+                confirmButtonColor: '#d33'
+            });
+        @endif
+    });
+</script>
 </body>
 </html>

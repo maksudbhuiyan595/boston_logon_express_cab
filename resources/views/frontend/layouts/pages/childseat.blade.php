@@ -28,7 +28,7 @@
     /* --- HERO SECTION --- */
     .service-hero {
         position: relative;
-        background: url('https://placehold.co/1200x600/111827/FFFFFF?text=Child+Seat+Taxi+Hero') no-repeat center center/cover;
+        background: url('images/bostonairpotcab.png') no-repeat center center/cover;
         height: 450px;
         display: flex;
         align-items: center;
@@ -139,9 +139,65 @@
         color: white;
     }
 
-    @media (max-width: 768px) {
-        .hero-title { font-size: 2.2rem; }
-        .content-section { padding: 40px 0; }
+   /* --- MOBILE RESPONSIVE UPDATES --- */
+    @media (max-width: 991px) {
+        .service-hero {
+            height: 350px;
+        }
+        .hero-title {
+            font-size: 2.2rem;
+            line-height: 1.2;
+        }
+        .hero-subtitle {
+            font-size: 1rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .section-text {
+            text-align: center;
+            font-size: 1rem;
+        }
+        .feature-list {
+            display: inline-block;
+            text-align: left;
+            width: 100%;
+        }
+
+        /* মোবাইলে ইমেজ যাতে সবসময় টেক্সটের নিচে থাকে (Order reset) */
+        .content-block {
+            text-align: center;
+        }
+        .order-lg-2, .order-lg-1 {
+            order: unset !important;
+        }
+
+        /* ইমেজের মার্জিন এডজাস্টমেন্ট */
+        .content-img {
+            margin-top: 20px;
+            max-width: 90%;
+        }
+
+        .cta-box {
+            padding: 25px 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-title {
+            font-size: 1.8rem;
+        }
+        .service-hero {
+            height: 300px;
+        }
+        .btn-cta {
+            width: 100%;
+            padding: 12px 20px;
+        }
+        .section-title {
+            font-size: 1.3rem;
+        }
     }
 </style>
 
@@ -174,7 +230,7 @@
                 </p>
             </div>
             <div class="col-lg-5">
-                <img src="https://placehold.co/600x400/2563EB/FFFFFF?text=Infant+Safety" class="content-img" alt="Baby in Car Seat">
+                <img src="{{ asset("images/Taxi-with-Infant-Car-seat-Boston.webp") }}" class="content-img" alt="Baby in Car Seat">
             </div>
         </div>
 
@@ -190,7 +246,7 @@
 
         <div class="row align-items-center content-block">
             <div class="col-lg-5 order-lg-2">
-                <img src="https://placehold.co/600x400/10B981/FFFFFF?text=Newborn+Care" class="content-img" alt="Mother and Newborn">
+                <img src="{{ asset("images/Airport-Taxi-with-Car-Seat.webp") }}" class="content-img" alt="Mother and Newborn">
             </div>
             <div class="col-lg-7 order-lg-1">
                 <h2 class="section-title">Newborn Taxi For Your Baby's First Ride Home</h2>

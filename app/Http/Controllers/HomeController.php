@@ -423,7 +423,7 @@ class HomeController extends Controller
             if ($lastBooking && preg_match('/BLAT-(\d+)/', $lastBooking->booking_no, $matches)) {
                 $lastNumber = (int) $matches[1];
             }
-            $bookingNo = 'BLAT-' . str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+            $bookingNo = 'BEC-' . str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
 
             $booking = new Booking();
             $booking->booking_no = $bookingNo;
@@ -567,13 +567,11 @@ class HomeController extends Controller
                 Log::error('Mail Error: ' . $e->getMessage());
             }
 
-            return redirect()->route('home', [
-                'payment' => 'success',
-                'booking' => $booking->booking_no
-            ])->with('notify', [
-                'type' => 'success',
-                'message' => 'Payment successful! Booking confirmed.'
-            ]);
+            return redirect()->route('home')->with('booking_success', [
+                    'title' => 'Booking Confirmed!',
+                    'message' => "Your booking #{$booking->booking_no} has been successfully placed. A confirmation email has been sent.",
+                    'booking_no' => $booking->booking_no
+                ]);
 
         } catch (\Throwable $e) {
             // ==================================================

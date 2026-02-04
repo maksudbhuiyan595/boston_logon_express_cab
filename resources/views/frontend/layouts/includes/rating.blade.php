@@ -84,7 +84,7 @@
             {{-- 1. Google --}}
             <div class="text-center">
                 <a href="https://www.google.com/search?sca_esv=f96236a721133e6f&cs=0&output=search&kgmid=/g/11wwx58ltt&q=Boston+Express+Cab+-Boston+Car,+Taxi,+SUV+and+Minivan+Service&shndl=30&shem=lcuae,uaasie&source=sh/x/loc/uni/m1/1&kgs=eadcf2dd6bddbfa8">
-                    <img src="{{ asset('images/Google-Rating-1.webp') }}"
+                    <img src="{{ asset('images/Google-Rating-1.jpeg') }}"
                          alt="Google Rating"
                          class="rating-logo">
                 </a>
@@ -93,7 +93,7 @@
             {{-- 2. Tripadvisor --}}
             <div class="text-center">
                 <a href="https://www.trustpilot.com/review/bostonexpresscab.com" target="_blank">
-                    <img src="{{ asset('images/Trustpilot.webp') }}"
+                    <img src="{{ asset('images/Trustpilot.jpeg') }}"
                          alt="Tripadvisor"
                          class="rating-logo">
                 </a>

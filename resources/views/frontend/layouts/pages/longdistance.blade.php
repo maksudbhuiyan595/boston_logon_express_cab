@@ -15,7 +15,7 @@
     /* --- HERO SECTION --- */
     .long-dist-hero {
         /* Using the specific image from your upload */
-        background-image: url('images/image_30aaa6.jpg');
+        background-image: url('images/home3.jpeg');
         background-size: cover;
         background-position: center;
         height: 500px;
@@ -232,9 +232,7 @@
     <div class="container hero-content">
         <h2 class="hero-subtitle">Reliable & Comfortable</h2>
         <h1 class="hero-title">Long Distance Car Service</h1>
-        <a href="tel:6172306362" class="btn-hero-call">
-            <i class="fas fa-phone-alt"></i> Call: 617-230-6362
-        </a>
+
     </div>
 </div>
 
@@ -294,7 +292,7 @@
                     </div>
                 </div>
 
-                <img src="images/image_17b942.jpg" alt="Luxury Car Service" class="feature-image">
+                <img src="{{ asset("images/car Services 4.png") }}" alt="Luxury Car Service" class="feature-image">
 
                 <h2 class="section-heading mt-5">Top Places to Visit</h2>
 
@@ -398,10 +396,19 @@
 
                 <div class="sidebar-box sticky-top" style="top: 100px;">
                     <h5>Top Rated Service</h5>
-                    <img src="images/Google-Rating-1.webp" alt="Google Reviews" class="trust-img">
-                    <img src="images/Tripadvisor.webp" alt="Tripadvisor" class="trust-img">
-                    <img src="images/Trustpilot.webp" alt="Trustpilot" class="trust-img">
-                    <img src="images/Flux_Dev_highresolution_stock_photo_of_Create_an_image_with_th_1.webp" alt="LimoTrust" class="trust-img">
+                    <a href="https://www.google.com/search?sca_esv=f96236a721133e6f&cs=0&output=search&kgmid=/g/11wwx58ltt&q=Boston+Express+Cab+-Boston+Car,+Taxi,+SUV+and+Minivan+Service&shndl=30&shem=lcuae,uaasie&source=sh/x/loc/uni/m1/1&kgs=eadcf2dd6bddbfa8">
+                        <img src="{{ asset('images/Google-Rating-1.jpeg') }}" alt="Google" class="trust-img">
+
+                    </a>
+                      <a href="https://www.trustpilot.com/review/bostonexpresscab.com" target="_blank">
+                        <img src="{{ asset('images/Trustpilot.jpeg') }}" alt="Trustpilot" class="trust-img">
+                    </a>
+                     <a href="https://limotrust.org/listing/boston-express-cab-60" target="_blank">
+                        <img src="{{ asset('images/Limotrust-1.webp') }}" alt="Tripadvisor" class="trust-img">
+                    </a>
+                    <a href="https://www.tripadvisor.com/Attraction_Review-g41948-d28108453-Reviews-Boston_Express_Cab-Woburn_Massachusetts.html" target="_blank">
+                        <img src="{{ asset('images/Tripadvisor.webp') }}" alt="LimoTrust" class="trust-img">
+                    </a>
                     <p class="text-muted small mt-3">Trusted by thousands of travelers in Boston.</p>
                 </div>
 

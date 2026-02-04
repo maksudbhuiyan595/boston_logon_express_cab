@@ -36,6 +36,20 @@
             padding: 0 15px;
             position: relative;
             z-index: 1;
+
+             font-family: 'Inter', sans-serif;
+            color: #1F2937;
+            background-color: #F9FAFB;
+
+            /* Layout & Spacing */
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            /* Padding ensures content doesn't touch edges */
+
+            /* Fix for Fixed Header overlap (adjust 100px if needed) */
+            margin-top: 20px;
+            border-radius: 12px;
         }
 
         .payment-wrapper .page-title {
@@ -146,10 +160,25 @@
         #card-errors { color: #fa755a; margin-top: 10px; font-size: 0.875rem; }
 
         @media(max-width: 768px) {
-            .payment-toggles { gap: 10px; }
-            .toggle-card { min-width: 40%; height: 150px; padding: 10px 5px; }
-            .t-price { font-size: 1.1rem; }
-            .card-btn { font-size: 0.7rem; padding: 8px 0; }
+            .payment-toggles {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 8px;
+                overflow: hidden;
+                padding-bottom: 0;
+            }
+
+            .toggle-card {
+                flex: 1;
+                min-width: 0;
+                height: 140px;
+                padding: 8px 4px;
+            }
+
+            .t-center-text { font-size: 0.75rem; }
+            .t-price { font-size: 0.9rem; }
+            .t-sub { font-size: 0.6rem; }
+            .card-btn { font-size: 0.65rem; padding: 6px 0; }
         }
     </style>
 

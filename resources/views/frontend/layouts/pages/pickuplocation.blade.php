@@ -311,15 +311,18 @@
 
                 <div class="sidebar-box">
                     <h5 class="sidebar-title">Top Rated Service</h5>
-                    <img src="{{ asset('images/Google-Rating-1.webp') }}" alt="Google" class="trust-img">
-                      <a href="https://www.tripadvisor.com/Attraction_Review-g60745-d33371741-Reviews-Boston_Logan_Airport_Taxi-Boston_Massachusetts.html" target="_blank">
-                        <img src="{{ asset('images/Tripadvisor.webp') }}" alt="Trustpilot" class="trust-img">
+                    <a href="https://www.google.com/search?sca_esv=f96236a721133e6f&cs=0&output=search&kgmid=/g/11wwx58ltt&q=Boston+Express+Cab+-Boston+Car,+Taxi,+SUV+and+Minivan+Service&shndl=30&shem=lcuae,uaasie&source=sh/x/loc/uni/m1/1&kgs=eadcf2dd6bddbfa8">
+                        <img src="{{ asset('images/Google-Rating-1.jpeg') }}" alt="Google" class="trust-img">
+
                     </a>
-                     <a href="https://trustpilot.com/review/bostonloganairporttaxi.com" target="_blank">
-                        <img src="{{ asset('images/Trustpilot.webp') }}" alt="Tripadvisor" class="trust-img">
+                      <a href="https://www.trustpilot.com/review/bostonexpresscab.com" target="_blank">
+                        <img src="{{ asset('images/Trustpilot.jpeg') }}" alt="Trustpilot" class="trust-img">
                     </a>
-                    <a href="https://biz.yelp.com/r2r/qBKa9HpNhb7tt4h8bCsoqA" target="_blank">
-                        <img src="{{ asset('images/Flux_Dev_highresolution_stock_photo_of_Create_an_image_with_th_1.webp') }}" alt="LimoTrust" class="trust-img">
+                     <a href="https://limotrust.org/listing/boston-express-cab-60" target="_blank">
+                        <img src="{{ asset('images/Limotrust-1.webp') }}" alt="Tripadvisor" class="trust-img">
+                    </a>
+                    <a href="https://www.tripadvisor.com/Attraction_Review-g41948-d28108453-Reviews-Boston_Express_Cab-Woburn_Massachusetts.html" target="_blank">
+                        <img src="{{ asset('images/Tripadvisor.webp') }}" alt="LimoTrust" class="trust-img">
                     </a>
                 </div>
 
