@@ -10,21 +10,21 @@
         right: 50%;
         margin-left: -50vw;
         margin-right: -50vw;
+        overflow: hidden;
     }
 
-    /* --- HERO SECTION --- */
+    /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
     .long-dist-hero {
-        /* Using the specific image from your upload */
-        background-image: url('images/airportareacab.jpeg');
-        background-size: cover;
-        background-position: center;
-        height: 500px;
+        position: relative;
+        /* ইমেজ না কেটে পূর্ণাঙ্গ দেখানোর জন্য 100% 100% ব্যবহার করা হয়েছে */
+        background: url('{{ asset("images/airportareacab.jpeg") }}') no-repeat center center;
+        background-size: 100% 100% !important;
+        height: 450px; /* ডেস্কটপে স্ট্যান্ডার্ড উচ্চতা */
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: #fff;
-        position: relative;
     }
 
     .hero-overlay {
@@ -33,18 +33,19 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.6); /* Slightly darker for better text readability */
+        background: rgba(0, 0, 0, 0.4); /* টেক্সট স্পষ্ট করার জন্য হালকা ওভারলে */
     }
 
     .hero-content {
         position: relative;
         z-index: 2;
         padding: 0 15px;
+        width: 100%;
     }
 
     .hero-subtitle {
-        color: #2D9CDB; /* Brand Blue */
-        font-size: 1.2rem;
+        color: #2D9CDB;
+        font-size: clamp(1rem, 2vw, 1.2rem);
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -54,34 +55,26 @@
 
     .hero-title {
         font-weight: 800;
-        font-size: 3rem;
+        font-size: clamp(1.8rem, 5vw, 3rem); /* ফ্লুইড টাইপোগ্রাফি */
         margin-bottom: 25px;
         text-shadow: 0 4px 8px rgba(0,0,0,0.8);
         text-transform: capitalize;
         line-height: 1.2;
     }
 
-    /* Call Button */
-    .btn-hero-call {
-        background-color: #2D9CDB;
-        color: white;
-        padding: 14px 40px;
-        font-size: 1.2rem;
-        font-weight: 700;
-        border-radius: 50px;
-        text-decoration: none;
-        display: inline-block;
-        box-shadow: 0 4px 15px rgba(45, 156, 219, 0.4);
-        transition: transform 0.3s, background-color 0.3s;
-        border: 2px solid #2D9CDB;
+    /* --- MOBILE RESPONSIVE FIX --- */
+    @media (max-width: 991px) {
+        .long-dist-hero {
+            height: 350px;
+            background-size: 100% 100% !important;
+        }
     }
 
-    .btn-hero-call:hover {
-        background-color: #1a88c3;
-        border-color: #1a88c3;
-        color: white;
-        transform: translateY(-3px);
-        text-decoration: none;
+    @media (max-width: 576px) {
+        .long-dist-hero {
+            height: 250px; /* ছোট মোবাইলে ইমেজ যাতে চ্যাপ্টা না লাগে */
+            background-size: 100% 100% !important;
+        }
     }
 
     /* --- CONTENT STYLES --- */
@@ -119,17 +112,6 @@
         background-color: #2D9CDB;
     }
 
-    .sub-heading {
-        color: #333;
-        font-weight: 700;
-        font-size: 1.4rem;
-        margin-top: 30px;
-        margin-bottom: 15px;
-        border-left: 4px solid #2D9CDB;
-        padding-left: 15px;
-    }
-
-    /* Destination Cards */
     .destination-card {
         background: #f9f9f9;
         border: 1px solid #eee;
@@ -137,6 +119,7 @@
         padding: 20px;
         margin-bottom: 20px;
         transition: transform 0.3s;
+        height: 100%;
     }
 
     .destination-card:hover {
@@ -160,29 +143,6 @@
         display: block;
     }
 
-    /* Lists */
-    .styled-list {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .styled-list li {
-        margin-bottom: 10px;
-        padding-left: 25px;
-        position: relative;
-    }
-
-    .styled-list li::before {
-        content: '\f058'; /* FontAwesome Check Circle */
-        font-family: 'Font Awesome 5 Free';
-        font-weight: 900;
-        position: absolute;
-        left: 0;
-        top: 2px;
-        color: #2D9CDB;
-    }
-
-    /* Feature Image */
     .feature-image {
         width: 100%;
         border-radius: 12px;
@@ -203,12 +163,6 @@
         margin-bottom: 30px;
     }
 
-    .sidebar-box h5 {
-        color: #333;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
-
     .trust-img {
         max-width: 150px;
         height: auto;
@@ -218,13 +172,6 @@
         margin-right: auto;
         transition: transform 0.3s;
     }
-    .trust-img:hover { transform: scale(1.05); }
-
-    /* Category Icon */
-    .cat-icon {
-        color: #2D9CDB;
-        margin-right: 8px;
-    }
 </style>
 
 <div class="full-width-section long-dist-hero">
@@ -232,162 +179,60 @@
     <div class="container hero-content">
         <h2 class="hero-subtitle">Reliable & Comfortable</h2>
         <h1 class="hero-title">Long Distance Car Service</h1>
-
     </div>
 </div>
+
 @include('frontend.layouts.includes.booking')
+
 <section class="content-section">
     <div class="container">
         <div class="row">
-
             <div class="col-lg-8 pr-lg-5">
-
                 <p class="lead-text">
-                    At <strong>Boston Express Cab</strong>, we pride ourselves on offering reliable and comfortable long distance car services from Logan Airport to several major cities across Massachusetts and Rhode Island. Whether you are traveling for business or leisure, we ensure a smooth and enjoyable ride to your destination.
+                    At <strong>Boston Express Cab</strong>, we pride ourselves on offering reliable and comfortable long distance car services from Logan Airport to several major cities across Massachusetts and Rhode Island.
                 </p>
 
                 <h2 class="section-heading">Popular Destinations</h2>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-4">
                         <div class="destination-card">
                             <h4 class="dest-title">Hyannis Car Service</h4>
                             <p>Travel comfortably to Hyannis. Stops: Cape Cod Mall, JFK Hyannis Museum, Harbor.</p>
                             <span class="travel-time"><i class="far fa-clock"></i> Travel time: 1.5 - 2 hours</span>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-4">
                         <div class="destination-card">
                             <h4 class="dest-title">Worcester</h4>
                             <p>Known for its bustling arts scene. Don’t miss the Worcester Art Museum and Elm Park.</p>
                             <span class="travel-time"><i class="far fa-clock"></i> Travel time: ~1 hour</span>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="destination-card">
-                            <h4 class="dest-title">Provincetown</h4>
-                            <p>Scenic ride to P-town. Highlights: Art Association, Pilgrim Monument, Herring Cove.</p>
-                            <span class="travel-time"><i class="far fa-clock"></i> Travel time: 2 - 2.5 hours</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="destination-card">
-                            <h4 class="dest-title">Newport, RI</h4>
-                            <p>Luxury travel to Newport. See The Breakers, Cliff Walk, and Tennis Hall of Fame.</p>
-                            <span class="travel-time"><i class="far fa-clock"></i> Travel time: 1.5 - 2 hours</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="destination-card">
-                            <h4 class="dest-title">Boston to NYC</h4>
-                            <p>Travel in comfort to New York City. Times Square, Central Park, Broadway.</p>
-                            <span class="travel-time"><i class="far fa-clock"></i> Travel time: 4 - 5 hours</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="destination-card">
-                            <h4 class="dest-title">Portland, Maine</h4>
-                            <p>Reliable service to Portland. Visit Old Port, Portland Head Light, Arts District.</p>
-                            <span class="travel-time"><i class="far fa-clock"></i> Travel time: ~2 hours</span>
-                        </div>
-                    </div>
                 </div>
 
-                <img src="{{ asset("images/car Services 4.png") }}" alt="Luxury Car Service" class="feature-image">
-
-                <h2 class="section-heading mt-5">Top Places to Visit</h2>
-
-                <h3 class="sub-heading">Worcester & Springfield</h3>
-                <ul class="styled-list">
-                    <li><strong>Worcester Art Museum:</strong> Houses over 35,000 pieces of art.</li>
-                    <li><strong>EcoTarium:</strong> An indoor-outdoor science and nature museum.</li>
-                    <li><strong>Basketball Hall of Fame (Springfield):</strong> A must-visit for sports enthusiasts.</li>
-                    <li><strong>Forest Park:</strong> One of the largest urban parks in the U.S.</li>
-                </ul>
-
-                <h3 class="sub-heading">Providence & Newport (RI)</h3>
-                <ul class="styled-list">
-                    <li><strong>WaterFire (Providence):</strong> Award-winning sculpture on the rivers of downtown.</li>
-                    <li><strong>Roger Williams Park Zoo:</strong> One of the oldest zoos in the country.</li>
-                    <li><strong>The Breakers (Newport):</strong> A grand mansion with stunning architecture.</li>
-                    <li><strong>Cliff Walk:</strong> A scenic coastal trail.</li>
-                </ul>
-
-                <h3 class="sub-heading">Cape Cod (Hyannis & Provincetown)</h3>
-                <ul class="styled-list">
-                    <li><strong>JFK Hyannis Museum:</strong> Dedicated to the 35th president.</li>
-                    <li><strong>Pilgrim Monument:</strong> Commemorates the Mayflower Pilgrims.</li>
-                    <li><strong>Herring Cove Beach:</strong> A perfect spot for relaxation.</li>
-                </ul>
+                <img src="{{ asset('images/car Services 4.png') }}" alt="Luxury Car Service" class="feature-image">
 
                 <h2 class="section-heading mt-5">Recommended Hotels</h2>
                 <div class="row">
                     <div class="col-md-6">
-                        <ul class="styled-list">
-                            <li><strong>Worcester:</strong> Beechwood Hotel, AC Hotel by Marriott.</li>
-                            <li><strong>Springfield:</strong> Sheraton Monarch Place, Hampton Inn & Suites.</li>
-                            <li><strong>Providence:</strong> Graduate Providence, Providence Biltmore.</li>
+                        <ul class="list-unstyled">
+                            <li><strong>Worcester:</strong> Beechwood Hotel</li>
+                            <li><strong>Springfield:</strong> Sheraton Monarch Place</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <ul class="styled-list">
-                            <li><strong>Hyannis:</strong> Anchor In Distinctive Waterfront, Cape Codder Resort.</li>
-                            <li><strong>Provincetown:</strong> Crowne Pointe Historic Inn, Harbor Hotel.</li>
-                            <li><strong>Newport:</strong> The Chanler at Cliff Walk, Newport Marriott.</li>
+                        <ul class="list-unstyled">
+                            <li><strong>Hyannis:</strong> Anchor In Distinctive Waterfront</li>
+                            <li><strong>Newport:</strong> The Chanler at Cliff Walk</li>
                         </ul>
                     </div>
                 </div>
-
-                <h2 class="section-heading mt-5">Activities & Getaways</h2>
-                <div class="row">
-                    <div class="col-12 mb-3">
-                        <h4 class="dest-title"><i class="fas fa-child cat-icon"></i> Family Activities</h4>
-                        <p class="small text-muted">Enjoy without disturbance.</p>
-                        <ul class="styled-list">
-                            <li><strong>Fun for Kids:</strong> EcoTarium (Worcester), Six Flags New England (Springfield), Providence Children’s Museum.</li>
-                            <li><strong>Nature & Animals:</strong> Roger Williams Park Zoo, ZooQuarium (Hyannis), Whale Watching (Provincetown).</li>
-                        </ul>
-                    </div>
-                    <div class="col-12">
-                        <h4 class="dest-title"><i class="fas fa-heart cat-icon"></i> Couple Getaways</h4>
-                        <p class="small text-muted">Spend quality time and make memories.</p>
-                        <ul class="styled-list">
-                            <li><strong>Romantic Dining:</strong> O’Connor’s Restaurant (Worcester), The Rooftop at Providence G.</li>
-                            <li><strong>Scenic Walks:</strong> Kalmus Beach (Hyannis), Art’s Dune Tours (Provincetown), Cliff Walk (Newport).</li>
-                            <li><strong>Culture:</strong> Springfield Symphony Orchestra, Tuckerman Hall.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="mt-5 p-4" style="background: #f0f8ff; border-radius: 10px; border-left: 5px solid #2D9CDB;">
-                    <h3 style="color: #2D9CDB; font-weight: 700;">Other Services Offered</h3>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <ul class="styled-list">
-                                <li><strong>Airport Transfers:</strong> Efficient rides to/from Logan Airport.</li>
-                                <li><strong>Business Travel:</strong> Reliable transport for professionals.</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="styled-list">
-                                <li><strong>Personal Travel:</strong> Convenient rides for leisure.</li>
-                                <li><strong>Special Requests:</strong> Customized travel solutions.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <p class="mt-4 text-muted">
-                    Embark on your next adventure with Boston Express Cab. Whether you’re traveling with family or exploring new destinations, we’ve got you covered.
-                </p>
-
             </div>
 
             <div class="col-lg-4">
-
                 <div class="sidebar-box p-0 border-0" style="background: transparent; box-shadow: none;">
                     <div style="background: #2D9CDB; color: white; padding: 30px; border-radius: 12px; text-align: center;">
                         <h4 style="font-weight: 700; margin-bottom: 10px;">Book Your Ride</h4>
-                        <p class="mb-3">Instant confirmation & support</p>
                         <a href="tel:6172306362" style="color: white; font-weight: 800; font-size: 1.4rem; text-decoration: none;">
                             <i class="fas fa-phone-alt"></i> 617-230-6362
                         </a>
@@ -396,24 +241,12 @@
 
                 <div class="sidebar-box sticky-top" style="top: 100px;">
                     <h5>Top Rated Service</h5>
-                    <a href="https://www.google.com/search?sca_esv=f96236a721133e6f&cs=0&output=search&kgmid=/g/11wwx58ltt&q=Boston+Express+Cab+-Boston+Car,+Taxi,+SUV+and+Minivan+Service&shndl=30&shem=lcuae,uaasie&source=sh/x/loc/uni/m1/1&kgs=eadcf2dd6bddbfa8">
-                        <img src="{{ asset('images/Google-Rating-1.jpeg') }}" alt="Google" class="trust-img">
-
-                    </a>
-                      <a href="https://www.trustpilot.com/review/bostonexpresscab.com" target="_blank">
-                        <img src="{{ asset('images/Trustpilot.jpeg') }}" alt="Trustpilot" class="trust-img">
-                    </a>
-                     <a href="https://limotrust.org/listing/boston-express-cab-60" target="_blank">
-                        <img src="{{ asset('images/Limotrust-1.webp') }}" alt="Tripadvisor" class="trust-img">
-                    </a>
-                    <a href="https://www.tripadvisor.com/Attraction_Review-g41948-d28108453-Reviews-Boston_Express_Cab-Woburn_Massachusetts.html" target="_blank">
-                        <img src="{{ asset('images/Tripadvisor.webp') }}" alt="LimoTrust" class="trust-img">
-                    </a>
-                    <p class="text-muted small mt-3">Trusted by thousands of travelers in Boston.</p>
+                    <img src="{{ asset('images/Google-Rating-1.jpeg') }}" class="trust-img">
+                    <img src="{{ asset('images/Trustpilot.jpeg') }}" class="trust-img">
+                    <img src="{{ asset('images/Limotrust-1.webp') }}" class="trust-img">
+                    <img src="{{ asset('images/Tripadvisor.webp') }}" class="trust-img">
                 </div>
-
             </div>
-
         </div>
     </div>
 </section>
