@@ -14,18 +14,18 @@
         overflow: hidden;
     }
 
-    /* --- HERO SECTION --- */
+    /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
     .minivan-hero {
-        background-image: url('{{ asset('images/expresscabairport.jpeg') }}');
-        background-size: cover;
-        background-position: center;
-        height: 500px;
+        position: relative;
+        /* ইমেজ না কেটে পূর্ণাঙ্গ দেখানোর জন্য 100% 100% ব্যবহার করা হয়েছে */
+        background: url('{{ asset('images/expresscabairport.jpeg') }}') no-repeat center center;
+        background-size: 100% 100% !important;
+        height: 450px; /* ডেস্কটপে স্ট্যান্ডার্ড উচ্চতা */
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: #fff;
-        position: relative;
     }
 
     .hero-overlay {
@@ -34,21 +34,38 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.4); /* টেক্সট স্পষ্ট করার জন্য হালকা ওভারলে */
     }
 
     .hero-content {
         position: relative;
         z-index: 2;
         padding: 0 15px;
+        width: 100%;
     }
 
     .hero-title {
         font-weight: 800;
-        font-size: 3.5rem;
+        font-size: clamp(2rem, 5vw, 3.5rem); /* ফ্লুইড টাইপোগ্রাফি */
         margin-bottom: 20px;
         text-shadow: 0 4px 8px rgba(0,0,0,0.6);
         text-transform: capitalize;
+    }
+
+    /* --- MOBILE RESPONSIVE FIX --- */
+    @media (max-width: 991px) {
+        .minivan-hero {
+            height: 350px;
+            background-size: 100% 100% !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .minivan-hero {
+            height: 250px; /* ছোট মোবাইলে ইমেজ যাতে চ্যাপ্টা না লাগে */
+            background-size: 100% 100% !important;
+        }
+        .hero-title { font-size: 1.8rem; }
     }
 
     /* --- MAIN CONTENT --- */
@@ -149,23 +166,6 @@
         margin-right: auto;
         transition: transform 0.3s ease;
     }
-
-    /* --- MOBILE RESPONSIVE --- */
-    @media (max-width: 991px) {
-        .hero-title { font-size: 2.5rem; }
-        .minivan-hero { height: 350px; }
-        .feature-image { height: 300px; }
-        .trust-badges-box { margin-top: 40px; position: static; }
-    }
-
-    @media (max-width: 576px) {
-        .hero-title { font-size: 1.8rem; }
-        .minivan-hero { height: 250px; }
-        .section-heading { font-size: 1.4rem; }
-        .lead-text { font-size: 1rem; text-align: center; }
-        .minivan-content-section { padding: 40px 0; }
-        .custom-list li { font-size: 0.95rem; }
-    }
 </style>
 
 <div class="full-width-section minivan-hero">
@@ -174,6 +174,7 @@
         <h1 class="hero-title">Minivan Taxi Cab Service</h1>
     </div>
 </div>
+
 @include('frontend.layouts.includes.booking')
 
 <section class="minivan-content-section">
@@ -208,7 +209,7 @@
                     <div class="col-md-6 mb-4">
                         <h3 class="section-heading" style="font-size: 1.4rem;">Key Amenities</h3>
                         <ul class="custom-list">
-                            <li>Plush seating for 7.</li>
+                            <li>Plush seating for 7 passengers.</li>
                             <li>Huge luggage capacity.</li>
                             <li>Air-conditioned comfort.</li>
                             <li>Child seats (pre-book).</li>
@@ -238,7 +239,7 @@
                     <a href="https://limotrust.org/listing/boston-express-cab-60" target="_blank">
                         <img src="{{ asset('images/Limotrust-1.webp') }}" alt="LimoTrust" class="trust-img">
                     </a>
-                    <a href="https://www.tripadvisor.com" target="_blank">
+                    <a href="#" target="_blank">
                         <img src="{{ asset('images/Tripadvisor.webp') }}" alt="Tripadvisor" class="trust-img">
                     </a>
                     <p class="text-muted small mt-3">Trusted by thousands of travelers in Boston.</p>

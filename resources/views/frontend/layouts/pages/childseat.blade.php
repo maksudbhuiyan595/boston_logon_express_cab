@@ -25,10 +25,12 @@
         line-height: 1.7;
     }
 
-    /* --- HERO SECTION --- */
+    /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
     .service-hero {
         position: relative;
-        background: url('images/expresscab.png') no-repeat center center/cover;
+        /* ইমেজ না কেটে পূর্ণাঙ্গ দেখানোর জন্য 100% 100% ব্যবহার করা হয়েছে */
+        background: url('{{ asset("images/expresscab.png") }}') no-repeat center center;
+        background-size: 100% 100% !important;
         height: 450px;
         display: flex;
         align-items: center;
@@ -40,7 +42,7 @@
         content: "";
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0, 0, 0, 0.6); /* Dark Overlay */
+        background: rgba(0, 0, 0, 0.5); /* Overlay opacity adjusted */
     }
     .hero-content {
         position: relative;
@@ -49,14 +51,15 @@
         padding: 20px;
     }
     .hero-title {
-        font-size: 3rem;
+        font-size: clamp(1.8rem, 5vw, 3rem);
         font-weight: 800;
         margin-bottom: 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 2vw, 1.2rem);
         font-weight: 500;
-        opacity: 0.9;
+        opacity: 0.95;
     }
 
     /* --- CONTENT SECTIONS --- */
@@ -126,7 +129,7 @@
     .btn-cta {
         display: inline-block;
         background: var(--accent);
-        color: white;
+        color: white !important;
         padding: 15px 35px;
         font-weight: 700;
         border-radius: 8px;
@@ -136,20 +139,13 @@
     }
     .btn-cta:hover {
         background: var(--accent-hover);
-        color: white;
     }
 
-   /* --- MOBILE RESPONSIVE UPDATES --- */
+    /* --- MOBILE RESPONSIVE UPDATES --- */
     @media (max-width: 991px) {
         .service-hero {
             height: 350px;
-        }
-        .hero-title {
-            font-size: 2.2rem;
-            line-height: 1.2;
-        }
-        .hero-subtitle {
-            font-size: 1rem;
+            background-size: 100% 100% !important; /* মোবাইলেও পূর্ণাঙ্গ ইমেজ */
         }
         .section-title {
             font-size: 1.5rem;
@@ -164,39 +160,26 @@
             text-align: left;
             width: 100%;
         }
-
-        /* মোবাইলে ইমেজ যাতে সবসময় টেক্সটের নিচে থাকে (Order reset) */
         .content-block {
             text-align: center;
         }
         .order-lg-2, .order-lg-1 {
             order: unset !important;
         }
-
-        /* ইমেজের মার্জিন এডজাস্টমেন্ট */
         .content-img {
             margin-top: 20px;
             max-width: 90%;
         }
-
-        .cta-box {
-            padding: 25px 15px;
-        }
     }
 
     @media (max-width: 576px) {
-        .hero-title {
-            font-size: 1.8rem;
-        }
         .service-hero {
-            height: 300px;
+            height: 250px; /* ছোট মোবাইলে ইমেজ যাতে চ্যাপ্টা না লাগে তাই উচ্চতা কিছুটা কমানো হয়েছে */
+            background-size: 100% 100% !important;
         }
         .btn-cta {
             width: 100%;
             padding: 12px 20px;
-        }
-        .section-title {
-            font-size: 1.3rem;
         }
     }
 </style>
@@ -207,10 +190,11 @@
         <p class="hero-subtitle">Safe, Comfortable, and Reliable Transportation for Your Little Ones.</p>
     </div>
 </div>
+
 @include('frontend.layouts.includes.booking')
+
 <div class="content-section">
     <div class="container">
-
         <div class="row align-items-center content-block">
             <div class="col-lg-7">
                 <p class="section-text">
@@ -225,61 +209,40 @@
                     <li>24/7 support, including last-minute travel assistance.</li>
                     <li>Easy booking by phone or online.</li>
                 </ul>
-                <p class="section-text mt-3 small text-muted">
-                    Our taxi with car seat Boston option complies with Massachusetts car seat safety laws and is designed for a worry-free experience for both you and your child every time.
-                </p>
             </div>
             <div class="col-lg-5">
-                <img src="{{ asset("images/Taxi-with-Infant-Car-seat-Boston.webp") }}" class="content-img" alt="Baby in Car Seat">
+                <img src="{{ asset('images/Taxi-with-Infant-Car-seat-Boston.webp') }}" class="content-img" alt="Baby in Car Seat">
             </div>
         </div>
 
         <div class="content-block">
             <h2 class="section-title">Airport Taxi With Car Seat</h2>
             <p class="section-text">
-                Traveling with children and flying in or out of Logan? We provide professional <strong>airport taxi with car seat</strong> for a hassle-free and safe ride. We follow flight schedules, arrive on time, and bring the appropriate car seat that corresponds to your child's age and weight.
-            </p>
-            <p class="section-text">
-                We will take care of it all, from stowing your stroller and bags to ensuring your child is securely buckled in before we pull away.
+                Traveling with children and flying in or out of Logan? We provide professional <strong>airport taxi with car seat</strong> for a hassle-free and safe ride.
             </p>
         </div>
 
         <div class="row align-items-center content-block">
             <div class="col-lg-5 order-lg-2">
-                <img src="{{ asset("images/Airport-Taxi-with-Car-Seat.webp") }}" class="content-img" alt="Mother and Newborn">
+                <img src="{{ asset('images/Airport-Taxi-with-Car-Seat.webp') }}" class="content-img" alt="Mother and Newborn">
             </div>
             <div class="col-lg-7 order-lg-1">
                 <h2 class="section-title">Newborn Taxi For Your Baby's First Ride Home</h2>
                 <p class="section-text">
-                    Our <strong>newborn taxi</strong> is made just for new parents. We offer the highest quality car seats that are clean and safe, and are waiting for you. Whether you require transportation home from the hospital or need a check-up, our drivers are experienced at providing exactly the extra support and sensitivity you deserve.
+                    Our <strong>newborn taxi</strong> is made just for new parents. We offer the highest quality car seats that are clean and safe.
                 </p>
             </div>
-        </div>
-
-        <div class="content-block">
-            <h2 class="section-title">How To Book A Taxi Infant Car Seat In Boston</h2>
-            <p class="section-text">Booking is simple! Contact us or place a request on our website via our article. Just let us know:</p>
-            <ul class="feature-list">
-                <li>Your child's age or weight.</li>
-                <li>Pickup and drop-off locations.</li>
-                <li>Preferred time and date.</li>
-            </ul>
-            <p class="section-text mt-3">
-                We'll take care of the rest. No need to carry your own seat or worry about installation.
-            </p>
         </div>
 
         <div class="cta-box">
             <h2 class="font-weight-bold text-dark mb-3">Conclusion</h2>
             <p class="text-muted mb-4">
-                At <strong>Boston Logan Airport Taxi</strong>, we value nothing more than the safety of your child. That's why families from all over Boston trust our <strong>taxi infant car seat service</strong>. Whether it's the drive home from the hospital or a trip across town to Grandma's, we're here to help you feel confident and assured about safety on the go.
+                At <strong>Boston Logan Airport Taxi</strong>, we value nothing more than the safety of your child.
             </p>
-
             <a href="{{ url('/') }}" class="btn-cta">
                 Book Now & Request a Car Seat
             </a>
         </div>
-
     </div>
 </div>
 
