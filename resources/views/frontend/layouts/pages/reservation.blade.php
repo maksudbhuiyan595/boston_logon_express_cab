@@ -11,7 +11,7 @@
             margin-left: -50vw;
             margin-right: -50vw;
             height: 450px;
-            background: url('images/cab5.jpeg') no-repeat center center/cover;
+            background: url('images/expresscabairport.jpeg') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -232,6 +232,7 @@
             <h1 class="hero-title">Reserve Your Ride with Boston Express Cab</h1>
         </div>
     </div>
+    @include('frontend.layouts.includes.booking')
     <section class="page-wrapper">
         <div class="container">
             <div class="row">

@@ -1,4 +1,5 @@
 <style>
+
     @keyframes slideInUp {
         from { opacity: 0; transform: translateY(40px); }
         to { opacity: 1; transform: translateY(0); }
@@ -32,7 +33,7 @@
         transition: all 0.4s ease;
     }
 
-    /* INPUTS & SELECTS */
+
     .form-control, .form-select {
         background-color: #1a221f;
         border: 1px solid #2d3833;
@@ -41,12 +42,14 @@
         height: 38px;
     }
 
+
     .form-control:focus, .form-select:focus {
         background-color: #1e2924;
         border-color: #FFD700;
         box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1);
         color: #fff;
     }
+
 
     #extrasSection {
         display: none;
@@ -57,6 +60,7 @@
         margin-top: 8px;
     }
 
+
     @media (min-width: 992px) {
         .form-column { position: relative; }
         .reservation-card {
@@ -65,6 +69,7 @@
             left: 12px;
             width: calc(100% - 24px);
         }
+
         .reservation-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
@@ -81,7 +86,7 @@
     .form-header h3 { margin: 0; font-size: 1.2rem; font-weight: 700; color: #000; }
     .form-header p { margin: 0; font-size: 0.75rem; opacity: 0.8; color: #000; }
 
-    /* ICONS */
+    /* INPUTS */
     .input-group-text { width: 38px; justify-content: center; background: #2d3833; color: #FFD700; border: 1px solid #2d3833; height: 38px; }
 
     /* TRIP TYPE */
@@ -90,18 +95,9 @@
     .trip-option input { display: none; }
 
     .trip-card {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 6px;
-        border: 1px solid #2d3833;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        height: 100%;
-        background: #1a221f;
-        gap: 6px;
+        display: flex; flex-direction: row; align-items: center; justify-content: center;
+        padding: 6px; border: 1px solid #2d3833; border-radius: 6px;
+        cursor: pointer; transition: all 0.2s ease; height: 100%; background: #1a221f; gap: 4px;
         font-weight: 500;
         color: #a0a0a0;
         font-size: 0.85rem;
@@ -117,9 +113,9 @@
 
     .mini-label { font-size: 0.7rem; color: #ffffff; margin-left: 2px; font-weight: 600; display: block; margin-bottom: 2px; }
 
-    /* EXTRAS TOGGLE - কালার আপডেট করা হয়েছে */
+    /* EXTRAS TOGGLE */
     .extras-toggle {
-        color: #ffffff; /* আপনার চাহিদা অনুযায়ী পুনরায় সাদা করা হলো */
+        color: #FFD700;
         font-weight: 600;
         cursor: pointer;
         padding: 5px 0;
@@ -128,12 +124,6 @@
         align-items: center;
         gap: 8px;
     }
-
-    .extras-toggle i {
-        color: #FFD700; /* প্লাস আইকনটি গোল্ডেন রাখা হয়েছে হাইলাইটের জন্য */
-    }
-
-    /* EXTRAS ROW DESIGN */
     .extra-row {
         display: flex;
         justify-content: space-between;
@@ -157,6 +147,8 @@
         padding: 2px 5px;
         margin-left: 10px;
     }
+
+    .extra-price-tag { background: #FFD700; color: #000; padding: 1px 5px; border-radius: 4px; font-size: 0.65rem; font-weight: bold; margin-left: 5px; }
 
     .total-price-display {
         font-weight: bold;
@@ -184,25 +176,9 @@
 
     ::placeholder { color: #ffffff !important; opacity: 0.9; }
 
-    /* MOBILE OPTIMIZATION */
     @media (max-width: 991px) {
         .hero-section { height: auto; padding-bottom: 20px; }
         .reservation-card { position: static !important; width: 100% !important; min-height: 450px !important; }
-
-        .trip-type-container {
-            flex-wrap: nowrap;
-            gap: 4px;
-        }
-
-        .trip-option { flex: 1; min-width: 0; }
-
-        .trip-card {
-            padding: 8px 2px;
-            font-size: 0.6rem;
-            flex-direction: row;
-            gap: 4px;
-            white-space: nowrap;
-        }
     }
 </style>
 
