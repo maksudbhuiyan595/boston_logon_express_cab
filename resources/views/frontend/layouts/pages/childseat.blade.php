@@ -28,7 +28,7 @@
     /* --- HERO SECTION --- */
     .service-hero {
         position: relative;
-        background: url('images/bostonairpotcab.png') no-repeat center center/cover;
+        background: url('images/expresscab.png') no-repeat center center/cover;
         height: 450px;
         display: flex;
         align-items: center;
@@ -207,7 +207,7 @@
         <p class="hero-subtitle">Safe, Comfortable, and Reliable Transportation for Your Little Ones.</p>
     </div>
 </div>
-
+@include('frontend.layouts.includes.booking')
 <div class="content-section">
     <div class="container">
 

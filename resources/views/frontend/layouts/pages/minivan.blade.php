@@ -16,7 +16,7 @@
 
     /* --- HERO SECTION --- */
     .minivan-hero {
-        background-image: url('{{ asset('images/cab6.jpeg') }}');
+        background-image: url('{{ asset('images/expresscabairport.jpeg') }}');
         background-size: cover;
         background-position: center;
         height: 500px;
@@ -174,6 +174,7 @@
         <h1 class="hero-title">Minivan Taxi Cab Service</h1>
     </div>
 </div>
+@include('frontend.layouts.includes.booking')
 
 <section class="minivan-content-section">
     <div class="container">

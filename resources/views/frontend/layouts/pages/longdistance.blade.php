@@ -15,7 +15,7 @@
     /* --- HERO SECTION --- */
     .long-dist-hero {
         /* Using the specific image from your upload */
-        background-image: url('images/home3.jpeg');
+        background-image: url('images/airportareacab.jpeg');
         background-size: cover;
         background-position: center;
         height: 500px;
@@ -235,7 +235,7 @@
 
     </div>
 </div>
-
+@include('frontend.layouts.includes.booking')
 <section class="content-section">
     <div class="container">
         <div class="row">
