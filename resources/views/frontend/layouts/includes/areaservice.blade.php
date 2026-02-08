@@ -30,27 +30,46 @@
         border-radius: 2px;
     }
 
-    /* --- CITIES GRID --- */
+    /* --- CITIES GRID (Desktop to Mobile ২ কলাম) --- */
     .cities-grid {
         display: grid;
         gap: 20px;
-        grid-template-columns: repeat(4, 1fr); /* Desktop */
+        grid-template-columns: repeat(4, 1fr);
     }
 
+    /* --- Tablet (991px to 769px) --- */
     @media (max-width: 991px) {
-        .cities-grid { grid-template-columns: repeat(3, 1fr); } /* Tablet */
-    }
-
-    @media (max-width: 768px) {
-        .cities-grid { grid-template-columns: repeat(2, 1fr); } /* Small Tablet */
-    }
-
-    @media (max-width: 576px) {
         .cities-grid {
-            grid-template-columns: 1fr; /* Mobile: Full Width */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+    }
+
+    /* --- Mobile (768px and below) --- */
+    @media (max-width: 768px) {
+        .cities-grid {
+            grid-template-columns: repeat(2, 1fr);
             gap: 12px;
         }
-        .custom-title { font-size: 1.6rem; }
+
+        .custom-title {
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+        }
+
+        .city-card {
+            padding: 10px 12px !important; 
+            gap: 10px !important;
+        }
+
+        .icon-box {
+            width: 30px !important;
+            height: 30px !important;
+        }
+
+        .city-name {
+            font-size: 0.85rem !important;
+        }
     }
 
     /* --- CITY CARD DESIGN --- */
@@ -70,7 +89,7 @@
         gap: 15px;
         border-left: 4px solid #007bff;
         transition: all 0.3s ease;
-        height: 100%; /* সব কার্ড সমান হবে */
+        height: 100%;
     }
 
     .city-card:hover {
@@ -100,10 +119,10 @@
         font-weight: 600;
         color: #333;
         margin: 0;
-        /* লম্বা নাম হলে নিচের লাইনে যাবে, কেটে যাবে না */
         word-wrap: break-word;
     }
 
+    /* --- BUTTON STYLES --- */
     .btn-wrapper {
         text-align: center;
         margin-top: 40px;
@@ -125,12 +144,9 @@
         color: #fff;
     }
 </style>
-
 <section class="cities-section">
     <div class="container">
-
         <h2 class="custom-title">Popular Cities We Serve</h2>
-
         <div class="cities-grid">
             @foreach ($cities as $city)
                 <a href="{{ route('dynamic.route', $city->url) }}" class="city-link">
@@ -143,14 +159,12 @@
                 </a>
             @endforeach
         </div>
-
-        @if ($cities->count() >= 20)
+        @if ($cities->count() >= 8)
             <div class="btn-wrapper">
                 <a href="{{ route('area.we.serve') }}" class="show-more-btn">
                     Show More <i class="fa-solid fa-arrow-right ms-2"></i>
                 </a>
             </div>
         @endif
-
     </div>
 </section>

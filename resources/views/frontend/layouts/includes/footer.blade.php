@@ -177,7 +177,7 @@
             <div class="contact-item"><i class="fa-solid fa-location-dot"></i> <span>870 Main St, Woburn, MA</span>
             </div>
             <div class="contact-item"><i class="fa-solid fa-phone"></i> <span>617-230-6362</span></div>
-            <div class="contact-item"><i class="fa-solid fa-envelope"></i> <span>booking@bostonexpresscab.com</span>
+            <div class="contact-item"><i class="fa-solid fa-envelope"></i> <span>bostonexpresscab24@gmail.com</span>
             </div>
         </div>
         <div class="footer-col">

@@ -216,7 +216,7 @@
                     + ($booking->stopover_count ?? 0)
                     + ($booking->pet_count ?? 0);
 
-                    $totalSeats = ($booking->total_passengers ?? 0) + $extraSeats;
+                    $totalSeats = ($booking->total_passengers ?? 0);
                 @endphp
 
                 <td class="value">
@@ -274,8 +274,8 @@
         </table>
 
         <div class="footer">
-            <p>If you have questions, reply to this email or call us at +1857-331-9544.</p>
-            <p>&copy; {{ date('Y') }} Boston Logan Airport Taxi. All Rights Reserved.</p>
+            <p>If you have questions, reply to this email or call us at +617-230-6362.</p>
+            <p>&copy; {{ date('Y') }} Boston Express Cab. All Rights Reserved.</p>
         </div>
     </div>
 

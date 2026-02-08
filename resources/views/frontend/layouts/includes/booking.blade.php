@@ -209,7 +209,7 @@
 <section class="hero-section">
     <div class="container">
         <h2 class="mb-3 text-primary fw-bold d-flex justify-content-center">
-           Looking for a Cab? You're at the right place.
+          Welcome to Logan Airport
         </h2>
 
         <div class="row hero-row justify-content-center">
@@ -305,7 +305,7 @@
                                         <span class="input-group-text"><i class="fas fa-chair"></i></span>
                                         <select name="seats_dummy" id="childSeatsTrigger" class="form-select">
                                             <option value="0">Select</option>
-                                            @for ($i = 1; $i <= 4; $i++) <option value="{{ $i }}">{{ $i }}</option> @endfor
+                                            @for ($i = 0; $i <= 4; $i++) <option value="{{ $i }}">{{ $i }}</option> @endfor
                                         </select>
                                     </div>
                                 </div>
@@ -314,7 +314,7 @@
                             {{-- EXTRAS SECTION --}}
                             <div>
                                 <div class="extras-toggle" id="toggleExtrasBtn">
-                                    <i class="fas fa-plus-circle"></i> Add Stops & Specific Seats
+                                    <i class="fas fa-plus-circle"></i> Add Stops & Specific Seats/Pets
                                 </div>
 
                                 <div id="extrasSection">
