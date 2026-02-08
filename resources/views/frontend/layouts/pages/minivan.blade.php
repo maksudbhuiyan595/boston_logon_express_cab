@@ -18,7 +18,7 @@
     .minivan-hero {
         position: relative;
         /* ইমেজ না কেটে পূর্ণাঙ্গ দেখানোর জন্য 100% 100% ব্যবহার করা হয়েছে */
-        background: url('{{ asset('images/expresscabairport.jpeg') }}') no-repeat center center;
+        background: url('{{ asset('images/dalta.png') }}') no-repeat center center;
         background-size: 100% 100% !important;
         height: 450px; /* ডেস্কটপে স্ট্যান্ডার্ড উচ্চতা */
         display: flex;
