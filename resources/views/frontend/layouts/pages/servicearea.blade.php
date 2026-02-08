@@ -3,39 +3,47 @@
 @section('content')
 
 <style>
-    /* --- GLOBAL STYLES --- */
-
-
     /* =========================================
-       HERO SECTION STYLES
+       HERO SECTION - WEB & MOBILE FULL IMAGE FIX
        ========================================= */
     .service-hero {
         position: relative;
-        /* Using a valid Unsplash image. Change this to asset('images/cap3.jpeg') if using local file */
-        background-image: url('https://images.unsplash.com/photo-1550355291-bbee04a92027?q=80&w=1920&auto=format&fit=crop');
-        background-size: cover;
-        background-position: center center;
-        background-attachment: fixed;
-        height: 400px;
+        width: 100%;
+        height: 400px; /* ওয়েব ও মোবাইল উভয়ের জন্য ফিক্সড হাইট */
+        background-color: #000;
+        overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
     }
 
+    /* হিরো ইমেজ যা স্ট্রেচ না হয়ে পুরো বক্স কভার করবে */
+    .hero-bg-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* ইমেজ রেশিও ঠিক রেখে পুরোটা দেখাবে */
+        object-position: center;
+        z-index: 1;
+    }
+
+    /* ডার্ক ওভারলে */
     .service-hero::before {
         content: "";
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        /* Blue (#2D9CDB) mixed with dark transparency */
-        background: linear-gradient(to bottom, rgba(45, 156, 219, 0.6), rgba(30, 41, 59, 0.85));
-        mix-blend-mode: multiply;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(30, 41, 59, 0.7));
+        z-index: 2;
     }
 
     .hero-content {
         position: relative;
-        z-index: 2;
+        z-index: 3;
         color: white;
+        text-align: center;
+        width: 100%;
         padding: 0 15px;
     }
 
@@ -43,64 +51,27 @@
         font-size: 3.5rem;
         font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 10px;
-        text-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-
-    .hero-badge {
-        display: inline-block;
-        background-color: #2D9CDB; /* Logo Blue */
-        color: white;
-        padding: 6px 22px;
-        border-radius: 30px;
-        font-weight: 600;
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        box-shadow: 0 4px 15px rgba(45, 156, 219, 0.4);
-        margin-bottom: 15px;
+        text-shadow: 0 4px 15px rgba(0,0,0,0.6);
     }
 
     /* =========================================
-       COMMON SECTION STYLES
+       SERVICE AREA CARDS (আগের ডিজাইন ফিরে আনা হয়েছে)
        ========================================= */
     .section-padding { padding: 80px 0; }
     .bg-light { background-color: #f8fafc; }
-    .bg-white { background-color: #ffffff; }
 
-    .section-header { text-align: center; margin-bottom: 60px; }
-
-    .section-title {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #1e293b; /* Dark Blue/Gray */
-        margin-bottom: 15px;
-    }
-
-    .section-line {
-        width: 80px; height: 4px;
-        background-color: #2D9CDB; /* Logo Blue */
-        margin: 0 auto; border-radius: 2px;
-    }
-
-    /* =========================================
-       SERVICE AREA CARDS
-       ========================================= */
     .location-card {
         background: white;
         border-radius: 12px;
         padding: 15px 20px;
-        display: flex;
-        align-items: center;
+        display: block;
         transition: all 0.3s ease;
         border: 1px solid #e2e8f0;
         position: relative;
         overflow: hidden;
         margin-bottom: 25px;
-        text-decoration: none;
+        text-decoration: none !important;
         color: #1e293b;
-        display: block;
     }
 
     .card-content-flex { display: flex; align-items: center; }
@@ -130,107 +101,59 @@
     .city-text { font-weight: 600; font-size: 1.05rem; }
 
     /* =========================================
-       BLOG SECTION STYLES
+       MOBILE RESPONSIVE (FIXED)
        ========================================= */
-    .blog-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 30px;
-    }
-
-    .blog-card {
-        background: #fff;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-    }
-
-    .blog-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-        border-color: #bfdbfe;
-    }
-
-    .blog-img-wrapper { position: relative; height: 220px; overflow: hidden; }
-    .blog-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .blog-card:hover .blog-img { transform: scale(1.08); }
-
-    .blog-cat-badge {
-        position: absolute; top: 15px; left: 15px;
-        background-color: #2D9CDB; /* Logo Blue */
-        color: #fff;
-        padding: 5px 12px; border-radius: 20px;
-        font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
-        z-index: 2;
-    }
-
-    .blog-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
-
-    .blog-meta-date {
-        font-size: 0.85rem; color: #94a3b8; margin-bottom: 10px;
-        display: flex; align-items: center; gap: 5px;
-    }
-
-    .blog-title {
-        font-size: 1.25rem; font-weight: 700; color: #1e293b;
-        margin-bottom: 12px; text-decoration: none; line-height: 1.4; transition: color 0.2s;
-    }
-    .blog-title:hover { color: #2D9CDB; }
-
-    .blog-excerpt {
-        font-size: 0.95rem; color: #64748b; line-height: 1.6;
-        margin-bottom: 20px; flex-grow: 1;
-    }
-
-    .blog-footer {
-        padding-top: 15px; border-top: 1px solid #f1f5f9;
-        display: flex; align-items: center; justify-content: space-between;
-    }
-
-    .read-more-btn {
-        color: #2D9CDB; font-weight: 600; font-size: 0.9rem;
-        text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s;
-    }
-    .read-more-btn:hover { gap: 8px; color: #1a7bb0; }
-
-    /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
-        .service-hero { height: 300px; background-attachment: scroll; }
-        .hero-title { font-size: 2rem; }
-        .section-title { font-size: 2rem; }
-        .location-card { margin-bottom: 15px; padding: 12px 15px; }
+        .service-hero {
+            height: 400px !important; /* মোবাইলেও ৪০০পিএক্স হাইট নিশ্চিত */
+        }
+
+        .hero-title { font-size: 2.2rem; }
+        .section-padding { padding: 40px 0; }
+
+        /* কার্ড ডিজাইন মোবাইলে ২ কলাম */
+        .location-card {
+            margin-bottom: 15px;
+            padding: 10px 12px;
+            min-height: 55px;
+        }
+
+        .icon-box {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .icon-box i { font-size: 0.8rem; }
+        .city-text { font-size: 0.85rem; }
+
+        .row.city-grid-row {
+            --bs-gutter-x: 10px;
+        }
     }
 </style>
 
-{{-- =========================================
-     1. HERO SECTION
-     ========================================= --}}
-<div class="service-hero">
+{{-- 1. HERO SECTION --}}
+<section class="service-hero">
+    <img src="{{ asset('images/Boston Airport Car.png') }}" alt="Service Area" class="hero-bg-img">
     <div class="hero-content">
-        <span class="hero-badge">Professional Service</span>
+        <span class="badge bg-primary px-3 py-2 mb-3" style="text-transform: uppercase;">Professional Service</span>
         <h1 class="hero-title">Service Areas</h1>
     </div>
-</div>
+</section>
 
-{{-- =========================================
-     2. LOCATION GRID SECTION
-     ========================================= --}}
+{{-- 2. LOCATION GRID SECTION --}}
 <div class="section-padding bg-light">
     <div class="container">
-        <div class="section-header">
-            <h2>Areas We Cover</h2>
-            <div class="section-line"></div>
-            <p class="text-muted mt-3">Reliable transportation across Massachusetts and New Hampshire</p>
+        <div class="text-center mb-5">
+            <h2 style="font-weight: 800; color: #1e293b; font-size: 2.5rem;">Areas We Cover</h2>
+            <div style="width: 80px; height: 4px; background-color: #2D9CDB; margin: 15px auto; border-radius: 2px;"></div>
+            <p class="text-muted">Reliable transportation across Massachusetts and New Hampshire</p>
         </div>
 
-        <div class="row">
-
+        <div class="row city-grid-row">
             @foreach($cities as $city)
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                     <a href="{{ route('dynamic.route',$city->url) }}" class="location-card">
                         <div class="card-content-flex">
                             <div class="icon-box">
@@ -242,9 +165,11 @@
                 </div>
             @endforeach
         </div>
-         <div class="mt-5 custom-pagination">
+
+        <div class="mt-5 d-flex justify-content-center">
             {{ $cities->links('pagination::bootstrap-5') }}
         </div>
     </div>
 </div>
+
 @endsection

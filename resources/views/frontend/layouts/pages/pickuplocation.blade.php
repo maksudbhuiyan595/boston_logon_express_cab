@@ -12,16 +12,11 @@
         right: 50%;
         margin-left: -50vw;
         margin-right: -50vw;
-
-        /* ডেস্কটপে ফিক্সড ৪শ পিক্সেল উচ্চতা */
         height: 400px;
         margin-top: 0px;
         top: 0;
-
-        /* ইমেজ সেটিংস: ডেস্কটপ এবং মোবাইল সবখানেই ইমেজ না কেটে পূর্ণাঙ্গ দেখাবে */
-        background: url('{{ asset('images/airportcab.jpeg') }}') no-repeat center center;
-        background-size: 100% 100% !important; /* ইমেজকে জোর করে বক্সের মধ্যে ফিট করা হবে */
-
+        background: url('{{ asset('images/cab22.png') }}') no-repeat center center;
+        background-size: 100% 100% !important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -154,7 +149,7 @@
     </div>
 </div>
 
-<div class="booking-wrapper">
+<div class="booking-wrapper mt-5">
     @include('frontend.layouts.includes.booking')
 </div>
 

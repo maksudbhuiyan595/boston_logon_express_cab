@@ -28,8 +28,7 @@
     /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
     .service-hero {
         position: relative;
-        /* ইমেজ না কেটে পূর্ণাঙ্গ দেখানোর জন্য 100% 100% ব্যবহার করা হয়েছে */
-        background: url('{{ asset("images/expresscab.png") }}') no-repeat center center;
+        background: url('{{ asset("images/seat.png") }}') no-repeat center center;
         background-size: 100% 100% !important;
         height: 450px;
         display: flex;

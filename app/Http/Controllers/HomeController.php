@@ -399,9 +399,6 @@ class HomeController extends Controller
     }
     public function confirmBooking(Request $request)
     {
-        // ======================================================
-        // STEP 1: INPUT VALIDATION
-        // ======================================================
         $request->validate([
             'stripe_token'   => 'required|string',
             'amount_charged' => 'required|numeric|min:1',
@@ -418,11 +415,16 @@ class HomeController extends Controller
         DB::beginTransaction();
         try {
 
-            $lastBooking = Booking::lockForUpdate()->orderBy('id', 'desc')->first();
+            $lastBooking = Booking::lockForUpdate()
+                ->orderBy('id', 'desc')
+                ->first();
+
             $lastNumber = 0;
-            if ($lastBooking && preg_match('/BLAT-(\d+)/', $lastBooking->booking_no, $matches)) {
+
+            if ($lastBooking && preg_match('/BEC-(\d+)/', $lastBooking->booking_no, $matches)) {
                 $lastNumber = (int) $matches[1];
             }
+
             $bookingNo = 'BEC-' . str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
 
             $booking = new Booking();
@@ -455,7 +457,7 @@ class HomeController extends Controller
 
             // --- Counts ---
             $booking->adults           = $request->adults ?? 0;
-            $booking->children         = $request->child_seat ?? 0;
+            $booking->children         = $request->children ?? 0;
             $booking->total_passengers = $request->reqPassengers;
             $booking->luggage          = $request->luggage ?? 0;
 
@@ -503,7 +505,7 @@ class HomeController extends Controller
             DB::commit();
 
         } catch (\Throwable $e) {
-            dd($e->getMessage());
+
             DB::rollBack();
             Log::error('Database Save Error: ' . $e->getMessage());
 

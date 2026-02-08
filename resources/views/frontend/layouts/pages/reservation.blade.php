@@ -10,12 +10,8 @@
             right: 50%;
             margin-left: -50vw;
             margin-right: -50vw;
-
-            /* ডেস্কটপে ফিক্সড উচ্চতা */
             height: 450px;
-
-            /* ইমেজ সেটিংস: ইমেজ না কেটে পূর্ণাঙ্গ দেখানোর জন্য */
-            background: url('{{ asset('images/expresscabairport.jpeg') }}') no-repeat center center;
+            background: url('{{ asset('images/capbooking.png') }}') no-repeat center center;
             background-size: 100% 100% !important;
 
             display: flex;
@@ -31,7 +27,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* হালকা ডার্ক ওভারলে */
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .hero-content {
@@ -62,8 +58,8 @@
         /* --- MOBILE RESPONSIVE FIX --- */
         @media (max-width: 767px) {
             .reservation-hero {
-                height: 250px; /* মোবাইলে ইমেজ যাতে চ্যাপ্টা না লাগে তাই উচ্চতা কমানো হয়েছে */
-                background-size: 100% 100% !important; /* মোবাইলেও পূর্ণাঙ্গ ইমেজ */
+                height: 250px;
+                background-size: 100% 100% !important;
             }
         }
 
@@ -198,7 +194,7 @@
     <div class="reservation-hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h2 class="hero-subtitle">Boston Taxi Reservation</h2>
+            <h2 class="hero-subtitle">Boston Express Cab Reservation</h2>
             <h1 class="hero-title">Reserve Your Ride with Boston Express Cab</h1>
         </div>
     </div>
