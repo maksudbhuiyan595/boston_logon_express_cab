@@ -62,7 +62,7 @@
 
     @media (max-width: 576px) {
         .minivan-hero {
-            height: 250px; /* ছোট মোবাইলে ইমেজ যাতে চ্যাপ্টা না লাগে */
+            height: 150px; /* ছোট মোবাইলে ইমেজ যাতে চ্যাপ্টা না লাগে */
             background-size: 100% 100% !important;
         }
         .hero-title { font-size: 1.8rem; }

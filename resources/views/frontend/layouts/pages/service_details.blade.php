@@ -91,7 +91,7 @@
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
             .page-cover-wrapper {
-                height: 300px; /* মোবাইলে ইমেজের জন্য পর্যাপ্ত হাইট */
+                height: 150px; /* মোবাইলে ইমেজের জন্য পর্যাপ্ত হাইট */
             }
 
             .responsive-cover-img {
