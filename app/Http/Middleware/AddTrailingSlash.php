@@ -12,9 +12,8 @@ class AddTrailingSlash
     public function handle(Request $request, Closure $next): Response
     {
         if ($request->isMethod('get')) {
-
             $path = $request->getPathInfo();
-            if ($path != '/' && substr($path, -1) != '/') {
+            if ($path != '/' && !str_ends_with($path, '/') && !str_contains(basename($path), '.')) {
 
                 $newUrl = rtrim($request->root(), '/') . $path . '/';
 
