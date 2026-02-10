@@ -1,10 +1,10 @@
 @extends('frontend.app')
 @section('title', "Contact")
+@section('meta', "Contact Us")
+@section('description', "Boston Express Cab is your go-to for reliable, comfortable transportation in Boston and beyond. Experience luxury and safety with our professional chauffeurs.")
 
 @section('content')
 <style>
-
-
     .contact-card-wrapper {
         background-color: #fff;
         border-radius: 12px;

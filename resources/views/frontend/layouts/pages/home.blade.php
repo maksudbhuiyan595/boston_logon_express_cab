@@ -1,6 +1,8 @@
 @extends('frontend.app')
 
 @section('title', "Home")
+@section('meta', "Boston Express Cab - Logan Airport Car and Taxi Service")
+@section('description', "Enjoy punctual, comfortable airport transfers with Boston Express Cab. Our professional drivers ensure a seamless, stress-free journey.")
 
 @section('content')
      @include('frontend.layouts.includes.booking')

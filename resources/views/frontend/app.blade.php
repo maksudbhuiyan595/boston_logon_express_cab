@@ -4,71 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> @yield('title', 'Home')</title>
-
-    @yield(section: 'meta')
+    <meta @yield("meta")>
+    <meta @yield("description")>
 
     @php
-        $taxiSchema = [
+        $schemaData = [
             "@context" => "https://schema.org",
-            "@type" => ["TaxiService", "LocalBusiness"],
-            "@id" => route('home') . "#taxi",
-            "name" => "Boston Logan Airport Taxi",
-            "url" => route('home'),
-            "logo" => asset('frontend/images/logo.png'),
-            "image" => asset('frontend/images/logo.png'),
-            "telephone" => "+1857-331-9544",
-            "priceRange" => "$$",
+            "@type" => "TaxiService",
+            "name" => "Boston Express Cab",
+            "url" => "https://bostonexpresscab.com/",
+            "telephone" => "+1617-230-6362",
             "address" => [
                 "@type" => "PostalAddress",
-                "streetAddress" => "Boston Logan International Airport",
-                "addressLocality" => "Boston",
+                "streetAddress" => "870 Main St",
+                "addressLocality" => "Woburn",
                 "addressRegion" => "MA",
-                "postalCode" => "02128",
+                "postalCode" => "01801",
                 "addressCountry" => "US"
             ],
-            "areaServed" => [
-                "@type" => "AdministrativeArea",
-                "name" => "Greater Boston Area"
-            ],
-            "serviceType" => "Airport Taxi Service",
-            "openingHoursSpecification" => [
-                "@type" => "OpeningHoursSpecification",
-                "dayOfWeek" => ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-                "opens" => "00:00",
-                "closes" => "23:59"
-            ]
-        ];
-
-        $websiteSchema = [
-            "@context" => "https://schema.org",
-            "@type" => "WebSite",
-            "@id" => route('home') . "#website",
-            "name" => "Boston Logan Airport Taxi",
-            "url" => route('home'),
-            "publisher" => [
-                "@type" => "Organization",
-                "name" => "Boston Logan Airport Taxi",
-                "logo" => [
-                    "@type" => "ImageObject",
-                    "url" => asset('frontend/images/logo.png')
-                ]
-            ],
-            "potentialAction" => [
-                "@type" => "SearchAction",
-                "target" => route('home') . "?s={search_term_string}",
-                "query-input" => "required name=search_term_string"
+            "aggregateRating" => [
+                "@type" => "AggregateRating",
+                "ratingValue" => "4.9",
+                "reviewCount" => "5235"
             ]
         ];
     @endphp
-
     <script type="application/ld+json">
-    {!! json_encode($taxiSchema, JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) !!}
+        {!! json_encode($schemaData) !!}
     </script>
 
-    <!-- Website Schema -->
-    <script type="application/ld+json">
-    {!! json_encode($websiteSchema, JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) !!}
-    </script>
 
     <meta name="google-site-verification" content="86x_Pxdx_MMID1zG3q322wIJHpeZOXtFCRYeghepuOc" />
     <link rel="canonical" href="{{ rtrim(request()->url(), '/') . '/' }}">
@@ -100,13 +64,12 @@
                 title: "{{ session('booking_success.title') }}",
                 text: "{{ session('booking_success.message') }}",
                 icon: 'success',
-                confirmButtonColor: '#2563eb', // আপনার থিমের সাথে মিল রেখে নীল বা গোল্ডেন কালার দিন
+                confirmButtonColor: '#2563eb',
                 confirmButtonText: 'Great!',
-                backdrop: `rgba(0,0,123,0.4)` // হালকা এনিমেশন ব্যাকড্রপ
+                backdrop: `rgba(0,0,123,0.4)`
             });
         @endif
 
-        // পেমেন্ট ফেইল হলে দেখানোর জন্য (ঐচ্ছিক)
         @if(session('notify') && session('notify')['type'] == 'error')
             Swal.fire({
                 title: 'Payment Failed',
