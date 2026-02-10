@@ -1,6 +1,10 @@
 @extends('frontend.app')
 @section('title', "Minivan Taxi Cab Service")
 
+@section('meta', "Minivan Taxi Service - Spacious &amp; Reliable Transportation")
+@section('description', "Whether you're traveling with family, friends, or a small group, Boston Express Cab offers a reliable and comfortable Minivan Taxi Service to meet your needs.")
+
+
 @section('content')
 <style>
     /* --- FULL WIDTH FIX --- */

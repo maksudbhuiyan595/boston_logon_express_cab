@@ -1,5 +1,9 @@
 @extends('frontend.app')
 @section('title', "Long Distance")
+
+@section('meta', "Long Distance Car Service")
+@section('description', "At Boston Express Cab, we pride ourselves on offering reliable and comfortable long distance car services from Logan Airport to several major cities.")
+
 @section('content')
 <style>
     /* --- FULL WIDTH FIX --- */
@@ -12,14 +16,12 @@
         margin-right: -50vw;
         overflow: hidden;
     }
-
     /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
     .long-dist-hero {
         position: relative;
-        /* ইমেজ না কেটে পূর্ণাঙ্গ দেখানোর জন্য 100% 100% ব্যবহার করা হয়েছে */
         background: url('{{ asset("images/airportareacab.jpeg") }}') no-repeat center center;
         background-size: 100% 100% !important;
-        height: 450px; /* ডেস্কটপে স্ট্যান্ডার্ড উচ্চতা */
+        height: 450px;
         display: flex;
         align-items: center;
         justify-content: center;

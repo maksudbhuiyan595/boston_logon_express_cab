@@ -1,5 +1,7 @@
 @extends('frontend.app')
 @section('title', "Pickup Location")
+@section('meta', "Logan Airport Pick Up - Find Your Driver Quickly &amp; Easily")
+@section('description', "Landing at Logan Airport? No worries! This guide shows exactly where to meet your driver for a stress-free pick up at each Terminal and Boston South.")
 
 @section('content')
 

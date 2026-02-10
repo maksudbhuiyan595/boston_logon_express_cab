@@ -1,5 +1,8 @@
 @extends('frontend.app')
 @section('title', "Reservation")
+@section('meta', "Reserve Boston Taxi to Logan Airport, CT, RI, NH, VT, NY")
+@section('description', "Book Boston taxi to Logan Airport, New Haven, Stamford, Portsmouth & beyond! Safe, 24/7 cabs with child seats, minivans. Instant booking, call 617-230-6362.")
+
 @section('content')
     <style>
         /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
