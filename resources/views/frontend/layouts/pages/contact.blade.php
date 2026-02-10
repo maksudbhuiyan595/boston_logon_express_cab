@@ -79,8 +79,8 @@
                         <a href="tel:+18573319544" class="contact-link">
                             <i class="fas fa-phone-alt"></i> <span>Phone: +617-230-6362</span>
                         </a>
-                        <a href="mailto:blairporttaxicab@gmail.com" class="contact-link">
-                            <i class="far fa-envelope"></i> <span>Email: blairporttaxicab@gmail.com</span>
+                        <a href="mailto:bostonexpresscab24@gmail.com" class="contact-link">
+                            <i class="far fa-envelope"></i> <span>Email: bostonexpresscab24@gmail.com</span>
                         </a>
                         <a href="https://wa.me/18573319544" target="_blank" class="contact-link">
                             <i class="fab fa-whatsapp"></i> <span>WhatsApp: 617-230-6362</span>

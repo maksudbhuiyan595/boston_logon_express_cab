@@ -133,7 +133,7 @@
     /* --- MOBILE RESPONSIVE --- */
     @media (max-width: 767px) {
         .picuplocation-section {
-            height: 250px; /* মোবাইলে ইমেজ খুব বেশি লম্বা বা চ্যাপ্টা যেন না লাগে */
+            height: 150px; /* মোবাইলে ইমেজ খুব বেশি লম্বা বা চ্যাপ্টা যেন না লাগে */
             background-size: 100% 100% !important; /* মোবাইলেও পূর্ণাঙ্গ ইমেজ দেখাবে */
         }
         .hero-title { font-size: 1.8rem; }

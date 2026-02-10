@@ -72,7 +72,7 @@
 
     @media (max-width: 576px) {
         .long-dist-hero {
-            height: 250px; /* ছোট মোবাইলে ইমেজ যাতে চ্যাপ্টা না লাগে */
+            height: 150px; /* ছোট মোবাইলে ইমেজ যাতে চ্যাপ্টা না লাগে */
             background-size: 100% 100% !important;
         }
     }
@@ -177,8 +177,8 @@
 <div class="full-width-section long-dist-hero">
     <div class="hero-overlay"></div>
     <div class="container hero-content">
-        <h2 class="hero-subtitle">Reliable & Comfortable</h2>
-        <h1 class="hero-title">Long Distance Car Service</h1>
+        {{-- <h2 class="hero-subtitle">Reliable & Comfortable</h2> --}}
+        {{-- <h1 class="hero-title">Long Distance Car Service</h1> --}}
     </div>
 </div>
 

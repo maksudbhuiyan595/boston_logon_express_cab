@@ -58,7 +58,7 @@
         /* --- MOBILE RESPONSIVE FIX --- */
         @media (max-width: 767px) {
             .reservation-hero {
-                height: 250px;
+                height: 150px;
                 background-size: 100% 100% !important;
             }
         }
