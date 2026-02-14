@@ -1,8 +1,6 @@
 @extends('frontend.app')
-@section('title', "Long Distance")
-
-@section('meta', "Long Distance Car Service")
-@section('description', "At Boston Express Cab, we pride ourselves on offering reliable and comfortable long distance car services from Logan Airport to several major cities.")
+@section('title', "Long Distance Car Service")
+@section('meta_description', "At Boston Express Cab, we pride ourselves on offering reliable and comfortable long distance car services from Logan Airport to several major cities.")
 
 @section('content')
 <style>

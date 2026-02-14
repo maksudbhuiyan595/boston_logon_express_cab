@@ -35,7 +35,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/airports', 'airport')->name('airports');
     Route::get('/capacity-luggage', 'capacityLuggage')->name('luggage.capacity');
     Route::get('about/', 'about')->name('about');
-    Route::get('/taxi-infant-car-seat', 'childSeat')->name('child.seat');
+    Route::get('/taxi-with-child-car-seats', 'childSeat')->name('child.seat');
     Route::get('/pickup-location-12', 'pickupLocation')->name('pickup.location');
     Route::get('/boston-taxi-reservation', 'reservation')->name('reservation');
     Route::get('/minivan-taxi-cab-service-34', 'minivan')->name('minivan');

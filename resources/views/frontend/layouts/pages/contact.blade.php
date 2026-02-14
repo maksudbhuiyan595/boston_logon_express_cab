@@ -1,7 +1,6 @@
 @extends('frontend.app')
-@section('title', "Contact")
-@section('meta', "Contact Us")
-@section('description', "Boston Express Cab is your go-to for reliable, comfortable transportation in Boston and beyond. Experience luxury and safety with our professional chauffeurs.")
+@section('title', "Contact Us")
+@section('meta_description', "Boston Express Cab is your go-to for reliable, comfortable transportation in Boston and beyond. Experience luxury and safety with our professional chauffeurs.")
 
 @section('content')
 <style>

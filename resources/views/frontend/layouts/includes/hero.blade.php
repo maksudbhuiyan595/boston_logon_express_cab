@@ -125,7 +125,7 @@
 
         {{-- Right Image --}}
         <div class="hero-image">
-            <img src="{{ asset('images/childseat.jpeg') }}" alt="Boston Cab SUV">
+            <img src="{{ asset('images/childseat.jpeg') }}" alt="Boston Logan Airport Car Service">
         </div>
 
     </div>

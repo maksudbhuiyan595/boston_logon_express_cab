@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> @yield('title', 'Home')</title>
-    <meta @yield("meta")>
-    <meta @yield("description")>
+   <meta name="description" content="@yield('meta_description', 'Book Boston Express Cab')">
+   <meta name='robots' content='index, follow' />
+   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
     @php
         $schemaData = [
