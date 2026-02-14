@@ -33,9 +33,7 @@
     <script type="application/ld+json">
         {!! json_encode($schemaData) !!}
     </script>
-
-
-    <meta name="google-site-verification" content="86x_Pxdx_MMID1zG3q322wIJHpeZOXtFCRYeghepuOc" />
+    <meta name="google-site-verification" content="7KCLc8w_vDk2W_R7z-hXAcRRscV47KSUv2V0lislJgQ" />
     <link rel="canonical" href="{{ rtrim(request()->url(), '/') . '/' }}">
     <link rel="icon" type="image/png" href="{{ asset('images/Boston Express Cab Logo.png') }}">
 

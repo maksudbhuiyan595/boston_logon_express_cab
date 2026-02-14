@@ -208,9 +208,15 @@
 
 <section class="hero-section">
     <div class="container">
-        <h2 class="mb-3 text-primary fw-bold d-flex justify-content-center">
-          Welcome to Logan Airport
-        </h2>
+
+        {{-- <h1 class="mb-3 text-primary fw-bold d-flex justify-content-center text-center w-100">
+            Logan Airport Car Service
+        </h1> --}}
+        @if (url()->current() == url('/'))
+            <h1 class="mb-3 text-primary fw-bold d-flex justify-content-center text-center w-100">
+                Logan Airport Car Service
+            </h1>
+        @endif
 
         <div class="row hero-row justify-content-center">
             {{-- FORM COLUMN --}}

@@ -1,13 +1,10 @@
 <style>
-    /* --- Section Style --- */
     .content-section {
         background-color: #fff;
         padding: 50px 0;
         border-bottom: 1px solid #f0f0f0;
         overflow: hidden;
     }
-
-    /* --- Entrance Animation --- */
     @keyframes fadeInUp {
         from {
             opacity: 0;
@@ -18,10 +15,8 @@
             transform: translateY(0);
         }
     }
-
-    /* --- Desktop Logo Style (Web এর জন্য আপনার আগের মাপটিই রাখা হয়েছে) --- */
     .rating-logo {
-        height: 120px; /* ওয়েব/ডেস্কটপের জন্য আপনার আগের ফিক্সড হাইট */
+        height: 120px;
         width: auto;
         object-fit: contain;
         max-width: 100%;
@@ -35,8 +30,6 @@
         transform: scale(1.15) translateY(-5px);
         filter: grayscale(0%) opacity(1) drop-shadow(0 10px 20px rgba(0,0,0,0.1));
     }
-
-    /* --- Animation Loading --- */
     .ratings-row > div {
         opacity: 0;
         animation: fadeInUp 0.8s ease-out forwards;
@@ -47,14 +40,12 @@
     .ratings-row > div:nth-child(3) { animation-delay: 0.5s; }
     .ratings-row > div:nth-child(4) { animation-delay: 0.7s; }
 
-    /* --- Mobile Responsive (Max Width 768px) --- */
     @media (max-width: 768px) {
         .content-section {
             padding: 30px 5px;
         }
 
         .rating-logo {
-            /* মোবাইলে আপনার চাহিদা অনুযায়ী বড় রাখা হলো */
             height: 95px !important;
             filter: none;
         }
@@ -72,10 +63,10 @@
         }
     }
 
-    /* খুব ছোট স্ক্রিনের জন্য সামঞ্জস্য */
     @media (max-width: 480px) {
         .rating-logo {
-            height: 80px !important; /* স্ক্রিন খুব ছোট হলে যেন ভেঙে না যায় */
+            height: 46px !important;
+            width: 68px !important;
         }
     }
 </style>

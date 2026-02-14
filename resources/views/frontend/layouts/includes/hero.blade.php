@@ -1,10 +1,8 @@
 <style>
-
-    /* --- HERO SECTION --- */
     .hero {
         padding: 80px 0;
-        background-color: #f9fbfd; /* খুব হালকা ব্যাকগ্রাউন্ড */
-        overflow: hidden; /* এনিমেশন স্ক্রিনের বাইরে গেলে হাইড করবে */
+        background-color: #f9fbfd;
+        overflow: hidden;
     }
 
     .hero-grid {
@@ -13,11 +11,9 @@
         justify-content: space-between;
         gap: 50px;
     }
-
-    /* --- LEFT SIDE: TEXT --- */
     .hero-text {
         flex: 1;
-        opacity: 0; /* এনিমেশনের জন্য শুরুতে হাইড */
+        opacity: 0;
         animation: slideInLeft 1s ease-out forwards;
     }
 
@@ -42,8 +38,6 @@
         margin-bottom: 25px;
     }
 
-
-    /* --- BADGES (TRUST SIGNALS) --- */
     .hero-badges {
         margin-top: 40px;
         display: flex;
@@ -53,26 +47,24 @@
     }
 
     .badge-img {
-        height: 45px; /* লোগোগুলোর সাইজ ফিক্সড */
+        height: 45px;
         width: auto;
         object-fit: contain;
         transition: transform 0.3s ease, filter 0.3s;
-        filter: grayscale(100%); /* শুরুতে সাদা-কালো */
+        filter: grayscale(100%);
         opacity: 0.7;
     }
 
     .badge-img:hover {
         transform: scale(1.1);
-        filter: grayscale(0%); /* হোভার করলে কালারফুল */
+        filter: grayscale(0%);
         opacity: 1;
     }
-
-    /* --- RIGHT SIDE: IMAGE --- */
     .hero-image {
         flex: 1;
         position: relative;
         opacity: 0;
-        animation: slideInRight 1s ease-out 0.3s forwards; /* একটু দেরিতে আসবে */
+        animation: slideInRight 1s ease-out 0.3s forwards;
     }
 
     .hero-image img {
@@ -80,10 +72,8 @@
         max-width: 600px;
         border-radius: 20px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        animation: floatImage 4s ease-in-out infinite; /* গাড়িটি ভাসমান মনে হবে */
+        animation: floatImage 4s ease-in-out infinite;
     }
-
-    /* --- ANIMATIONS KEYFRAMES --- */
     @keyframes slideInLeft {
         from { opacity: 0; transform: translateX(-50px); }
         to { opacity: 1; transform: translateX(0); }
@@ -99,7 +89,6 @@
         50% { transform: translateY(-10px); }
     }
 
-    /* --- MOBILE RESPONSIVE --- */
     @media (max-width: 991px) {
         .hero { padding: 40px 0; }
         .hero-grid { flex-direction: column-reverse; text-align: center; gap: 30px; }
@@ -111,22 +100,15 @@
 
 <section class="hero">
     <div class="container hero-grid">
-
-        {{-- Left Content --}}
         <div class="hero-text">
             <span class="eyebrow-text">Looking for a Cab? You're at the right place.</span>
-
             <h1>Need a Logan Airport Car & Boston Taxi? <br> <span style="color: var(--brand-blue);">Book Boston Express Cab!</span></h1>
-
             <a href="{{ route("home") }}" class="btn-primary">
                 Book Now <i class="fa-solid fa-arrow-right"></i>
             </a>
         </div>
-
-        {{-- Right Image --}}
         <div class="hero-image">
             <img src="{{ asset('images/childseat.jpeg') }}" alt="Boston Logan Airport Car Service">
         </div>
-
     </div>
 </section>
