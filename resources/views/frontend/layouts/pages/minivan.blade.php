@@ -1,10 +1,6 @@
 @extends('frontend.app')
-@section('title', "Minivan Taxi Cab Service")
-
-@section('meta', "Minivan Taxi Service - Spacious &amp; Reliable Transportation")
-@section('description', "Whether you're traveling with family, friends, or a small group, Boston Express Cab offers a reliable and comfortable Minivan Taxi Service to meet your needs.")
-
-
+@section('title', "Minivan Taxi Service - Spacious &amp; Reliable Transportation")
+@section('meta_description', "Whether you&#039;re traveling with family, friends, or a small group, Boston Express Cab offers a reliable and comfortable Minivan Taxi Service to meet your needs.")
 @section('content')
 <style>
     /* --- FULL WIDTH FIX --- */
@@ -21,10 +17,9 @@
     /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
     .minivan-hero {
         position: relative;
-        /* ইমেজ না কেটে পূর্ণাঙ্গ দেখানোর জন্য 100% 100% ব্যবহার করা হয়েছে */
         background: url('{{ asset('images/dalta.png') }}') no-repeat center center;
         background-size: 100% 100% !important;
-        height: 450px; /* ডেস্কটপে স্ট্যান্ডার্ড উচ্চতা */
+        height: 450px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -38,7 +33,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.4); /* টেক্সট স্পষ্ট করার জন্য হালকা ওভারলে */
+        background: rgba(0, 0, 0, 0.4);
     }
 
     .hero-content {
@@ -50,7 +45,7 @@
 
     .hero-title {
         font-weight: 800;
-        font-size: clamp(2rem, 5vw, 3.5rem); /* ফ্লুইড টাইপোগ্রাফি */
+        font-size: clamp(2rem, 5vw, 3.5rem);
         margin-bottom: 20px;
         text-shadow: 0 4px 8px rgba(0,0,0,0.6);
         text-transform: capitalize;
@@ -66,7 +61,7 @@
 
     @media (max-width: 576px) {
         .minivan-hero {
-            height: 150px; /* ছোট মোবাইলে ইমেজ যাতে চ্যাপ্টা না লাগে */
+            height: 150px;
             background-size: 100% 100% !important;
         }
         .hero-title { font-size: 1.8rem; }

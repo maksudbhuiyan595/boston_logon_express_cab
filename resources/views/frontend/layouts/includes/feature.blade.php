@@ -221,7 +221,7 @@
             {{-- Center Image --}}
             <div class="features-col-center">
                 {{-- ইমেজ না থাকলে একটি ডিফল্ট কার্টুন বা আইকন ব্যবহার করা যেতে পারে --}}
-                <img src="{{ asset("images/Child Seat Service.png") }}" alt="Child Seat Service" class="feature-center-img">
+                <img src="{{ asset("images/Child Seat Service.png") }}" alt="Boston Logan Airport Car Service" class="feature-center-img">
             </div>
 
             {{-- Right Column --}}
