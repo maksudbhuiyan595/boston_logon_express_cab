@@ -42,6 +42,8 @@
     {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
 @endsection
+
+@section('content')
 <style>
     /* --- FONTS & GLOBAL --- */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
