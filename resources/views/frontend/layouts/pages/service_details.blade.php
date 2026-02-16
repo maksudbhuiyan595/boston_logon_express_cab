@@ -8,6 +8,44 @@
     <meta name="keywords" content="{{ is_array($page->tags) ? implode(', ', $page->tags) : ($page->tags ?? 'Boston Express Cab, taxi, airport transfer') }}">
     <meta property="og:image" content="{{ $page->cover_image ? asset('storage/' . $page->cover_image) : asset('images/home3.jpeg') }}">
 @endsection
+@section('schema')
+    @php
+        $schemaData = [
+            "@context" => "https://schema.org",
+            "@type" => "WebPage",
+            "name" => "$page->meta_title",
+            "url" => url()->current() .'/',
+            "image" => asset('storage/' . $page->cover_image),
+            "description" => "$page->meta_description)",
+            "telephone" => "617-230-6362",
+            "priceRange" => "$$",
+            "provider" => [
+                "@type" => "LocalBusiness",
+                "name" => "Boston Express Cab",
+                "address" => [
+                    "@type" => "PostalAddress",
+                    "addressLocality" => "Boston",
+                    "addressRegion" => "MA",
+                    "addressCountry" => "US"
+                ]
+            ],
+            "areaServed" => [
+                ["@type" => "City", "name" => "Boston"],
+                ["@type" => "Airport", "name" => "Logan International Airport"],
+                ["@type" => "City", "name" => "Cambridge"]
+            ],
+            "author" => [
+                "@type" => "Person",
+                "name" => "Omar Khan"
+            ]
+        ];
+    @endphp
+
+@section('schema')
+<script type="application/ld+json">
+    {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endsection
 
 @section('content')
 
@@ -27,11 +65,10 @@
         .responsive-cover-img {
             width: 100%;
             height: 100%;
-            /* ইমেজের মেইন অংশ ফোকাসে রেখে পুরোটা দেখানোর জন্য */
             object-fit: cover;
             object-position: center;
             display: block;
-            opacity: 0.6; /* টেক্সট হাইলাইট করার জন্য ইমেজ কিছুটা ডার্ক করা হয়েছে */
+            opacity: 0.6;
         }
 
         /* টেক্সট ওভারলে */
@@ -91,11 +128,9 @@
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
             .page-cover-wrapper {
-                height: 150px; /* মোবাইলে ইমেজের জন্য পর্যাপ্ত হাইট */
+                height: 150px;
             }
-
             .responsive-cover-img {
-                /* মোবাইলে ইমেজ যেন জুম হয়ে কেটে না যায় */
                 object-fit: cover;
             }
 

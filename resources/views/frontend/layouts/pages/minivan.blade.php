@@ -1,6 +1,43 @@
 @extends('frontend.app')
 @section('title', "Minivan Taxi Service - Spacious and Reliable Transportation")
-@section('meta_description', "Whether you&#039;re traveling with family, friends, or a small group, Boston Express Cab offers a reliable and comfortable Minivan Taxi Service to meet your needs.")
+@section('meta_description', "Whether your traveling with family, friends, or a small group, Boston Express Cab offers a reliable and comfortable Minivan Taxi Service to meet your needs.")
+@section('schema')
+    @php
+        $schemaData = [
+            "@context" => "https://schema.org",
+            "@type" => "WebPage",
+            "name" => "Minivan Taxi Service - Spacious and Reliable Transportation",
+            "url" => url()->current() .'/',
+            "image" => asset('images/dalta.png'),
+            "description" => "Whether your traveling with family, friends, or a small group, Boston Express Cab offers a reliable and comfortable Minivan Taxi Service to meet your needs.",
+            "telephone" => "617-230-6362",
+            "priceRange" => "$$",
+            "provider" => [
+                "@type" => "LocalBusiness",
+                "name" => "Boston Express Cab",
+                "address" => [
+                    "@type" => "PostalAddress",
+                    "addressLocality" => "Boston",
+                    "addressRegion" => "MA",
+                    "addressCountry" => "US"
+                ]
+            ],
+            "areaServed" => [
+                ["@type" => "City", "name" => "Boston"],
+                ["@type" => "Airport", "name" => "Logan International Airport"],
+                ["@type" => "City", "name" => "Cambridge"]
+            ],
+            "author" => [
+                "@type" => "Person",
+                "name" => "Omar Khan"
+            ]
+        ];
+    @endphp
+@section('schema')
+<script type="application/ld+json">
+    {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endsection
 @section('content')
 <style>
     /* --- FULL WIDTH FIX --- */

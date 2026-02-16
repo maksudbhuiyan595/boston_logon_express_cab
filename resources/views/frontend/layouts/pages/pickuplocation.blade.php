@@ -2,8 +2,44 @@
 @section('title', "Logan Airport Pick Up - Find Your Driver Quickly and Easily")
 @section('meta_description', "Landing at Logan Airport? No worries! This guide shows exactly where to meet your driver for a stress-free pick up at each Terminal and Boston South.")
 
+@section('schema')
+    @php
+        $schemaData = [
+            "@context" => "https://schema.org",
+            "@type" => "TaxiService",
+            "name" => "Logan Airport Pick Up - Find Your Driver Quickly and Easily",
+            "url" => url()->current().'/',
+            "image" => asset('images/cab22.png'),
+            "description" => "Landing at Logan Airport? No worries! This guide shows exactly where to meet your driver for a stress-free pick up at each Terminal and Boston South.",
+            "telephone" => "617-230-6362",
+            "priceRange" => "$$",
+            "provider" => [
+                "@type" => "LocalBusiness",
+                "name" => "Boston Express Cab",
+                "address" => [
+                    "@type" => "PostalAddress",
+                    "addressLocality" => "Boston",
+                    "addressRegion" => "MA",
+                    "addressCountry" => "US"
+                ]
+            ],
+            "areaServed" => [
+                ["@type" => "City", "name" => "Boston"],
+                ["@type" => "Airport", "name" => "Logan International Airport"],
+                ["@type" => "City", "name" => "Cambridge"]
+            ],
+            "author" => [
+                "@type" => "Person",
+                "name" => "Omar Khan"
+            ]
+        ];
+    @endphp
+@section('schema')
+<script type="application/ld+json">
+    {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endsection
 @section('content')
-
 <style>
     /* --- HERO SECTION --- */
     .picuplocation-section {
@@ -141,7 +177,6 @@
         .hero-subtitle { font-size: 0.85rem; padding: 0 10px; }
     }
 </style>
-
 <div class="picuplocation-section">
     <div class="hero-overlay"></div>
     <div class="hero-content">
