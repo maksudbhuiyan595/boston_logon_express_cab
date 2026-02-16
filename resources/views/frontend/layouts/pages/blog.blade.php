@@ -2,7 +2,46 @@
 
 @section('title', "Blogs | Boston Express Cab")
 
-@section('meta_description')
+@section('meta_description',"Reliable Boston taxi service to/from Logan Airport. Fast, safe, and 24/7 professional transport for individuals or groups. Book your Boston cab now!")
+
+@section('schema')
+    @php
+        $schemaData = [
+            "@context" => "https://schema.org",
+            "@type" => "Article",
+            "name" => "Blogs | Boston Express Cab",
+            "url" => url()->current() .'/',
+            "logo" => asset('images/Boston Express Cab Logo.png'),
+            "description" => "Reliable Boston taxi service to/from Logan Airport. Fast, safe, and 24/7 professional transport for individuals or groups. Book your Boston cab now!",
+            "telephone" => "617-230-6362",
+            "priceRange" => "$$",
+            "provider" => [
+                "@type" => "LocalBusiness",
+                "name" => "Boston Express Cab",
+                "address" => [
+                    "@type" => "PostalAddress",
+                    "addressLocality" => "Boston",
+                    "addressRegion" => "MA",
+                    "addressCountry" => "US"
+                ]
+            ],
+            "areaServed" => [
+                ["@type" => "City", "name" => "Boston"],
+                ["@type" => "Airport", "name" => "Logan International Airport"],
+                ["@type" => "City", "name" => "Cambridge"]
+            ],
+            "author" => [
+                "@type" => "Person",
+                "name" => "Omar Khan"
+            ]
+        ];
+    @endphp
+
+@section('schema')
+<script type="application/ld+json">
+    {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endsection
 <style>
     /* --- FONTS & GLOBAL --- */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');

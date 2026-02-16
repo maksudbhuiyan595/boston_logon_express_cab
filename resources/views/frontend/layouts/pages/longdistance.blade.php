@@ -1,7 +1,44 @@
 @extends('frontend.app')
 @section('title', "Long Distance Car Service")
 @section('meta_description', "At Boston Express Cab, we pride ourselves on offering reliable and comfortable long distance car services from Logan Airport to several major cities.")
+@section('schema')
+    @php
+        $schemaData = [
+            "@context" => "https://schema.org",
+            "@type" => "WebPage",
+            "name" => "Long Distance Car Service",
+            "url" => url()->current() .'/',
+            "image" => asset('images/airportareacab.jpeg'),
+            "description" => "At Boston Express Cab, we pride ourselves on offering reliable and comfortable long distance car services from Logan Airport to several major cities.",
+            "telephone" => "617-230-6362",
+            "priceRange" => "$$",
+            "provider" => [
+                "@type" => "LocalBusiness",
+                "name" => "Boston Express Cab",
+                "address" => [
+                    "@type" => "PostalAddress",
+                    "addressLocality" => "Boston",
+                    "addressRegion" => "MA",
+                    "addressCountry" => "US"
+                ]
+            ],
+            "areaServed" => [
+                ["@type" => "City", "name" => "Boston"],
+                ["@type" => "Airport", "name" => "Logan International Airport"],
+                ["@type" => "City", "name" => "Cambridge"]
+            ],
+            "author" => [
+                "@type" => "Person",
+                "name" => "Omar Khan"
+            ]
+        ];
+    @endphp
 
+@section('schema')
+<script type="application/ld+json">
+    {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endsection
 @section('content')
 <style>
     /* --- FULL WIDTH FIX --- */

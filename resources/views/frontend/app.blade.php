@@ -8,31 +8,8 @@
    <meta name='robots' content='index, follow' />
    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
-    @php
-        $schemaData = [
-            "@context" => "https://schema.org",
-            "@type" => "TaxiService",
-            "name" => "Boston Express Cab",
-            "url" => "https://bostonexpresscab.com/",
-            "telephone" => "+1617-230-6362",
-            "address" => [
-                "@type" => "PostalAddress",
-                "streetAddress" => "870 Main St",
-                "addressLocality" => "Woburn",
-                "addressRegion" => "MA",
-                "postalCode" => "01801",
-                "addressCountry" => "US"
-            ],
-            "aggregateRating" => [
-                "@type" => "AggregateRating",
-                "ratingValue" => "4.9",
-                "reviewCount" => "5235"
-            ]
-        ];
-    @endphp
-    <script type="application/ld+json">
-        {!! json_encode($schemaData) !!}
-    </script>
+    @yield('schema')
+
     <meta name="google-site-verification" content="7KCLc8w_vDk2W_R7z-hXAcRRscV47KSUv2V0lislJgQ" />
     <link rel="canonical" href="{{ rtrim(request()->url(), '/') . '/' }}">
     <link rel="icon" type="image/png" href="{{ asset('images/Boston Express Cab Logo.png') }}">

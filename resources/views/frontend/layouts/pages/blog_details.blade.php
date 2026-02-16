@@ -12,6 +12,44 @@
     @endphp
     <meta name="keywords" content="{{ $keywords }}">
 @endsection
+@section('schema')
+    @php
+        $schemaData = [
+            "@context" => "https://schema.org",
+            "@type" => "Article",
+            "name" => "$blog->meta_title",
+            "url" => url()->current() .'/',
+            "image" => asset('storage/' . $blog->thumbnail),
+            "description" => "$blog->meta_description",
+            "telephone" => "617-230-6362",
+            "priceRange" => "$$",
+            "provider" => [
+                "@type" => "LocalBusiness",
+                "name" => "Boston Express Cab",
+                "address" => [
+                    "@type" => "PostalAddress",
+                    "addressLocality" => "Boston",
+                    "addressRegion" => "MA",
+                    "addressCountry" => "US"
+                ]
+            ],
+            "areaServed" => [
+                ["@type" => "City", "name" => "Boston"],
+                ["@type" => "Airport", "name" => "Logan International Airport"],
+                ["@type" => "City", "name" => "Cambridge"]
+            ],
+            "author" => [
+                "@type" => "Person",
+                "name" => "Omar Khan"
+            ]
+        ];
+    @endphp
+
+@section('schema')
+<script type="application/ld+json">
+    {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+</script>
+@endsection
 
 @section('content')
 <div class="container py-5">
@@ -73,7 +111,7 @@
                 <a href="{{ route('blogs') }}" class="btn btn-outline-dark px-4">
                     <i class="fas fa-arrow-left me-2"></i> Back to Blog List
                 </a>
-                
+
             </div>
 
         </div>
