@@ -10,6 +10,15 @@
 
     @yield('schema')
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16661032145"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-16661032145');
+    </script>
     <meta name="google-site-verification" content="7KCLc8w_vDk2W_R7z-hXAcRRscV47KSUv2V0lislJgQ" />
     <link rel="canonical" href="{{ rtrim(request()->url(), '/') . '/' }}">
     <link rel="icon" type="image/png" href="{{ asset('images/Boston Express Cab Logo.png') }}">
