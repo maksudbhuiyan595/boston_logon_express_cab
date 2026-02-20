@@ -26,14 +26,16 @@ class BookingForm
                     ->schema([
                         TextInput::make('booking_no')
                             ->default(function () {
-                                $lastBookingNo = Booking::max('booking_no');
-
-                                if (!$lastBookingNo) {
+                                $lastBooking = Booking::where('booking_no', 'like', 'BEC-%')
+                                    ->orderBy('id', 'desc')
+                                    ->first();
+                                if (!$lastBooking || empty($lastBooking->booking_no)) {
                                     return 'BEC-0001';
                                 }
+                                $lastBookingNo = $lastBooking->booking_no;
                                 $number = (int) str_replace('BEC-', '', $lastBookingNo);
 
-                               return sprintf('BEC-%04d', $number + 1);
+                                return sprintf('BEC-%04d', $number + 1);
                             })
                             ->disabled()
                             ->dehydrated()
@@ -57,7 +59,7 @@ class BookingForm
                         TimePicker::make('pickup_time')
                             ->required()
                             ->seconds(false)
-                            ->rule(fn (Get $get) => function (string $attribute, $value, \Closure $fail) use ($get) {
+                            ->rule(fn(Get $get) => function (string $attribute, $value, \Closure $fail) use ($get) {
                                 $date = $get('pickup_date');
                                 if ($date) {
                                     $selectedDateTime = Carbon::parse($date . ' ' . $value, config('app.timezone'));
