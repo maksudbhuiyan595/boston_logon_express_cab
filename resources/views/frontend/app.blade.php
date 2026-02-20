@@ -4,8 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> @yield('title', 'Home')</title>
-   <meta name="description" content="@yield('meta_description', 'Book Boston Express Cab')">
-   <meta name='robots' content='index, follow' />
+    <meta name="description" content="@yield('meta_description', 'Book Boston Express Cab')">
+    <meta name='robots' content='index, follow' />
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'Boston Express Cab')">
+    <meta property="og:description" content="@yield('meta_description', 'Book Boston Express Cab for reliable transfers.')">
+    <meta property="og:image" content="@yield('og_image', asset('images/Boston Express Cab Logo.png'))">
+
+    <meta property="article:publisher" content="https://www.facebook.com/bostonexpresscab1">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bostonexprsscab">
+    <meta name="twitter:title" content="@yield('title', 'Boston Express Cab')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Book Boston Express Cab for reliable transfers.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/Boston Express Cab Logo.png'))">
+
+
+
    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 
     @yield('schema')

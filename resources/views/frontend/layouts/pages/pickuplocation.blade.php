@@ -34,11 +34,11 @@
             ]
         ];
     @endphp
-@section('schema')
 <script type="application/ld+json">
     {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
 </script>
 @endsection
+
 @section('content')
 <style>
     /* --- HERO SECTION --- */
@@ -50,10 +50,8 @@
         margin-left: -50vw;
         margin-right: -50vw;
         height: 400px;
-        margin-top: 0px;
-        top: 0;
         background: url('{{ asset('images/cab22.png') }}') no-repeat center center;
-        background-size: 100% 100% !important;
+        background-size: cover !important;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -67,7 +65,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.3); /* টেক্সট স্পষ্ট করার জন্য ওভারলে */
+        background: rgba(0, 0, 0, 0.4);
     }
 
     .hero-content {
@@ -93,22 +91,6 @@
         text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
     }
 
-    /* --- BOOKING WRAPPER --- */
-    .booking-wrapper {
-        background-color: #fff;
-        margin-top: 0;
-    }
-
-    .booking-wrapper .hero-section {
-        background: transparent !important;
-        background-image: none !important;
-        height: auto !important;
-        width: 100% !important;
-        left: 0 !important;
-        margin: 0 !important;
-        display: block !important;
-    }
-
     /* --- CONTENT AREA --- */
     .content-wrapper {
         padding: 60px 0;
@@ -118,7 +100,7 @@
     .section-title {
         color: #1a2b3c;
         font-weight: 700;
-        font-size: 2rem;
+        font-size: 2.2rem;
         position: relative;
         display: inline-block;
     }
@@ -141,7 +123,10 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         border-top: 4px solid #2D9CDB;
         height: 100%;
+        transition: transform 0.3s ease;
     }
+
+    .terminal-card:hover { transform: translateY(-5px); }
 
     .highlight { color: #2D9CDB; font-weight: 700; }
 
@@ -165,18 +150,16 @@
         max-width: 140px;
         margin: 0 auto 15px;
         display: block;
+        filter: grayscale(20%);
     }
 
-    /* --- MOBILE RESPONSIVE --- */
     @media (max-width: 767px) {
-        .picuplocation-section {
-            height: 150px; /* মোবাইলে ইমেজ খুব বেশি লম্বা বা চ্যাপ্টা যেন না লাগে */
-            background-size: 100% 100% !important; /* মোবাইলেও পূর্ণাঙ্গ ইমেজ দেখাবে */
-        }
+        .picuplocation-section { height: 200px; }
         .hero-title { font-size: 1.8rem; }
-        .hero-subtitle { font-size: 0.85rem; padding: 0 10px; }
+        .hero-subtitle { font-size: 0.85rem; }
     }
 </style>
+
 <div class="picuplocation-section">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -193,9 +176,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
-                <div class="section-header mb-4">
-                    <h2 class="section-title">Where to Meet Your Driver</h2>
-                    <p class="mt-3 text-muted">Navigate Logan Airport like a pro. Find your terminal below to see exactly where our limo stand is located.</p>
+                <div class="section-header mb-5">
+                    <h2 class="section-title">Finding Your Ride at Logan Airport</h2>
+                    <p class="mt-4 lead text-dark">Need a ride after your flight? We’ve got you covered! Here’s how to smoothly connect with your driver from <strong>Boston Express Cab</strong>:</p>
                 </div>
 
                 <div class="row">
@@ -204,7 +187,7 @@
                             <div class="card-icon" style="color:#2D9CDB; font-size: 1.5rem; margin-bottom:15px;"><i class="fas fa-plane-arrival"></i></div>
                             <h4 style="font-weight:700;">Terminals A & E</h4>
                             <p style="color:#666; font-size:0.95rem;">
-                                Collect bags, head outside, and turn <strong>LEFT</strong> after crossing two lanes. Meet at the <span class="highlight">Limo Stand</span>.
+                                Once you’ve collected your baggage, head outside and turn <strong>LEFT</strong> after crossing the two traffic lanes. Your driver will be waiting at the <span class="highlight">Limo Stand</span>.
                             </p>
                         </div>
                     </div>
@@ -214,6 +197,7 @@
                             <div class="card-icon" style="color:#2D9CDB; font-size: 1.5rem; margin-bottom:15px;"><i class="fas fa-suitcase-rolling"></i></div>
                             <h4 style="font-weight:700;">Terminal B (Main)</h4>
                             <p style="color:#666; font-size:0.95rem;">
+                                <em>(American, Virgin America, United, USAir, Air Canada, Spirit)</em><br>
                                 Go downstairs to the <strong>Ground Floor</strong> parking garage. Walk to the pickup area and find the <span class="highlight">Limo Stand</span>.
                             </p>
                         </div>
@@ -224,20 +208,26 @@
                             <div class="card-icon" style="color:#2D9CDB; font-size: 1.5rem; margin-bottom:15px;"><i class="fas fa-level-up-alt"></i></div>
                             <h4 style="font-weight:700;">Terminal C</h4>
                             <p style="color:#666; font-size:0.95rem;">
-                                Take the escalator <strong>UP</strong> after baggage claim. Meet at the <span class="highlight">Departure Level Limo Stand</span>.
+                                <em>(JetBlue, Alaska)</em><br>
+                                Take the escalator <strong>UP</strong> after baggage claim. Exit through the doors past the drop-off zone to meet at the <span class="highlight">Limo Stand</span>.
                             </p>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="terminal-card" style="border-top-color: #333;">
-                            <div class="card-icon" style="color:#333;"><i class="fas fa-subway"></i></div>
+                            <div class="card-icon" style="color:#333; font-size: 1.5rem; margin-bottom:15px;"><i class="fas fa-subway"></i></div>
                             <h4 style="font-weight:700;">South Station</h4>
                             <p style="color:#666; font-size:0.95rem;">
-                                Exit via <strong>Atlantic Ave</strong>. Walk left towards the taxi stand. Your driver will be waiting there.
+                                Exit via <strong>Atlantic Ave</strong> and walk left towards the taxi stand. Your driver will be waiting there for a seamless transition.
                             </p>
                         </div>
                     </div>
+                </div>
+
+                <div class="mt-5 p-4 bg-white rounded shadow-sm border-left border-primary">
+                    <h4 style="font-weight:700;">Enjoy a Stress-Free Ride</h4>
+                    <p class="mb-0 text-muted">With <strong>Boston Express Cab</strong>, your journey begins as soon as you land. Our professional drivers are dedicated to providing a comfortable travel experience. Sit back, relax, and enjoy the ride!</p>
                 </div>
             </div>
 
@@ -246,20 +236,20 @@
                     <div class="contact-widget">
                         <i class="fas fa-headset" style="font-size:2rem; margin-bottom:10px;"></i>
                         <h5>Need Help Finding Us?</h5>
+                        <p class="small">Call or text your driver anytime</p>
                         <a href="tel:6172306362" style="color:white; font-weight:bold; font-size:1.2rem; text-decoration:none;">617-230-6362</a>
                     </div>
                 </div>
 
                 <div class="sidebar-box">
-                    <h5 style="font-weight:700; color:#1a2b3c; margin-bottom:20px; text-transform:uppercase; font-size:0.9rem;">Trusted Reviews</h5>
-                    <img src="{{ asset('images/Google-Rating-1.jpeg') }}" class="trust-img">
-                    <img src="{{ asset('images/Trustpilot.jpeg') }}" class="trust-img">
-                    <img src="{{ asset('images/Limotrust-1.webp') }}" class="trust-img">
-                    <img src="{{ asset('images/Tripadvisor.webp') }}" class="trust-img">
+                    <h5 style="font-weight:700; color:#1a2b3c; margin-bottom:20px; text-transform:uppercase; font-size:0.9rem;">Our Trust Score</h5>
+                    <img src="{{ asset('images/Google-Rating-1.jpeg') }}" class="trust-img" alt="Google Rating">
+                    <img src="{{ asset('images/Trustpilot.jpeg') }}" class="trust-img" alt="Trustpilot">
+                    <img src="{{ asset('images/Limotrust-1.webp') }}" class="trust-img" alt="Limo Trust">
+                    <img src="{{ asset('images/Tripadvisor.webp') }}" class="trust-img" alt="Tripadvisor">
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 @endsection
