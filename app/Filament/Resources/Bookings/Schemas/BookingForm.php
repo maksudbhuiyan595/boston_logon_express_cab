@@ -29,11 +29,11 @@ class BookingForm
                                 $lastBookingNo = Booking::max('booking_no');
 
                                 if (!$lastBookingNo) {
-                                    return 'BLAT-1001';
+                                    return 'BEC-0001';
                                 }
-                                $number = (int) str_replace('BLAT-', '', $lastBookingNo);
+                                $number = (int) str_replace('BEC-', '', $lastBookingNo);
 
-                                return 'BLAT-' . ($number + 1);
+                               return sprintf('BEC-%04d', $number + 1);
                             })
                             ->disabled()
                             ->dehydrated()
