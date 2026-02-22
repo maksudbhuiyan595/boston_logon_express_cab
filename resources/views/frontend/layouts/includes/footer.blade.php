@@ -194,8 +194,8 @@
             <ul style="color: #bbb; line-height: 2;">
                 <li><a href="{{ route('about') }}">About</a></li>
                 <li><a href="{{ route('payment.policy') }}">Payment Policy</a></li>
-                <li><a href="{{ route('blogs') }}">Blog</a></li>
-                <li><a href="{{ route('term.conditions') }}">Terms</a></li>
+                <li><a href="{{ route('blogs') }}">Blogs</a></li>
+                <li><a href="{{ route('term.conditions') }}">Terms And Conditions</a></li>
             </ul>
         </div>
         <div class="footer-col">
