@@ -30,8 +30,8 @@
         border-radius: 4px;
     }
 
-    .hero-text h1 {
-        font-size: 3rem;
+    .hero-text h2 {
+        /* font-size: 3rem; */
         font-weight: 800;
         line-height: 1.2;
         color: #222;
@@ -102,7 +102,7 @@
     <div class="container hero-grid">
         <div class="hero-text">
             <span class="eyebrow-text">Looking for a Cab? You're at the right place.</span>
-            <h1>Need a Logan Airport Car & Boston Taxi? <br> <span style="color: var(--brand-blue);">Book Boston Express Cab!</span></h1>
+            <h2>Need a Logan Airport Car & Boston Taxi? <br> <span style="color: var(--brand-blue);">Book Boston Express Cab!</span></h2>
             <a href="{{ route("home") }}" class="btn-primary">
                 Book Now <i class="fa-solid fa-arrow-right"></i>
             </a>
