@@ -2,12 +2,11 @@
 
 {{-- 1. SEO SECTION --}}
 @section('title', $page->meta_title ?? ($page->route_name . ' | Boston Express Cab'))
+@section('meta_description', "{{ $page->meta_description ?? Str::limit(strip_tags($page->content), 160) }}")
 
-@section('meta')
-    <meta name="description" content="{{ $page->meta_description ?? Str::limit(strip_tags($page->content), 160) }}">
     <meta name="keywords" content="{{ is_array($page->tags) ? implode(', ', $page->tags) : ($page->tags ?? 'Boston Express Cab, taxi, airport transfer') }}">
     <meta property="og:image" content="{{ $page->cover_image ? asset('storage/' . $page->cover_image) : asset('images/home3.jpeg') }}">
-@endsection
+
 @section('schema')
     @php
         $schemaData = [
