@@ -1,10 +1,10 @@
 @extends('frontend.app')
 @section('title', "About")
-
 @section('meta_description', 'This is about for boston express cab')
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+@section('content')
 <style>
     :root {
         --primary: #111827;       /* Dark Navy/Black */
