@@ -7,8 +7,8 @@
 @section('content')
 <style>
     :root {
-        --primary: #111827;       /* Dark Navy/Black */
-        --accent: #2563EB;        /* Brand Blue */
+        --primary: #111827;
+        --accent: #2563EB;     
         --accent-hover: #1D4ED8;
         --bg-body: #F9FAFB;
         --bg-white: #FFFFFF;
