@@ -40,33 +40,50 @@
     .ratings-row > div:nth-child(3) { animation-delay: 0.5s; }
     .ratings-row > div:nth-child(4) { animation-delay: 0.7s; }
 
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
         .content-section {
-            padding: 30px 5px;
+            padding: 20px 5px; /* Side padding komano hoyeche */
         }
 
         .rating-logo {
-            height: 95px !important;
+            height: 60px !important; /* Tablet-e boro icon */
+            width: auto !important;
             filter: none;
         }
 
         .ratings-row {
             display: flex !important;
-            flex-wrap: nowrap !important;
+            flex-wrap: nowrap !important; /* Ek line-e thakbe */
             gap: 5px !important;
             justify-content: space-around !important;
         }
 
         .ratings-row > div {
             flex: 1;
-            padding: 0 5px;
+            padding: 0 2px;
         }
     }
 
     @media (max-width: 480px) {
+        .content-section {
+            padding: 15px 2px;
+        }
+
         .rating-logo {
-            height: 46px !important;
-            width: 68px !important;
+            /* 480px screen-e 4ti icon ek line-e thakle height 50-55px rakha safe */
+            height: 52px !important;
+            width: auto !important;
+        }
+
+        .ratings-row {
+            gap: 3px !important;
+        }
+    }
+
+    /* Aro choto mobile (320px) er jonno */
+    @media (max-width: 360px) {
+        .rating-logo {
+            height: 42px !important;
         }
     }
 </style>

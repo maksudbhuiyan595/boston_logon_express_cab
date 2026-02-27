@@ -563,7 +563,7 @@ class HomeController extends Controller
             $booking->card_last_four = $cardLast4;
             $booking->save();
             try {
-                
+
                 Mail::to(config('mail.from.address'))->send(new BookingConfirmationMail($booking));
                 Mail::to($booking->passenger_email)->send(new BookingConfirmationMail($booking));
             } catch (\Exception $e) {
