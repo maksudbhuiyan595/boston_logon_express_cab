@@ -8,7 +8,7 @@
             "@type" => "WebPage",
             "name" => "Minivan Taxi Service - Spacious and Reliable Transportation",
             "url" => url()->current() .'/',
-            "image" => asset('images/dalta.png'),
+            "image" => asset('images/cab7.png'),
             "description" => "Whether your traveling with family, friends, or a small group, Boston Express Cab offers a reliable and comfortable Minivan Taxi Service to meet your needs.",
             "telephone" => "617-230-6362",
             "priceRange" => "$$",
@@ -54,7 +54,7 @@
     /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
     .minivan-hero {
         position: relative;
-        background: url('{{ asset('images/dalta.png') }}') no-repeat center center;
+        background: url('{{ asset('images/cab7.png') }}') no-repeat center center;
         background-size: 100% 100% !important;
         height: 450px;
         display: flex;
@@ -86,6 +86,7 @@
         margin-bottom: 20px;
         text-shadow: 0 4px 8px rgba(0,0,0,0.6);
         text-transform: capitalize;
+        margin-bottom: 90px;
     }
 
     /* --- MOBILE RESPONSIVE FIX --- */

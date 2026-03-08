@@ -8,7 +8,7 @@
             "@type" => "WebPage",
             "name" => "Long Distance Car Service",
             "url" => url()->current() .'/',
-            "image" => asset('images/airportareacab.jpeg'),
+            "image" => asset('images/cab8.png'),
             "description" => "At Boston Express Cab, we pride ourselves on offering reliable and comfortable long distance car services from Logan Airport to several major cities.",
             "telephone" => "617-230-6362",
             "priceRange" => "$$",
@@ -54,7 +54,7 @@
     /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
     .long-dist-hero {
         position: relative;
-        background: url('{{ asset("images/airportareacab.jpeg") }}') no-repeat center center;
+        background: url('{{ asset("images/cab.png") }}') no-repeat center center;
         background-size: 100% 100% !important;
         height: 450px;
         display: flex;
@@ -97,6 +97,7 @@
         text-shadow: 0 4px 8px rgba(0,0,0,0.8);
         text-transform: capitalize;
         line-height: 1.2;
+        margin-bottom: 90px;
     }
 
     /* --- MOBILE RESPONSIVE FIX --- */
@@ -215,7 +216,7 @@
     <div class="hero-overlay"></div>
     <div class="container hero-content">
         {{-- <h2 class="hero-subtitle">Reliable & Comfortable</h2> --}}
-        {{-- <h1 class="hero-title">Long Distance Car Service</h1> --}}
+        <h1 class="hero-title">Long Distance Car Service</h1>
     </div>
 </div>
 

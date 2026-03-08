@@ -28,7 +28,7 @@
     /* --- HERO SECTION UPDATED FOR FULL IMAGE --- */
     .service-hero {
         position: relative;
-        background: url('{{ asset("images/seat.png") }}') no-repeat center center;
+        background: url('{{ asset("images/cab8.png") }}') no-repeat center center;
         background-size: 100% 100% !important;
         height: 450px;
         display: flex;
@@ -54,6 +54,7 @@
         font-weight: 800;
         margin-bottom: 10px;
         text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        margin-bottom: 90px;
     }
     .hero-subtitle {
         font-size: clamp(1rem, 2vw, 1.2rem);
@@ -186,7 +187,7 @@
 <div class="service-hero">
     <div class="hero-content">
         <h1 class="hero-title">Child Seat Taxi Service</h1>
-        <p class="hero-subtitle">Safe, Comfortable, and Reliable Transportation for Your Little Ones.</p>
+        {{-- <p class="hero-subtitle">Safe, Comfortable, and Reliable Transportation for Your Little Ones.</p> --}}
     </div>
 </div>
 
