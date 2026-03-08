@@ -52,6 +52,7 @@
         font-weight: 800;
         text-transform: uppercase;
         text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        margin-bottom: 270px;
     }
 
     /* =========================================
@@ -79,7 +80,7 @@
         /* ১৪৫ পিক্সেল হাইটে টাইটেল একটু ছোট না করলে সুন্দর দেখাবে না */
         .hero-title {
             font-size: 1.6rem !important;
-            margin-bottom: 0;
+            margin-bottom: 90px;
         }
 
         .badge {
@@ -146,9 +147,9 @@
 
 {{-- 1. HERO SECTION --}}
 <section class="service-hero">
-    <img src="{{ asset('images/carservicelogon.png') }}" alt="Service Area" class="hero-bg-img">
+    <img src="{{ asset('images/cab3.png') }}" alt="Service Area" class="hero-bg-img">
     <div class="hero-content">
-        <span class="badge bg-primary px-3 py-2 mb-2" style="text-transform: uppercase;">Professional Service</span>
+        {{-- <span class="badge bg-primary px-3 py-2 mb-2" style="text-transform: uppercase;">Professional Service</span> --}}
         <h1 class="hero-title">Service Areas</h1>
     </div>
 </section>

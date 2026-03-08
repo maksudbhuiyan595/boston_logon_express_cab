@@ -9,7 +9,7 @@
             "@type" => "WebPage",
             "name" => "Reserve Boston Taxi to Logan Airport, CT, RI, NH, VT, NY",
             "url" => url()->current() .'/',
-            "image" => asset('images/capbooking.png'),
+            "image" => asset('images/cab6.png'),
             "description" => "Book Boston taxi to Logan Airport, New Haven, Stamford, Portsmouth & beyond! Safe, 24/7 cabs with child seats, minivans. Instant booking, call 617-230-6362.",
             "telephone" => "617-230-6362",
             "priceRange" => "$$",
@@ -50,7 +50,7 @@
             margin-left: -50vw;
             margin-right: -50vw;
             height: 450px;
-            background: url('{{ asset('images/capbooking.png') }}') no-repeat center center;
+            background: url('{{ asset('images/cab6.png') }}') no-repeat center center;
             background-size: 100% 100% !important;
             display: flex;
             align-items: center;
@@ -65,7 +65,7 @@
             background: rgba(0, 0, 0, 0.5);
         }
 
-        .hero-content { position: relative; z-index: 2; padding: 0 20px; width: 100%; }
+        .hero-content { position: relative; z-index: 2; padding: 0 20px; width: 100%; color: #fff;}
         .hero-subtitle { color: #2D9CDB; font-size: clamp(1rem, 2vw, 1.5rem); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
         .hero-title { color: #ffffff; font-weight: 800; font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 25px; text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
 
@@ -106,6 +106,7 @@
         <div class="hero-content">
             <h2 class="hero-subtitle">Boston Express Cab Reservation</h2>
             <h1 class="hero-title">Reserve Your Ride with Boston Express Cab</h1>
+            {{-- <h1>Boston Express Cab Reservation</h1> --}}
         </div>
     </div>
 

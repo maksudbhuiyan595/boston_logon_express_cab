@@ -69,7 +69,7 @@
 
             <div class="text-center">
                 <a href="https://www.trustpilot.com/review/bostonexpresscab.com" target="_blank">
-                    <img src="{{ asset('images/trust.png') }}" alt="Trustpilot" class="rating-logo">
+                    <img src="{{ asset('images/Trustpilot.jpeg') }}" alt="Trustpilot" class="rating-logo">
                 </a>
             </div>
 
