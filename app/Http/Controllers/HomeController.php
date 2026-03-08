@@ -390,7 +390,7 @@ class HomeController extends Controller
     }
     public function areaWeServe(Request $request)
     {
-         $cities = City::orderBy('name', 'asc')->paginate(30);
+         $cities = City::where('is_featured',true)->orderBy('name', 'asc')->paginate(30);
         return view("frontend.layouts.pages.servicearea",compact('cities'));
     }
     public function childSeat(Request $request)
