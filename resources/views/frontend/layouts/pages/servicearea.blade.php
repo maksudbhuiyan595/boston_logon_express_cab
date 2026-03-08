@@ -4,7 +4,7 @@
 
 <style>
     /* =========================================
-        HERO SECTION - FULL WIDTH & COVER
+        HERO SECTION STYLES
        ========================================= */
     .service-hero {
         position: relative;
@@ -13,7 +13,7 @@
         background-color: #000;
         overflow: hidden;
         display: flex;
-        align-items: flex-end; /* কন্টেন্ট নিচ থেকে পজিশন করার জন্য */
+        align-items: flex-end;
         justify-content: center;
         margin: 0;
         padding: 0;
@@ -26,7 +26,6 @@
         width: 100%;
         height: 100%;
         object-fit: cover !important;
-        object-position: center;
         z-index: 1;
     }
 
@@ -45,8 +44,7 @@
         text-align: center;
         width: 100%;
         padding: 0 15px;
-        /* ডেস্কটপে নিচ থেকে ২৭০ পিক্সেল উপরে */
-        margin-bottom: 270px;
+        margin-bottom: 270px; /* Desktop distance from bottom */
     }
 
     .hero-title {
@@ -58,23 +56,7 @@
     }
 
     /* =========================================
-        MOBILE FIX
-       ========================================= */
-    @media (max-width: 768px) {
-        .service-hero {
-            height: 150px !important;
-        }
-        .hero-content {
-            /* মোবাইলে নিচ থেকে ৯০ পিক্সেল উপরে */
-            margin-bottom: 90px;
-        }
-        .hero-title {
-            font-size: 1.6rem !important;
-        }
-    }
-
-    /* =========================================
-        SERVICE AREA CARDS DESIGN (FIXED)
+        SERVICE AREA CARDS (2-LINE FIX)
        ========================================= */
     .section-padding { padding: 80px 0; }
     .bg-light { background-color: #f8fafc; }
@@ -92,13 +74,18 @@
         margin-bottom: 25px;
         text-decoration: none !important;
         color: #1e293b;
-        height: 100%; /* সব কার্ডের হাইট সমান রাখবে */
-        min-height: 75px;
+        height: 100%;
+        min-height: 85px; /* Ensures all cards stay the same size */
     }
 
     .location-card::before {
-        content: ""; position: absolute; left: 0; top: 0; height: 100%;
-        width: 0; background-color: #2D9CDB; transition: width 0.3s ease;
+        content: "";
+        position: absolute;
+        left: 0; top: 0;
+        height: 100%;
+        width: 0;
+        background-color: #2D9CDB;
+        transition: width 0.3s ease;
     }
 
     .location-card:hover::before { width: 4px; }
@@ -111,34 +98,77 @@
     }
 
     .icon-box {
-        width: 40px; height: 40px;
+        width: 40px;
+        height: 40px;
         background-color: rgba(45, 156, 219, 0.1);
         border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        margin-right: 12px; color: #2D9CDB;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        color: #2D9CDB;
         transition: all 0.3s ease;
-        flex-shrink: 0; /* আইকন যাতে চ্যাপ্টা না হয় */
+        flex-shrink: 0; /* Prevents icon from squishing */
     }
 
-    .location-card:hover .icon-box { background-color: #2D9CDB; color: white; }
+    .location-card:hover .icon-box {
+        background-color: #2D9CDB;
+        color: white;
+    }
 
+    /* --- CITY TEXT 2-LINE ELLIPSIS --- */
     .city-text {
         font-weight: 600;
         font-size: 1rem;
-        line-height: 1.3;
-        flex: 1; /* টেক্সট যতটুকু জায়গা পায় তা দখল করবে */
-        word-break: break-word; /* বড় শব্দ হলে ভেঙে দেবে */
+        line-height: 1.4;
+        flex: 1;
+        color: #334155;
+        word-break: break-all; /* Breaks long strings like "boston-to-provincetown" */
+
+        /* 2-Line Clamping logic */
         display: -webkit-box;
-        -webkit-line-clamp: 2; /* ৩ লাইনের বেশি হলে ডট ডট দেখাবে */
+        -webkit-line-clamp: 2; /* Limits to exactly 2 lines */
         -webkit-box-orient: vertical;
         overflow: hidden;
+        text-overflow: ellipsis; /* Adds the "..." at the end */
+
+        /* Force container height to 2 lines for symmetry */
+        min-height: 2.8em;
+        display: flex;
+        align-items: center;
+    }
+
+    /* =========================================
+        RESPONSIVE FIXES
+       ========================================= */
+    @media (max-width: 768px) {
+        .service-hero {
+            height: 150px !important;
+        }
+        .hero-content {
+            margin-bottom: 90px; /* Mobile distance from bottom */
+        }
+        .hero-title {
+            font-size: 1.6rem !important;
+        }
     }
 
     @media (max-width: 576px) {
         .section-padding { padding: 40px 0; }
-        .location-card { padding: 10px; gap: 8px; margin-bottom: 15px; }
-        .city-text { font-size: 0.85rem; -webkit-line-clamp: 3; }
-        .icon-box { width: 32px; height: 32px; margin-right: 8px; }
+        .location-card {
+            padding: 10px;
+            min-height: 75px;
+            margin-bottom: 15px;
+        }
+        .icon-box {
+            width: 32px;
+            height: 32px;
+            margin-right: 8px;
+        }
+        .city-text {
+            font-size: 0.85rem;
+            min-height: 2.6em;
+        }
     }
 </style>
 
