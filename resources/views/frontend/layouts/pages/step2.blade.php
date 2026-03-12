@@ -636,13 +636,13 @@
                             </tr> @endif
                             @if($defaultVehicle['toll_fee'] > 0)
                                 <tr>
-                                    <td>Toll Fee</td>
+                                    <td>Extra Toll Fee</td>
                                     <td>:</td>
                                     <td>${{ number_format($defaultVehicle['toll_fee'], 2) }}</td>
                             </tr> @endif
                             @if($defaultVehicle['extra_charges'] > 0)
                                 <tr>
-                                    <td>Zip Charges</td>
+                                    <td>Extra Zip Charges</td>
                                     <td>:</td>
                                     <td>${{ number_format($defaultVehicle['extra_charges'], 2) }}</td>
                             </tr> @endif
