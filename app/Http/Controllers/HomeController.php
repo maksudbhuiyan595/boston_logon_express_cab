@@ -177,22 +177,41 @@ class HomeController extends Controller
             $originZip = $extractZip($origin);
             $destinationZip = $extractZip($destination);
 
-            $extraChargeTotal = 0;
-            $tollFeeTotal = 0;
-            $appliedExtraCharges = [];
+            $extractZip = function($address) {
+                preg_match('/\b\d{5}(-\d{4})?\b/', $address, $matches);
+                return $matches[0] ?? null;
+            };
+
+            $originAddress = $data['origin_addresses'][0] ?? $origin;
+            $destinationAddress = $data['destination_addresses'][0] ?? $destination;
+
+            $originZip = $extractZip($originAddress);
+            $destinationZip = $extractZip($destinationAddress);
+
+
+           $extraChargeTotal = 0;
+           $tollFeeTotal = 0;
+
+            // Multiplier Logic
+            $multiplier = $request->adults > 7 ? 2 : 1;
 
             if ($originZip || $destinationZip) {
                 $extraCharges = ExtraCharge::where('is_active', true)->get();
+
                 foreach ($extraCharges as $charge) {
                     $zipCodes = is_array($charge->zip_codes) ? $charge->zip_codes : json_decode($charge->zip_codes, true);
+
                     if ($zipCodes && (in_array($originZip, $zipCodes) || in_array($destinationZip, $zipCodes))) {
-                        $extraChargeTotal += $charge->price ?? 0;
-                        $tollFeeTotal += $charge->toll_fee ?? 0;
-                        $appliedExtraCharges[] = ['name' => $charge->name, 'amount' => $charge->price];
+                        $extraChargeTotal += ($charge->price ?? 0) * $multiplier;
+                        $tollFeeTotal += ($charge->toll_fee ?? 0) * $multiplier;
+
+                        $appliedExtraCharges[] = [
+                            'name' => $charge->name,
+                            'amount' => ($charge->price ?? 0) * $multiplier
+                        ];
                     }
                 }
             }
-
             // ---------------------------------------------------
             // 6. CALCULATE FOR ALL ACTIVE VEHICLES
             // ---------------------------------------------------
