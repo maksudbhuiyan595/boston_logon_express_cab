@@ -191,7 +191,7 @@ class HomeController extends Controller
 
            $extraChargeTotal = 0;
            $tollFeeTotal = 0;
-
+           $appliedExtraCharges = []; // ADD THIS
             // Multiplier Logic
             $multiplier = $request->adults > 7 ? 2 : 1;
 
