@@ -9,7 +9,7 @@
             "@type" => "TaxiService",
             "name" => "Logan Airport Pick Up - Find Your Driver Quickly and Easily",
             "url" => url()->current().'/',
-            "image" => asset('images/cab22.png'),
+            "image" => asset('images/cab7.png'),
             "description" => "Landing at Logan Airport? No worries! This guide shows exactly where to meet your driver for a stress-free pick up at each Terminal and Boston South.",
             "telephone" => "617-230-6362",
             "priceRange" => "$$",
@@ -50,7 +50,7 @@
         margin-left: -50vw;
         margin-right: -50vw;
         height: 400px;
-        background: url('{{ asset('images/cab22.png') }}') no-repeat center center;
+        background: url('{{ asset('images/cab7.png') }}') no-repeat center center;
         background-size: cover !important;
         display: flex;
         align-items: center;
