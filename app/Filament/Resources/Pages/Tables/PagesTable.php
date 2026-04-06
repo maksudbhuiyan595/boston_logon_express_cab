@@ -20,6 +20,7 @@ class PagesTable
         return $table
             ->columns([
                  ImageColumn::make('cover_image')
+                 ->disk('public')
                     ->circular()
                     ->defaultImageUrl(url('/images/placeholder.png')),
                 TextColumn::make('route_name')
