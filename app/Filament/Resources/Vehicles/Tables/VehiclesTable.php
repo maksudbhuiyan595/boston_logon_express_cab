@@ -21,12 +21,13 @@ class VehiclesTable
             ->columns([
                 ImageColumn::make('image')
                     ->circular()
+                    ->disk('public')
                     ->defaultImageUrl(url('/images/placeholder.png')), // Fallback image
 
                 TextColumn::make('name')
                     ->searchable()
                     ->weight('bold')
-                    ->description(fn ($record) => $record->capacity_passenger . ' Passengers | ' . $record->capacity_luggage . ' Bags'),
+                    ->description(fn($record) => $record->capacity_passenger . ' Passengers | ' . $record->capacity_luggage . ' Bags'),
                 ColorColumn::make('color')
                     ->label('Color')
                     ->copyable()
