@@ -18,6 +18,7 @@ class BlogPostsTable
         return $table
             ->columns([
                 ImageColumn::make('thumbnail')
+                    ->disk('public')
                     ->circular()
                     ->defaultImageUrl(url('/images/placeholder.png')),
 
