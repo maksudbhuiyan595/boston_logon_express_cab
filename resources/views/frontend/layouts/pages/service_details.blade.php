@@ -160,6 +160,7 @@
     {{-- 2. BOOKING SECTION --}}
     <section class="booking-section-wrapper">
         @include('frontend.layouts.includes.booking')
+            @include('frontend.layouts.includes.rating')
     </section>
 
     {{-- 3. MAIN CONTENT SECTION --}}
