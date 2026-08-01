@@ -19,8 +19,8 @@ function generate_sitemap_xml() {
         'airports'        => '0.80',
         'about'           => '0.80',
     ];
-    $cities = City::all();
-    $blogs = BlogPost::all();
+    $cities = City::where('is_featured', true)->get(); 
+    $blogs  = BlogPost::where('is_published', true)->get();
     return response()->view('sitemap', compact('staticRouteNames', 'cities', 'blogs'))
                      ->header('Content-Type', 'text/xml');
 }
