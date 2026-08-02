@@ -2,20 +2,20 @@
 
 {{-- 1. SEO SECTION --}}
 @section('title', $page->meta_title ?? ($page->route_name . ' | Boston Express Cab'))
-@section('meta_description', "$page->meta_description")
+@section('meta_description', $page->meta_description)
 
+@section('schema')
     <meta name="keywords" content="{{ is_array($page->tags) ? implode(', ', $page->tags) : ($page->tags ?? 'Boston Express Cab, taxi, airport transfer') }}">
     <meta property="og:image" content="{{ $page->cover_image ? asset('storage/' . $page->cover_image) : asset('images/home3.jpeg') }}">
 
-@section('schema')
     @php
         $schemaData = [
             "@context" => "https://schema.org",
             "@type" => "WebPage",
-            "name" => "$page->meta_title",
-            "url" => url()->current() .'/',
+            "name" => $page->meta_title ?? $page->route_name,
+            "url" => url()->current() . '/',
             "image" => asset('storage/' . $page->cover_image),
-            "description" => "$page->meta_description)",
+            "description" => $page->meta_description,
             "telephone" => "617-230-6362",
             "priceRange" => "$$",
             "provider" => [
@@ -40,10 +40,9 @@
         ];
     @endphp
 
-@section('schema')
-<script type="application/ld+json">
-    {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
-</script>
+    <script type="application/ld+json">
+        {!! json_encode($schemaData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
+    </script>
 @endsection
 
 @section('content')
@@ -53,7 +52,7 @@
         .page-cover-wrapper {
             position: relative;
             width: 100%;
-            height: 400px; /* ডেস্কটপে হাইট */
+            height: 380px; /* ডেস্কটপ কভার হাইট */
             background-color: #000;
             overflow: hidden;
             display: flex;
@@ -67,43 +66,62 @@
             object-fit: cover;
             object-position: center;
             display: block;
-            opacity: 0.6;
+            opacity: 0.55; /* টেক্সট যাতে ক্লিয়ার দেখা যায় */
         }
 
-        /* টেক্সট ওভারলে */
+        /* টেক্সট ওভারলে (সব স্ক্রিনে ইমেজের ভেতরে রাখার ফিক্স) */
         .cover-text-overlay {
             position: absolute;
             z-index: 2;
             text-align: center;
             color: white;
-            padding: 0 20px;
+            padding: 0 15px;
             width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .cover-text-overlay h1 {
-            font-size: 3.5rem;
+            /* clamp(min_size, preferred_vw, max_size) -> স্ক্রিন অনুযায়ী টেক্সট স্কেল হবে */
+            font-size: clamp(1.2rem, 4vw, 2.8rem);
             font-weight: 800;
             text-transform: uppercase;
-            text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.7);
+            text-shadow: 2px 4px 15px rgba(0, 0, 0, 0.85);
             margin: 0;
+            padding: 0;
+            max-width: 95%; /* কভার ইমেজের মার্জিন বাউন্ডারি */
+            word-wrap: break-word;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            line-height: 1.25;
         }
 
         /* --- CONTENT STYLES --- */
         .page-content-wrapper {
-            padding: 60px 0;
+            padding: 50px 0;
             background-color: #fff;
         }
 
         .page-content {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.8;
             color: #334155;
+            word-break: break-word;
+        }
+
+        .page-content img {
+            max-width: 100% !important;
+            height: auto !important;
+            border-radius: 8px;
         }
 
         .page-content h2, .page-content h3 {
             color: #1e293b;
             font-weight: 700;
-            margin-top: 30px;
+            margin-top: 25px;
             margin-bottom: 15px;
         }
 
@@ -111,34 +129,43 @@
         .tag-badge {
             background-color: #e2e8f0;
             color: #475569;
-            padding: 6px 15px;
+            padding: 6px 14px;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             display: inline-block;
-            margin: 5px;
+            margin: 4px 2px;
             transition: all 0.3s;
         }
+
         .tag-badge:hover {
             background-color: #2D9CDB;
             color: #fff;
         }
 
-        /* --- MOBILE RESPONSIVE --- */
+        /* --- MOBILE & RESPONSIVE BREAKPOINTS --- */
         @media (max-width: 768px) {
             .page-cover-wrapper {
-                height: 150px;
-            }
-            .responsive-cover-img {
-                object-fit: cover;
+                height: 180px; /* মোবাইল স্ক্রিন কভার হাইট */
             }
 
             .cover-text-overlay h1 {
-                font-size: 1.8rem;
+                font-size: clamp(1rem, 4.5vw, 1.4rem); /* মোবাইলে টেক্সট স্কেলিং */
+                max-width: 98%;
             }
 
             .page-content-wrapper {
-                padding: 30px 0;
+                padding: 25px 0;
+            }
+
+            .page-content {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .accordion-button {
+                font-size: 0.95rem;
+                padding: 12px 15px;
             }
         }
     </style>
@@ -160,21 +187,21 @@
     {{-- 2. BOOKING SECTION --}}
     <section class="booking-section-wrapper">
         @include('frontend.layouts.includes.booking')
-            @include('frontend.layouts.includes.rating')
+        @include('frontend.layouts.includes.rating')
     </section>
 
     {{-- 3. MAIN CONTENT SECTION --}}
     <div class="page-content-wrapper">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 mx-auto">
+                <div class="col-lg-10 mx-auto px-3 px-md-0">
                     <div class="page-content">
                         {!! $page->content !!}
                     </div>
 
                     {{-- Tags Section --}}
                     @if($page->tags)
-                        <div class="mt-5 pt-4 border-top">
+                        <div class="mt-4 pt-3 border-top">
                             @php $tags = is_array($page->tags) ? $page->tags : explode(',', $page->tags); @endphp
                             @foreach($tags as $tag)
                                 <span class="tag-badge">#{{ trim($tag) }}</span>
@@ -192,7 +219,7 @@
 
                     @if(!empty($faqItems) && count($faqItems) > 0)
                         <div class="mt-5">
-                            <h3 class="mb-4 text-center" style="font-weight: 800;">Frequently Asked Questions</h3>
+                            <h3 class="mb-4 text-center fw-bold">Frequently Asked Questions</h3>
                             <div class="accordion accordion-flush shadow-sm border rounded" id="faqAccordion">
                                 @foreach($faqItems as $index => $faq)
                                     @if(!empty($faq['question']) || !empty($faq['title']))
