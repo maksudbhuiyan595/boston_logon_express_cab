@@ -272,12 +272,12 @@
                             {{-- PASSENGERS --}}
                             <div class="row g-2 mb-2">
                                 <div class="col-6">
-                                    <span class="mini-label">Adults (8+)</span>
+                                    <span class="mini-label">Adults (6+)</span>
                                     <div class="input-group">
                                         <span class="input-group-text"><i class="fas fa-users"></i></span>
                                         <select name="adults" id="adults" class="form-select" required>
                                             <option value="">Select</option>
-                                            @for ($i = 1; $i <= 14; $i++) <option value="{{ $i }}">{{ $i }}</option> @endfor
+                                            @for ($i = 1; $i <= 12; $i++) <option value="{{ $i }}">{{ $i }}</option> @endfor
                                         </select>
                                     </div>
                                 </div>
